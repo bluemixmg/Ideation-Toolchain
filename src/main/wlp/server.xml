@@ -2,6 +2,9 @@
 
     <featureManager>
         <feature>servlet-3.1</feature>
+        <feature>webProfile-6.0</feature>
+		<feature>jaxrs-1.1</feature>
+		<feature>couchdb-1.0</feature>
     </featureManager>
 
     <httpEndpoint id="defaultHttpEndpoint"
@@ -11,5 +14,24 @@
     </httpEndpoint>
 
     <application name="JavaHelloWorldApp" context-root="/JavaHelloWorldApp" location="${appLocation}" type="war"/>
-
+	<!--  
+	<couchdb id="cloudantNoSQLDB-app-thinking-cloudantNoSQLDB" jndiName='couchdb/app-thinking' libraryRef='cloudantNoSQLDB-library' password='fb77da589e92b0561e71328cd0e2a879d630f2b0562686e98cfc57dd19f64922' url='https://654fbbb9-1476-4bb7-b7de-459ff74b31c5-bluemix:fb77da589e92b0561e71328cd0e2a879d630f2b0562686e98cfc57dd19f64922@654fbbb9-1476-4bb7-b7de-459ff74b31c5-bluemix.cloudant.com'/>
+	<library id="cloudantNoSQLDB-library">
+		<fileset id='cloudantNoSQLDB-fileset' 
+			dir='C:\Users\ngil\cloudantlibs'		
+			includes='commons-codec-1.6.jar
+			commons-io-2.0.1.jar
+			commons-logging-1.1.1.jar
+			httpclient-4.2.5.jar
+			httpclient-cache-4.2.5.jar
+			httpcore-4.2.5.jar
+			jackson-annotations-2.2.2.jar
+			jackson-core-2.2.2.jar
+			jackson-databind-2.2.2.jar
+			jcl-over-slf4j-1.6.6.jar
+			org.ektorp-1.4.1.jar
+			slf4j-api-1.6.6.jar
+			slf4j-jdk14-1.6.6.jar'/>
+	</library>
+	-->
 </server>
