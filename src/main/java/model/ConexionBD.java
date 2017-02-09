@@ -26,15 +26,15 @@ public class ConexionBD {
         Class.forName("org.postgresql.Driver");
         
         //Paso 2
-        String host = "jumbo.db.elephantsql.com";
-        String dbName = "cmduwvik";
+        String host = "echo-01.db.elephantsql.com";
+        String dbName = "xsmmmlol";
         int port = 5432;
         String urlConnection = "jdbc:postgresql://" +  host + ":" 
                 + port + "/" + dbName;
         
         //Paso 3
-        String username = "cmduwvik";
-        String password = "HujUBj6AFg_kCYnQHVxYndHz19_V88u8";
+        String username = "xsmmmlol";
+        String password = "atWHingwEHVF-m8VTdCDLOOmu9bWDE9A";
         connection = DriverManager.getConnection(urlConnection, username, password);
         connection.setAutoCommit(true);
         System.out.println("Conexion Exitosa");
