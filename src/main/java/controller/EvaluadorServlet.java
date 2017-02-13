@@ -34,6 +34,7 @@ public class EvaluadorServlet extends HttpServlet{
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher("/pages/" + EVALUADOR_JSP);
 		rd.forward(request, response);
 		
