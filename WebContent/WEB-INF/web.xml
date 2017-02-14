@@ -64,16 +64,21 @@
   	<servlet-name>EvaluacionServlet</servlet-name>
   	<servlet-class>controller.EvaluacionServlet</servlet-class>
   </servlet>
+   <servlet-mapping>
+  	<servlet-name>EvaluacionServlet</servlet-name>
+  	<url-pattern>/Evaluacion</url-pattern>
+  </servlet-mapping>
   
   <servlet>
   	<servlet-name>EvaluadorServlet</servlet-name>
   	<servlet-class>controller.EvaluadorServlet</servlet-class>
   </servlet>
   
-  <servlet-mapping>
-  	<servlet-name>EvaluacionServlet</servlet-name>
-  	<url-pattern>/Evaluacion</url-pattern>
+   <servlet-mapping>
+  	<servlet-name>EvaluadorServlet</servlet-name>
+  	<url-pattern>/Evaluador</url-pattern>
   </servlet-mapping>
+ 
 	
 	<servlet>
 		<servlet-name>RegistrarAsociadoServlet</servlet-name>

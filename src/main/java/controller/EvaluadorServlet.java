@@ -22,8 +22,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "EvaluadorServlet", urlPatterns = { "/Evaluador" })
-
-
 public class EvaluadorServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
