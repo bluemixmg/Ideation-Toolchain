@@ -39,7 +39,7 @@ public class EvaluadorServlet extends HttpServlet{
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
+		this.doGet(request, response);
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
