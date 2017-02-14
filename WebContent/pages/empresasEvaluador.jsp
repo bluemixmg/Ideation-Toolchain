@@ -197,7 +197,10 @@
 Organizacion organizacion;
 for(int i=0; i<organizaciones.size(); ++i){
 	organizacion = new Organizacion();
-	organizacion = organizaciones.get(i);
+	organizacion.setDireccion(organizaciones.get(i).getDireccion());
+	organizacion.setNombre(organizaciones.get(i).getNombre());
+	organizacion.setRazonSocial(organizaciones.get(i).getRazonSocial());
+	organizacion.setRif(organizaciones.get(i).getRif());
 
 %>
           <thead>
@@ -207,7 +210,7 @@ for(int i=0; i<organizaciones.size(); ++i){
           </thead>
           <tbody>
             <tr>
-              <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Venezuela</td>
+              <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td>
             </tr>
           </tbody>
           <%} %>
