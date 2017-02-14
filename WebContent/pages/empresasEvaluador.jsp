@@ -253,7 +253,7 @@
               <td class="col-xs-3">Espacio de trabajo</td><td class="col-xs-4">Construcciones y estructuras</td><td class="col-xs-3">11/11/2016</td><td class="col-xs-2">Alta</td>
             </tr>
              <tr>
-              <td class="col-xs-3">Espacios de trabajo</td><td class="col-xs-4">Construcciones y estructuras</td><td class="col-xs-3">11/11/2016</td><td class="col-xs-2">Alta</td>
+              <td class="col-xs-3">Espacio de trabajo</td><td class="col-xs-4">Construcciones y estructuras</td><td class="col-xs-3">11/11/2016</td><td class="col-xs-2">Alta</td>
             </tr>
              <tr>
               <td class="col-xs-3">Espacios de trabajo</td><td class="col-xs-4">Construcciones y estructuras</td><td class="col-xs-3">11/11/2016</td><td class="col-xs-2">Alta</td>
