@@ -39,25 +39,25 @@ public class EvaluadorServlet extends HttpServlet{
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		this.doGet(request, response);
+	    List<Desafio> desafios = new ArrayList<Desafio>();
+	    List<Organizacion> organizaciones =  new ArrayList<Organizacion>();
+		response.setContentType("text/html;charset=UTF-8");
+		HttpSession session = request.getSession();
+		
+		//retornar los desafios de un evaluador
+		
+		EvaluadoresDesafioDAO evdesafio = new EvaluadoresDesafioDAO();
+		desafios = evdesafio.desafiosEvaluador((User) session.getAttribute("user"));
+		organizaciones = this.organizacionesEvaluador(desafios);
+		session.setAttribute("organizaciones", organizaciones);
+	
+		RequestDispatcher rd = request.getRequestDispatcher("/pages/" + EVALUADOR_JSP);
+		rd.forward(request, response);
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		    List<Desafio> desafios = new ArrayList<Desafio>();
-		    List<Organizacion> organizaciones =  new ArrayList<Organizacion>();
-			response.setContentType("text/html;charset=UTF-8");
-			HttpSession session = request.getSession();
-			
-			//retornar los desafios de un evaluador
-			
-			EvaluadoresDesafioDAO evdesafio = new EvaluadoresDesafioDAO();
-			desafios = evdesafio.desafiosEvaluador((User) session.getAttribute("user"));
-			organizaciones = this.organizacionesEvaluador(desafios);
-			session.setAttribute("organizaciones", organizaciones);
-		
-			RequestDispatcher rd = request.getRequestDispatcher("/pages/" + EVALUADOR_JSP);
-			rd.forward(request, response);
+		this.processRequest(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
