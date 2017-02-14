@@ -104,7 +104,7 @@
 						<li>
 							<a href="#">
 								<div>
-									<i class="fa fa-comment fa-fw"></i><small> 3 Nuevos Comentarios </small>
+									<i class="fa fa-comment fa-fw"></i><small> 3 Nuevo Comentarios </small>
 									<span class="pull-right text-muted small"> 12 min</small>
 								</div>
 							</a>
