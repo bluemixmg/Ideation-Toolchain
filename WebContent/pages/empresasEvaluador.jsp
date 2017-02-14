@@ -191,6 +191,8 @@
 <div class="col-sm-8">
 <div class="table-responsive">
 
+
+<table class="table table-fixed table-hover">
 <% List<Organizacion> organizaciones = (List<Organizacion>)session.getAttribute("organizaciones");
 Organizacion organizacion;
 for(int i=0; i<organizaciones.size(); ++i){
@@ -198,8 +200,6 @@ for(int i=0; i<organizaciones.size(); ++i){
 	organizacion = organizaciones.get(i);
 
 %>
-
-<table class="table table-fixed table-hover">
           <thead>
             <tr>
               <th class="col-xs-4">Nombre</th><th class="col-xs-4">Razon social</th><th class="col-xs-4">Pais</th>
@@ -210,8 +210,9 @@ for(int i=0; i<organizaciones.size(); ++i){
               <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Venezuela</td>
             </tr>
           </tbody>
+          <%} %>
         </table>
-<%} %>
+
 </div>	     
 </div>
 
