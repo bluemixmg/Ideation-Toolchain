@@ -73,7 +73,7 @@ public class LoginServlet extends HttpServlet {
 					rq = request.getRequestDispatcher("/pages/desa.jsp");
 					break;
 				case 3: 
-					 rq = request.getRequestDispatcher("/pages/empresasEvaluador.jsp");
+					 rq = request.getRequestDispatcher("/EvaluadorServlet");
 					 break;
 				case 4:
 					 rq = request.getRequestDispatcher("/OrganizacionServlet");
