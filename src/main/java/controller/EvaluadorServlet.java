@@ -40,8 +40,7 @@ public class EvaluadorServlet extends HttpServlet{
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/pages/" + EVALUADOR_JSP);
-		rd.forward(request, response);
+		
 		
 	}
 	
@@ -59,7 +58,8 @@ public class EvaluadorServlet extends HttpServlet{
 			organizaciones = this.organizacionesEvaluador(desafios);
 			session.setAttribute("organizaciones", organizaciones);
 		
-		this.processRequest(request, response);
+			RequestDispatcher rd = request.getRequestDispatcher("/pages/" + EVALUADOR_JSP);
+			rd.forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
