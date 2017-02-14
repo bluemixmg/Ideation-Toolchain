@@ -2,7 +2,16 @@
     pageEncoding="ISO-8859-1"%>
     
     <%@ page import = "model.Organizacion" %>
+    <%@ page import = "model.Desafio" %>
+    <%@page import="model.User" %>
+    <%@ page import  = "java.util.ArrayList" %>
+    <%@ page import = "java.util.List" %>
+    <%@ page import = "java.util.Date" %>
+    <%@ page import = "java.text.SimpleDateFormat" %>
+    
 <jsp:useBean id="org1" class="model.Organizacion" scope="session"/>
+
+<% User usuario = (User) session.getAttribute("user"); %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -116,7 +125,7 @@
 						<i class="fa fa-user fa-fw"></i><span class="hidden-xs"> User Name </span><i class="fa fa-caret-down"></i> 
 					</a>
 					<ul class="dropdown-menu dropdown-user">
-						<li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> <%=usuario.getUsername() %></a>
 						</li>
 						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuración</a>
 						</li>
@@ -171,7 +180,7 @@
 	 
         <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header" >Empresas asociadas</h1>
+                    <h1 class="page-header" >Desafios por organizacion</h1>
                 </div>
                 <!-- /.col-lg-12 -->
         </div>
@@ -182,6 +191,14 @@
 <div class="col-sm-8">
 <div class="table-responsive">
 
+<% List<Organizacion> organizaciones = (List<Organizacion>)session.getAttribute("organizaciones");
+Organizacion organizacion;
+for(int i=0; i<organizaciones.size(); ++i){
+	organizacion = new Organizacion();
+	organizacion = organizaciones.get(i);
+
+%>
+
 <table class="table table-fixed table-hover">
           <thead>
             <tr>
@@ -190,20 +207,11 @@
           </thead>
           <tbody>
             <tr>
-              <td class="col-xs-4">Spa chevere C.A.</td><td class="col-xs-4">Comodidad y relajacion personal</td><td class="col-xs-4">Venezuela</td>
-            </tr>
-            <tr>
-              <td class="col-xs-4">Spa chevere C.A.</td><td class="col-xs-4">Comodidad y relajacion personal</td><td class="col-xs-4">Venezuela</td>
-            </tr>
-            <tr>
-              <td class="col-xs-4">Spa chevere C.A.</td><td class="col-xs-4">Comodidad y relajacion personal</td><td class="col-xs-4">Venezuela</td>
-            </tr>
-            <tr>
-              <td class="col-xs-4">Spa chevere C.A.</td><td class="col-xs-4">Comodidad y relajacion personal</td><td class="col-xs-4">Venezuela</td>
+              <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Venezuela</td>
             </tr>
           </tbody>
         </table>
-
+<%} %>
 </div>	     
 </div>
 
