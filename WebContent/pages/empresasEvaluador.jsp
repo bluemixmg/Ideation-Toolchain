@@ -193,16 +193,7 @@
 
 
 <table class="table table-fixed table-hover">
-<% List<Organizacion> organizaciones = (List<Organizacion>)session.getAttribute("organizaciones");
-Organizacion organizacion;
-for(int i=0; i<organizaciones.size(); ++i){
-	organizacion = new Organizacion();
-	organizacion.setDireccion(organizaciones.get(i).getDireccion());
-	organizacion.setNombre(organizaciones.get(i).getNombre());
-	organizacion.setRazonSocial(organizaciones.get(i).getRazonSocial());
-	organizacion.setRif(organizaciones.get(i).getRif());
 
-%>
           <thead>
             <tr>
               <th class="col-xs-4">Nombre</th><th class="col-xs-4">Razon social</th><th class="col-xs-4">Pais</th>
@@ -210,6 +201,16 @@ for(int i=0; i<organizaciones.size(); ++i){
           </thead>
           <tbody>
             <tr>
+            <% List<Organizacion> organizaciones = (List<Organizacion>)session.getAttribute("organizaciones");
+            Organizacion organizacion;
+             for(int i=0; i<organizaciones.size(); ++i){
+				organizacion = new Organizacion();
+				organizacion.setDireccion(organizaciones.get(i).getDireccion());
+				organizacion.setNombre(organizaciones.get(i).getNombre());
+				organizacion.setRazonSocial(organizaciones.get(i).getRazonSocial());
+				organizacion.setRif(organizaciones.get(i).getRif());
+
+                    %>
               <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td>
             </tr>
           </tbody>
