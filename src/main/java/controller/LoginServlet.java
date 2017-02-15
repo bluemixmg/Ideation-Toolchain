@@ -74,6 +74,7 @@ public class LoginServlet extends HttpServlet {
 					break;
 				case 3: 
 					 rq = request.getRequestDispatcher("/EvaluadorServlet");
+					 System.out.println("Entro a EvaluadorServlet");
 					 break;
 				case 4:
 					 rq = request.getRequestDispatcher("/OrganizacionServlet");
