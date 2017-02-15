@@ -56,12 +56,12 @@ public class EvaluadorServlet extends HttpServlet{
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("Entro por el doGet de EvaluadorServlet");
-		this.processRequest(request, response);
+		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("Entro por el doPost de EvaluadorServlet");
+		this.processRequest(request, response);
 	}
 	
 	public List<Organizacion> organizacionesEvaluador(List<Desafio> desafios){
