@@ -212,9 +212,9 @@
 
                     %>
               <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td>
+              <%} %>
             </tr>
           </tbody>
-          <%} %>
         </table>
 
 </div>	     
