@@ -37,7 +37,7 @@ public class EvaluadoresDesafioDAO {
 					rs = st.executeQuery(sql);
 					while(rs.next()){
 						desafio = new Desafio();
-						desafio = desdao.consultarDesafio(rs.getInt("id"));	
+						desafio = desdao.consultarDesafio(rs.getInt("iddesafio"));	
 						desafios_ev.add(desafio);
 						
 					}
