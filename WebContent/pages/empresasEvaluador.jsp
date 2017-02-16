@@ -192,7 +192,7 @@
 <div class="table-responsive">
 
 
-<table class="table table-fixed table-hover">
+<table id="table-organizaciones" class="table table-fixed table-hover">
 
           <thead>
             <tr>
@@ -200,7 +200,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr onClick="addRowHandlers()">
             <% List<Organizacion> organizaciones = (List<Organizacion>)session.getAttribute("organizaciones");
             Organizacion organizacion;
              for(int i=0; i<organizaciones.size(); ++i){
@@ -316,6 +316,28 @@
 
 	<!-- Custom Theme JavaScript -->
 	<script src="../dist/js/sb-admin-2.js"></script>
+	
+	<script type="text/javascript"> 
+    function addRowHandlers() {
+    var table = document.getElementById("table-organizaciones");
+    var rows = table.getElementsByTagName("tr");
+    for (i = 0; i < rows.length; i++) {
+        var currentRow = table.rows[i];
+        var createClickHandler = 
+            function(row) 
+            {
+                return function() { 
+                                        var cell = row.getElementsByTagName("td")[0];
+                                        var id = cell.innerHTML;
+                                        alert("id:" + id);
+                                 };
+            };
+
+        currentRow.onclick = createClickHandler(currentRow);
+     }
+   }
+		
+</script>
  </body>
 
 </html>
