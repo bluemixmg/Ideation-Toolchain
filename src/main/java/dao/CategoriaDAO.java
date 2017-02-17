@@ -24,7 +24,7 @@ public class CategoriaDAO {
 					Statement st;
 					st = c.createStatement();
 					String sql = "INSERT INTO categoria (codigo, nombre, descripcion, estatus) VALUES (";
-					sql+= Validacion.Apost(cat.getCodigo())+",";
+					sql+= cat.getCodigo()+",";
 					sql+= Validacion.Apost(cat.getNombre())+",";
 					sql+= Validacion.Apost(cat.getDescripcion())+",";
 					sql+= Validacion.Apost("A")+");";
@@ -58,7 +58,7 @@ public class CategoriaDAO {
 					sql += "nombre=" + Validacion.Apost(cat.getNombre()) + ", ";
 					sql += "descripcion=" + Validacion.Apost(cat.getDescripcion()) + ", ";
 					sql += "estatus=" + Validacion.Apost(cat.getEstatus());
-					sql += "WHERE codigo="+Validacion.Apost(cat.getCodigo());
+					sql += "WHERE codigo="+cat.getCodigo();
 					st.executeUpdate(sql);
 					st.close();
 					modificado = true;
@@ -84,7 +84,7 @@ public class CategoriaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE categoria SET estatus = 'E' WHERE codigo=" + Validacion.Apost(cat.getCodigo());
+					String sql = "UPDATE categoria SET estatus = 'E' WHERE codigo=" +cat.getCodigo();
 					st.executeUpdate(sql);
 					st.close();
 					eliminado = true;
@@ -109,7 +109,7 @@ public class CategoriaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE categoriasporidea SET estatus = 'E' WHERE codigocategoria=" + Validacion.Apost(cat.getCodigo());
+					String sql = "UPDATE categoriasporidea SET estatus = 'E' WHERE codigocategoria=" + cat.getCodigo();
 					st.executeUpdate(sql);
 					st.close();
 					eliminado = true;
@@ -140,7 +140,7 @@ public class CategoriaDAO {
 					categorias = st.executeQuery(sql);
 					while(categorias.next()) {
 						Categoria cat = new Categoria();
-						cat.setCodigo(categorias.getString("codigo"));
+						cat.setCodigo(categorias.getInt("codigo"));
 						System.out.println("Código de la categoría: " + cat.getCodigo());
 						cat.setNombre(categorias.getString("nombre"));
 						System.out.println("Nombre de la categoría: " + cat.getNombre());

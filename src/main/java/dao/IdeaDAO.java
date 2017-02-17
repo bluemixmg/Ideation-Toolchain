@@ -233,7 +233,7 @@ public class IdeaDAO {
 		return i;
 	}
 
-	public boolean insertarCategoriasPorIdea(String codigoCategoria, String codigoIdea){
+	public boolean insertarCategoriasPorIdea(int codigoCategoria, String codigoIdea){
 		boolean registrado=false;
 		try{
 			try {
@@ -243,7 +243,7 @@ public class IdeaDAO {
 					Statement st;
 					st = c.createStatement();
 					String sql = "INSERT INTO categoriasporidea (codigocategoria, codigoidea, estatus) VALUES (";
-					sql+= Validacion.Apost(codigoCategoria)+",";
+					sql+= codigoCategoria+",";
 					sql+= Validacion.Apost(codigoIdea)+",";
 					sql+= Validacion.Apost("A")+");";
 					st.executeUpdate(sql);

@@ -18,8 +18,8 @@ public class AreaPericiaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "INSERT INTO aredepericia (codigoarea, descripcion, estatus) VALUES (";
-					sql+= Validacion.Apost(ap.getCodigo()) + ",";
+					String sql = "INSERT INTO areadepericia (codigoarea, descripcion, estatus) VALUES (";
+					sql+= ap.getCodigo() + ",";
 					sql+= Validacion.Apost(ap.getDescripcion())+",";
 					sql+= Validacion.Apost("A")+")";
 					st.executeUpdate(sql);
@@ -49,7 +49,7 @@ public class AreaPericiaDAO {
 					st = c.createStatement();
 					String sql = "UPDATE areadepericia SET ";
 					sql+= "descripcion=" + Validacion.Apost(ap.getDescripcion());
-					sql+= " WHERE codigoarea=" + Validacion.Apost(ap.getCodigo());
+					sql+= " WHERE codigoarea=" + ap.getCodigo();
 					st.executeUpdate(sql);
 					st.close();
 					modificado = true;

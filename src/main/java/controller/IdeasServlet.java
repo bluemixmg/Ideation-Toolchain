@@ -73,7 +73,7 @@ public class IdeasServlet extends HttpServlet {
 	    	String palabras = request.getParameter("palabraclave");
 	    	String[] categorias = request.getParameterValues("categoria");
 	    	ArrayList<String> palabrasC = separarPalabrasClave(palabras);
-	    	ArrayList<String> categoriasI = convertirArrayToArrayList(categorias);
+	    	ArrayList<Integer> categoriasI = convertirArrayToArrayList(categorias);
 	    	String codigoIdea= generarCodigoIdea(user.getUsername(), des.getId());
 	    	while(daoIdea.buscarIdea(codigoIdea)){
 	    		System.out.println("El codigo de la idea ya existe");
@@ -91,7 +91,7 @@ public class IdeasServlet extends HttpServlet {
 	    
 	    	for(String p : i.getPalabrasClave())
 	    		System.out.println(p);
-	    	for(String c : i.getCategorias())
+	    	for(Integer c : i.getCategorias())
 	    		System.out.println("Codigo Categoria:"+c);
 	    	
 	    	//session.setAttribute("idea1", i);
@@ -103,7 +103,7 @@ public class IdeasServlet extends HttpServlet {
 	    		if(daoIdea.insertarIdea(i)){
 	    			System.out.println("Inserto");
 	    		
-	    		for(String cate : i.getCategorias())
+	    		for(Integer cate : i.getCategorias())
 	    			daoIdea.insertarCategoriasPorIdea(cate, i.getCodigo());
 	    		
 	    		//session.setAttribute("nom_cate", daoIdea.getCategoriasPorIdea(i.getCodigo()));
@@ -147,10 +147,10 @@ public class IdeasServlet extends HttpServlet {
 		}
 	return palabras;
 	}
-	private ArrayList<String> convertirArrayToArrayList(String[] arrayBase){
-		ArrayList<String> salida = new ArrayList<String>();
+	private ArrayList<Integer> convertirArrayToArrayList(String[] arrayBase){
+		ArrayList<Integer> salida = new ArrayList<Integer>();
 		for(String obj1: arrayBase)
-			salida.add(obj1);
+			salida.add(Integer.parseInt(obj1));
 		return salida;
 	}
     
