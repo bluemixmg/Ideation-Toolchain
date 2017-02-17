@@ -74,6 +74,7 @@ public class RegistrarServlet extends HttpServlet {
 		
     //--------------- Asignacion de parametros a la clase Estandamndar------------------------------
 
+		 
     	 Ideador es = new Ideador(); 
     	 es.setEmail(email);
     	 es.setNombres(request.getParameter("nombre"));
