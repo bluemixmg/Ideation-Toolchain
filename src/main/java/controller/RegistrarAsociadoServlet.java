@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AsociadoDAO;
+import dao.EmpleadoDAO;
 import dao.OrganizacionDAO;
 import dao.UserDAO;
-import model.Asociado;
+import model.Empleado;
 import model.Ideador;
 import model.Organizacion;
 import model.User;
@@ -59,20 +59,20 @@ public class RegistrarAsociadoServlet extends HttpServlet {
 		 Organizacion org = new Organizacion();
 		 OrganizacionDAO orgdao = new OrganizacionDAO();
 		 UserDAO userdao = new UserDAO();
-    	 AsociadoDAO daoAs = new AsociadoDAO();
-    	 Asociado asociado = new Asociado();
+    	 EmpleadoDAO daoAs = new EmpleadoDAO();
+    	 Empleado empleado = new Empleado();
     	 
 		 us = (User)session.getAttribute("user");
 		 
     //---------------Busqueda de la organizacion --------------
 		 
-		 asociado = daoAs.RetornarAsociado(us.getEmail());
+		 empleado = daoAs.RetornarAsociado(us.getEmail());
 		 
 		 
 		 System.out.println("USUARIOORGANIZACION: " + us.getEmail()+us.getPassword()+us.getTipo()+us.getUsername());
-		 System.out.println("Retorno el asoRganizacion : "+ asociado.getEmail() + " y el rif es : " + asociado.getRifOrganizacion());
+		 System.out.println("Retorno el asoRganizacion : "+ empleado.getEmail() + " y el rif es : " + empleado.getRifOrganizacion());
 
-		 org=orgdao.BuscarOrganizacion(asociado.getRifOrganizacion());
+		 org=orgdao.BuscarOrganizacion(empleado.getRifOrganizacion());
 		 		 
 		 
 	 //-------------------	VARIABLES GENERALES---------------------
@@ -93,7 +93,7 @@ public class RegistrarAsociadoServlet extends HttpServlet {
 		
 	//--------------- Asignacion de parametros a la clase Asoaciado------------------------------
 
-		 Asociado es = new Asociado(); 
+		 Empleado es = new Empleado(); 
     	 es.setEmail(email);
 		 es.setRifOrganizacion(rifOrg);
     	 es.setNombres(request.getParameter("nombre"));

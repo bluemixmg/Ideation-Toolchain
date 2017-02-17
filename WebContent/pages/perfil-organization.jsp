@@ -2,9 +2,9 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="dao.DesafioDAO" %>
 <%@page import="dao.CategoriaDAO" %>
-<%@page import="dao.AsociadoDAO" %>
+<%@page import="dao.EmpleadoDAO" %>
 <%@page import="model.Desafio" %>
-<%@page import="model.Asociado" %>
+<%@page import="model.Empleado" %>
 <%@page import="model.User" %>
 <%@page import="java.util.*" %>
 <%@page import="java.text.SimpleDateFormat" %>
@@ -249,8 +249,8 @@
                     <div class="table-responsive">
                         <table class="table table-hover">
                         <%System.out.print("Entro al jsp");
-                         List<Asociado> lis_as = new ArrayList<Asociado>();
-                         lis_as= (List<Asociado>)session.getAttribute("asociados");
+                         List<Empleado> lis_as = new ArrayList<Empleado>();
+                         lis_as= (List<Empleado>)session.getAttribute("asociados");
                           %>
                             <thead>
                                 <tr>

@@ -13,9 +13,9 @@ public class UserAdapter{
 			Ideador est=estdao.RetornarEstandar(username);
 			nombre=est.getNombres()+est.getApellidos();
 			break;
-		case 2:// Asociado
-			AsociadoDAO asodao=new AsociadoDAO();
-			Asociado aso = asodao.RetornarAsociado(username);
+		case 2:// Empleado
+			EmpleadoDAO asodao=new EmpleadoDAO();
+			Empleado aso = asodao.RetornarAsociado(username);
 			nombre = aso.getNombres()+aso.getApellidos();
 		case 3://Evaluado
 			EvaluacionDAO evadao = new EvaluacionDAO();

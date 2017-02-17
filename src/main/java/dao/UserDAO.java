@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import model.Asociado;
+import model.Empleado;
 import model.ConexionBD;
 import model.User;
 import model.Validacion;

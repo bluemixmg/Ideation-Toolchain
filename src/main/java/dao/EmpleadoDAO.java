@@ -8,13 +8,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Asociado;
+import model.Empleado;
 import model.ConexionBD;
 import model.Validacion;
 
-public class AsociadoDAO {
+public class EmpleadoDAO {
 	
-	public boolean insertarAsociado(Asociado us){
+	public boolean insertarAsociado(Empleado us){
 		boolean registrado = false;
 		try{
 			try {
@@ -54,7 +54,7 @@ public class AsociadoDAO {
 		return registrado;
 	}
 	
-	public boolean modificarAsociado(Asociado us){
+	public boolean modificarAsociado(Empleado us){
 		boolean modificar = false;
 		String Email = us.getEmail();
 		try{
@@ -92,7 +92,7 @@ public class AsociadoDAO {
 		return modificar;
 	}
 	
-	public  boolean eliminarAsociado(Asociado us){
+	public  boolean eliminarAsociado(Empleado us){
 		boolean modificar = false;
 		try{
 			try {
@@ -121,9 +121,9 @@ public class AsociadoDAO {
 	
 	
 //-----------SUJETOS A CAMBIOS-----------
-	public Asociado RetornarAsociado(String email) {
+	public Empleado RetornarAsociado(String email) {
 		ResultSet usuario = null;
-		Asociado us = new Asociado();
+		Empleado us = new Empleado();
 		try{
 			try {
 				ConexionBD bd = new ConexionBD();
@@ -162,10 +162,10 @@ public class AsociadoDAO {
 		return us;
 	}
 	
-	public List<Asociado> RetornarListaAsociado(String rif) {
+	public List<Empleado> RetornarListaAsociado(String rif) {
 		ResultSet usuario = null;
-		Asociado us = new Asociado();
-		List<Asociado> list = new ArrayList<Asociado>();
+		Empleado us = new Empleado();
+		List<Empleado> list = new ArrayList<Empleado>();
 		
 		try{
 			try {

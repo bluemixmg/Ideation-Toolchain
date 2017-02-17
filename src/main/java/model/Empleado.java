@@ -2,17 +2,17 @@ package model;
 
 import java.util.Date;
 
-public class Asociado extends Persona  {
+public class Empleado extends Persona  {
 
 
 
 	protected String cargo, rifOrganizacion;
 	
-	public Asociado(){
+	public Empleado(){
 		super();
 	}
 	
-	public Asociado(String email, String nombres, String apellidos, String telefono, String direccion,
+	public Empleado(String email, String nombres, String apellidos, String telefono, String direccion,
 			Date fechaNacimiento, int genero, String estatus) {
 		super(email, nombres, apellidos, telefono, direccion, fechaNacimiento, genero, estatus);
 		// TODO Auto-generated constructor stub
@@ -20,7 +20,7 @@ public class Asociado extends Persona  {
 	
 	
 
-	public Asociado(String email, String nombres, String apellidos, String telefono, String direccion, String estatus,
+	public Empleado(String email, String nombres, String apellidos, String telefono, String direccion, String estatus,
 			String cargo, String rifOrganizacion) {
 		super(email, nombres, apellidos, telefono, direccion, estatus);
 		this.cargo = cargo;

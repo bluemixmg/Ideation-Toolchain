@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 
-import dao.AsociadoDAO;
+import dao.EmpleadoDAO;
 import dao.IdeadorDAO;
 import dao.OrganizacionDAO;
 import dao.UserDAO;
@@ -70,8 +70,8 @@ public class ConexionBD {
     	e= esdao.RetornarEstandar("lfreitez@marna.com.ve");
     	
     	
-		Asociado es = new Asociado();
-		AsociadoDAO edao = new AsociadoDAO();
+		Empleado es = new Empleado();
+		EmpleadoDAO edao = new EmpleadoDAO();
 		
 		es= edao.RetornarAsociado("aa@m.com");
 		

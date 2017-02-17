@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AsociadoDAO;
+import dao.EmpleadoDAO;
 import dao.CategoriaDAO;
 import dao.DesafioDAO;
 import dao.IdeaDAO;
 import dao.OrganizacionDAO;
-import model.Asociado;
+import model.Empleado;
 import model.Categoria;
 import model.Desafio;
 import model.Organizacion;
@@ -53,8 +53,8 @@ public class OrganizacionServlet extends HttpServlet {
 			
 			
 			//------------Busqueda del los desafio por el RIF a travez del asiciado--------------
-			AsociadoDAO adao = new AsociadoDAO();
-			Asociado as=adao.RetornarAsociado(((User)session.getAttribute("user")).getEmail());
+			EmpleadoDAO adao = new EmpleadoDAO();
+			Empleado as=adao.RetornarAsociado(((User)session.getAttribute("user")).getEmail());
 	
 			List<Desafio> lis_des = getDesafios(as.getRifOrganizacion());
 			session.setAttribute("desafios", lis_des);
@@ -69,8 +69,8 @@ public class OrganizacionServlet extends HttpServlet {
 			session.setAttribute("votaciones", mp);
 			
 			//Lista de asociado a la organizacion 
-			AsociadoDAO asd = new AsociadoDAO();
-			List<Asociado> list_as  = asd.RetornarListaAsociado(as.getRifOrganizacion());
+			EmpleadoDAO asd = new EmpleadoDAO();
+			List<Empleado> list_as  = asd.RetornarListaAsociado(as.getRifOrganizacion());
 			session.setAttribute("asociados", list_as);
 			
 			//Datos de la organizacion 

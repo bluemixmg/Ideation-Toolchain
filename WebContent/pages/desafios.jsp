@@ -1,12 +1,12 @@
 <%@page import="dao.OrganizacionDAO"%>
-<%@page import="dao.AsociadoDAO"%>
+<%@page import="dao.EmpleadoDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="dao.DesafioDAO" %>
 <%@page import="dao.CategoriaDAO" %>
-<%@page import="dao.AsociadoDAO" %>
+<%@page import="dao.EmpleadoDAO" %>
 <%@page import="model.Desafio" %>
-<%@page import="model.Asociado" %>
+<%@page import="model.Empleado" %>
 <%@page import="model.Categoria" %>
 <%@page import="model.User" %>
 <%@page import="java.util.*" %>
@@ -518,14 +518,14 @@
             		des.setCantIdeas(lis_des.get(i).getCantIdeas());
             		System.out.println("Asignó la cantidad de ideas (se muestra como string): " + des.getCantIdeas());
             		
-            		Asociado aso = new Asociado();
+            		Empleado emp = new Empleado();
             		int tipo = ((User) session.getAttribute("user")).getTipo();
             		if(tipo == 2 || tipo == 4) {
-            			AsociadoDAO daoa = new AsociadoDAO();
-            			aso = daoa.RetornarAsociado(((User) session.getAttribute("user")).getEmail());
+            			EmpleadoDAO daoe = new EmpleadoDAO();
+            			emp = daoe.RetornarAsociado(((User) session.getAttribute("user")).getEmail());
             		}
             		
-            		if(!des.getTipo() || (des.getTipo() && ((tipo == 2 || tipo == 4) && aso.getRifOrganizacion() == des.getOrg()))) {
+            		if(!des.getTipo() || (des.getTipo() && ((tipo == 2 || tipo == 4) && emp.getRifOrganizacion() == des.getOrg()))) {
             	%> 
                 <div class="col-xs-8 col-md-6 col-lg-4" style="float:left">
                     <div class="panel panel-primary">

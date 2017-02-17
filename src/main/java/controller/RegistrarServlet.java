@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AsociadoDAO;
+import dao.EmpleadoDAO;
 import dao.IdeadorDAO;
 import dao.UserDAO;
 import model.Ideador;
