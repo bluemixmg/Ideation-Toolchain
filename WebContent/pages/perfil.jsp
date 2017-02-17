@@ -226,7 +226,7 @@
                         <input type="email" class="form-control" placeholder="Correo electronico" required name="email" id="email" maxlength="30" data-error="Bruh, that email address is invalid" required value="<%=Ideador.getEmail() %>" disabled>
                      </div>
                        <div class="form-group ">
-	                     <input type="password" data-minlength="6" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" required maxlength="30" disabled>
+	                     <input type="password" data-minlength="6" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" value="12345678' required maxlength="30" disabled>
 	     				 <div class="help-block">Minino de 6 caracteres</div>
                        </div>
                        <div class="form-group">
