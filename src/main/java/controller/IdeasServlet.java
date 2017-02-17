@@ -162,6 +162,7 @@ public class IdeasServlet extends HttpServlet {
 		codigo="I"+usuario+idDesafio+"-"+extremoIzq;
 		return codigo;
 	}
+	//Determinar el porcentaje de la idea e acuerdo al progreso registrado
 	private String porcentajeProgresoIdea(char e){
 		String progreso;
 		System.out.println(e);
