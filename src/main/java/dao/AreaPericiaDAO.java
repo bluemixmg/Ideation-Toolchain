@@ -18,8 +18,7 @@ public class AreaPericiaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "INSERT INTO areadepericia (codigoarea, descripcion, estatus) VALUES (";
-					sql+= ap.getCodigo() + ",";
+					String sql = "INSERT INTO areadepericia (descripcion, estatus) VALUES (";
 					sql+= Validacion.Apost(ap.getDescripcion())+",";
 					sql+= Validacion.Apost("A")+")";
 					st.executeUpdate(sql);

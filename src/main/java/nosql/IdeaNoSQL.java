@@ -57,7 +57,7 @@ public class IdeaNoSQL {
 		return Response.ok(resultObject.toString()).build();
 	}
 	
-	public JsonObject create(Database db, String idP, Idea idea)
+	public JsonObject create(Database db, int idP, Idea idea)
 			throws IOException {
 		Date f = new Date();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -78,7 +78,7 @@ public class IdeaNoSQL {
 		data.put("creation_date", fecha_creacion);
 		db.save(data);
 
-		obj = db.find(HashMap.class, idP);
+		obj = db.find(HashMap.class, String.valueOf(idP));
 		JsonObject resultObject = toJsonObject(obj);
 
 		return resultObject;

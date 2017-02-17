@@ -225,9 +225,9 @@
 				    <!-- /.col-lg-4 -->
 				    <% for(int i=0; i<lis_i.size(); i++){ 
 				    	System.out.println(lis_i.size()+" indice: "+i);
-				    	Idea idea = new Idea("", "", "", 0, "", "", null, null, '*');
+				    	Idea idea = new Idea("", "", 0, "", -1, null, null, '*');
 				    	idea = lis_i.get(i);
-				    	ideaJson = ideaN.getUnaIdea(idea.getCodigo());
+				    	ideaJson = ideaN.getUnaIdea(String.valueOf(idea.getCodigo()));
 				    %>			    
                 <div class="col-lg-4">
                     <div class="well well-lg">

@@ -54,7 +54,7 @@ public class AreasPorEvaluadorDAO {
 					Statement st;
 					st = c.createStatement();
 					String sql = "UPDATE areasporevaluador SET ";
-					sql+= "codarea= " + ap.getCodigo() + ",";
+					//sql+= "codarea= " + ap.getCodigo() + ",";
 					sql+= "usuariousername= " + Validacion.Apost(us.getUsername())+",";
 					sql+= "annosexperiencia= " + annosexperiencia+",";
 					sql+= "WHERE codarea= " + ap.getCodigo()+ ",";
@@ -85,7 +85,7 @@ public class AreasPorEvaluadorDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE areasporevaluador SET Estatus = 'E' WHERE codArea=" + ap.getCodigo() + " AND usuariousername=" + Validacion.Apost(us.getUsername());
+					String sql = "UPDATE areasporevaluador SET estatus = 'E' WHERE codarea=" + ap.getCodigo() + " AND usuariousername=" + Validacion.Apost(us.getUsername());
 					st.executeUpdate(sql);
 					st.close();
 					eliminado = true;

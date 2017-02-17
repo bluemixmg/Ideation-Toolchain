@@ -23,8 +23,8 @@ public class CategoriaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "INSERT INTO categoria (codigo, nombre, descripcion, estatus) VALUES (";
-					sql+= cat.getCodigo()+",";
+					String sql = "INSERT INTO categoria (nombre, descripcion, estatus) VALUES (";
+					//sql+= cat.getCodigo()+",";
 					sql+= Validacion.Apost(cat.getNombre())+",";
 					sql+= Validacion.Apost(cat.getDescripcion())+",";
 					sql+= Validacion.Apost("A")+");";
