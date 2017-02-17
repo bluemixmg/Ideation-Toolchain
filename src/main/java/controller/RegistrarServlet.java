@@ -79,11 +79,11 @@ public class RegistrarServlet extends HttpServlet {
     	 es.setEmail(email);
     	 es.setNombres(request.getParameter("nombre"));
     	 es.setApellidos(request.getParameter("apellido"));
-    	 es.setTelefono(request.getParameter("telefono"));
-		 es.setDireccion(request.getParameter("direccion"));
-		 System.out.println("Fecha traída por request: " + request.getParameter("fechanacimiento"));
-		 Date fecha = CnvStringFecha(request.getParameter("fechanacimiento"));
-		 es.setFechaNacimiento(fecha); 
+    	 //es.setTelefono(request.getParameter("telefono"));
+		// es.setDireccion(request.getParameter("direccion"));
+		 //System.out.println("Fecha traída por request: " + request.getParameter("fechanacimiento"));
+		 //Date fecha = CnvStringFecha(request.getParameter("fechanacimiento"));
+		 //es.setFechaNacimiento(fecha); 
 		 
 		 String genero = request.getParameter("genero");
 		 response.getWriter().print(genero);
@@ -101,7 +101,7 @@ public class RegistrarServlet extends HttpServlet {
 	    		 HttpSession misession= request.getSession(true);
 	    		 //#######################################
 	    		 response.getWriter().print("Estoy en el processRequest de Registrar");
-	    		 System.out.println("Inserto estandar");
+	    		 System.out.println("Inserto usuario");
 	    		 //#######################################
 	
 	    		 misession.setAttribute("user", user);
