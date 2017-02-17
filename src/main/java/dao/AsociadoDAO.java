@@ -175,7 +175,7 @@ public class AsociadoDAO {
 					Statement st;
 					st = c.createStatement();
 									
-					String sql = "SELECT * FROM asociado WHERE estatus != 'E' and "
+					String sql = "SELECT * FROM empleado WHERE estatus != 'E' and "
 							+ " riforganizacion = "+ Validacion.Apost(rif) ;
 					System.out.println(sql);
 					usuario = st.executeQuery(sql);
