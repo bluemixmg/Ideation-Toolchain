@@ -188,7 +188,7 @@
 						<i class="fa fa-user fa-fw"></i><span class="hidden-xs"> <%=((User) session.getAttribute("user")).getUsername() %> </span><i class="fa fa-caret-down"></i> 
 					</a>
 					<ul class="dropdown-menu dropdown-user">
-						<li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
+						<li><a href="/PerfilServlet"><i class="fa fa-user fa-fw"></i> Perfil</a>
 						</li>
 						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuración</a>
 						</li>

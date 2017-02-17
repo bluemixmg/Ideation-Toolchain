@@ -23,16 +23,16 @@ public class IdeadorDAO {
 					st = c.createStatement();
 
 					String sql = "INSERT INTO ideador (email, nombre, apellido, telefono,"
-							+ " estatus, direccion, genero, fechanacimiento) VALUES (";
+							+ " estatus, direccion, genero) VALUES (";
 					sql+= Validacion.Apost(us.getEmail()) + ",";
 					sql+= Validacion.Apost(us.getNombres()) + ",";
 					sql+= Validacion.Apost(us.getApellidos()) + ",";
 					sql+= Validacion.Apost(us.getTelefono()) + ",";
 					sql+= Validacion.Apost("A")+ ",";
 					sql+= Validacion.Apost(us.getDireccion()) + ",";
-					sql+= us.getGenero() + ",";
-					System.out.println("fecha de nacimiento = " + us.getFechaNacimiento());
-					sql+= Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(us.getFechaNacimiento())) + ")";
+					sql+= us.getGenero() + ")";
+					//System.out.println("fecha de nacimiento = " + us.getFechaNacimiento());
+					//sql+= Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(us.getFechaNacimiento())) + ")";
 					
 					System.out.println(sql);
 					
@@ -72,7 +72,7 @@ public class IdeadorDAO {
 					sql+= "estatus=" + Validacion.Apost(us.getEstatus()) + ",";
 					sql+= "direccion=" + Validacion.Apost(us.getDireccion()) + ",";
 					sql+= "genero=" + us.getGenero() + ",";
-					sql+= "fechanacimiento=" + us.getFechaNacimiento() + ",";
+					sql+= "fechanacimiento=" + Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(us.getFechaNacimiento())) + ",";
 					sql+= "WHERE email =" + Validacion.Apost(Email);
 					st.executeUpdate(sql);
 					st.close();

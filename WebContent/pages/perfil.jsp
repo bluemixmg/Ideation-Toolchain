@@ -1,18 +1,29 @@
 <%@page  contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
-<%@page import="model.Ideador" %>
+<%@page import="model.Ideador, model.User" %>
 <%@page import="dao.IdeadorDAO" %>
 
-<%	Ideador Ideador= new Ideador();
-	IdeadorDAO daoEs = new IdeadorDAO();
-	Ideador= (Ideador) session.getAttribute("estandar");
+<%System.out.println("Entro al form-------------------------!!!");
 	
-	System.out.println(Ideador.getApellidos()  + " " + Ideador.getEmail() + " " + Ideador.getDireccion());
+	%>
+<%	
+	User user = new User();
+	user =(User) session.getAttribute("user");
+	Ideador Ideador = new Ideador();
+
+	System.out.println("Este es el tipo de usuario:" + user.getTipo());
+	
+
+	switch(user.getTipo()){
+		case 1:
+			Ideador= (Ideador) session.getAttribute("estandar");
+		break;
+	};
+	
+
  %>
 
-<%System.out.println("Entro al form-------------------------!!!");
-	String username = request.getParameter("user"); %>
-<%= username + Ideador.getNombres() + Ideador.getEmail() %>
+
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

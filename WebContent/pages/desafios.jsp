@@ -280,7 +280,7 @@
                         <i class="fa fa-user fa-fw"></i><%=((User) session.getAttribute("user")).getUsername() %> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profile.jsp"><i class="fa fa-user fa-fw"></i> Perfil de usuario</a>
+                        <li><a href="/PerfilServlet"><i class="fa fa-user fa-fw"></i> Perfil de usuario</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Ajustes</a>
                         </li>

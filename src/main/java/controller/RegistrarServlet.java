@@ -101,7 +101,7 @@ public class RegistrarServlet extends HttpServlet {
 	    		 HttpSession misession= request.getSession(true);
 	    		 //#######################################
 	    		 response.getWriter().print("Estoy en el processRequest de Registrar");
-	    		 System.out.println("Inserto usuario");
+	    		 System.out.println("Inserto ");
 	    		 //#######################################
 	
 	    		 misession.setAttribute("user", user);

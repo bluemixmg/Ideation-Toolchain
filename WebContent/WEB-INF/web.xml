@@ -104,5 +104,15 @@
 		<servlet-name>LogoutServlet</servlet-name>
 		<url-pattern>/LogoutServlet</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>PerfilServlet</servlet-name>
+		<servlet-class>controller.PerfilServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>PerfilServlet</servlet-name>
+		<url-pattern>/PerfilServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
 
