@@ -95,17 +95,23 @@ public class RegistrarServlet extends HttpServlet {
 		 
 	//---------- INSERTAR EL USER Y EL ESTANDAR EN LA BASE DE DATOS-------------
 		
-    	 if(userdao.insertarUsuario(user) && daoEs.insertarEstandar(es))   	 
+    	 if(userdao.insertarUsuario(user))   	 
     	 {
-    		 HttpSession misession= request.getSession(true);
-    		 //#######################################
-    		 response.getWriter().print("Estoy en el processRequest de Registrar");
-    		 System.out.println("Inserto estandar");
-    		 //#######################################
-
-    		 misession.setAttribute("user", user);
-    		 RequestDispatcher rq = request.getRequestDispatcher("/pages/desa.jsp");
-    		 rq.forward(request, response);
+    		 if(daoEs.insertarEstandar(es)){
+	    		 HttpSession misession= request.getSession(true);
+	    		 //#######################################
+	    		 response.getWriter().print("Estoy en el processRequest de Registrar");
+	    		 System.out.println("Inserto estandar");
+	    		 //#######################################
+	
+	    		 misession.setAttribute("user", user);
+	    		 RequestDispatcher rq = request.getRequestDispatcher("/pages/desa.jsp");
+	    		 rq.forward(request, response);
+    		 }else {
+    			 userdao.eliminarUser(user);
+        		 response.getWriter().print("Error al intentar Registrarse, comuniquese con el administrador de la pagina");
+        		 System.out.println("No inserto");
+    		 }
     	 }else{
     		 
     		 response.getWriter().print("Error al intentar Registrarse, comuniquese con el administrador de la pagina");

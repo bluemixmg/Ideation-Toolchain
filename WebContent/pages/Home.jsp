@@ -44,7 +44,7 @@
 			}
 
 	}
-	
+
 %>
 
     <!-- <meta charset="utf-8"> -->
@@ -153,6 +153,56 @@
 	  
 	   
 	   </div>
+	      <div class="col-sm-6" style="float: right; background-color : white ">
+            <form action="/RegistrarServlet" method="POST" role="form">   <!-- FORM HACIA EL SERVLET -->
+                <div class="col-md-6 ">                                       
+               	   	<div class="form-group has-success">
+                          <input class="form-control" placeholder="Elige un nombre de usuario" required name="user" id="user" maxlength="25">
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">@</span>
+                        <input type="email" class="form-control" placeholder="Correo Electronico" required name="email" id="email" maxlength="30">
+                    </div>
+
+                       <div class="form-group" id="pass_1">
+	                       <input class="form-control" id="inputPassword" type="password" name="inputPassword" placeholder="Contraseña" data-minLength="6" data-error="some error" required/>
+
+                       </div>
+                       <div class="form-group" id="pass_2">
+                       		<input class="form-control" id="inputPasswordConfirm" type="password" name="inputPasswordConfirm" placeholder="Confirmar contraseña"  required/>
+
+                          
+                       </div>
+           		 </div>
+				<!-- .col-md-4 -->
+				<div class="col-md-6">
+					  <div class="form-group">
+                         <input class="form-control"  type="text" placeholder="Tu Nombre" required name="nombre" id="nombre" maxlength="30">   
+                       
+                       </div>
+                       <div class="form-group ">
+                          <input class="form-control" type="text" placeholder="Tu Apellido" required name="apellido" id="apellido" maxlength="30">
+                      </div>
+                      
+                     </div> 
+                     <div class="form-group" >
+                        <label style="color: #999999; font-weight: 900;">Género: </label>
+                        <label class="radio-inline" style="color: #999999; font-weight: 900;">
+                            <input type="radio" name="genero" id="genero" value="Femenino" checked >Femenino
+                        </label>
+                        <label class="radio-inline" style="color: #999999; font-weight: 900;">
+                            <input type="radio" name="genero" id="genero" value="Masculino" >Masculino
+                        </label>
+					</div>
+			    <div align="center">	
+			    	<br>		    
+				    <button type="submit" class="btn btn-primary btn-lg btn-block">Regístrate</button>
+			    </div>	
+			  </div>    	 	
+             </form>
+
+       </div>
+	   
        <div class="col-sm-6" style="float: right">
             <form action="/RegistrarServlet" method="POST" role="form">   <!-- FORM HACIA EL SERVLET -->
                 <div class="col-md-6 ">                                       

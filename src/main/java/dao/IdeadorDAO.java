@@ -22,7 +22,7 @@ public class IdeadorDAO {
 					Statement st;
 					st = c.createStatement();
 
-					String sql = "INSERT INTO estandar (email, nombre, apellido, telefono,"
+					String sql = "INSERT INTO ideador (email, nombre, apellido, telefono,"
 							+ " estatus, direccion, genero, fechanacimiento) VALUES (";
 					sql+= Validacion.Apost(us.getEmail()) + ",";
 					sql+= Validacion.Apost(us.getNombres()) + ",";
@@ -64,7 +64,7 @@ public class IdeadorDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE estandar SET";
+					String sql = "UPDATE ideador SET";
 					sql+= "email=" + Validacion.Apost(us.getEmail()) + ",";
 					sql+= "nombre=" + Validacion.Apost(us.getNombres()) + ",";
 					sql+= "apellido=" + Validacion.Apost(us.getApellidos()) + ",";
@@ -100,7 +100,7 @@ public class IdeadorDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE estandar SET estatus= " + Validacion.Apost("E") +"WHERE email =" + us.getEmail();
+					String sql = "UPDATE ideador SET estatus= " + Validacion.Apost("E") +"WHERE email =" + us.getEmail();
 					st.executeUpdate(sql);
 					st.close();
 					modificar=true;
@@ -132,7 +132,7 @@ public class IdeadorDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "SELECT * FROM estandar WHERE estatus != 'E' and "
+					String sql = "SELECT * FROM ideador WHERE estatus != 'E' and "
 							+ "email ="+ Validacion.Apost(email);
 					System.out.println(sql);
 
