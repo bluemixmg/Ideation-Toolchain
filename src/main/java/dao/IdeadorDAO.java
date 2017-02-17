@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 
-import model.Estandar;
+import model.Ideador;
 import model.ConexionBD;
 import model.Validacion;
 
-public class EstandarDAO {
+public class IdeadorDAO {
 
-	public boolean insertarEstandar(Estandar us){
+	public boolean insertarEstandar(Ideador us){
 		boolean registrado = false;
 		try{
 			try {
@@ -54,7 +54,7 @@ public class EstandarDAO {
 		return registrado;
 	}
 	
-	public boolean modificarEstandar(Estandar us){
+	public boolean modificarEstandar(Ideador us){
 		boolean modificar = false;
 		String Email = us.getEmail();
 		try{
@@ -91,7 +91,7 @@ public class EstandarDAO {
 		return modificar;
 	}
 	
-	public  boolean eliminarEstandar(Estandar us){
+	public  boolean eliminarEstandar(Ideador us){
 		boolean modificar = false;
 		try{
 			try {
@@ -120,9 +120,9 @@ public class EstandarDAO {
 	
 	
 //-----------SUJETOS A CAMBIOS-----------
-	public Estandar RetornarEstandar(String email) {
+	public Ideador RetornarEstandar(String email) {
 		ResultSet usuario = null;
-		Estandar us = new Estandar();
+		Ideador us = new Ideador();
 		
 		
 		try{

@@ -17,7 +17,7 @@ import dao.AsociadoDAO;
 import dao.OrganizacionDAO;
 import dao.UserDAO;
 import model.Asociado;
-import model.Estandar;
+import model.Ideador;
 import model.Organizacion;
 import model.User;
 

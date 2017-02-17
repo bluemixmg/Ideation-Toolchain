@@ -1,18 +1,18 @@
 <%@page  contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
-<%@page import="model.Estandar" %>
-<%@page import="dao.EstandarDAO" %>
+<%@page import="model.Ideador" %>
+<%@page import="dao.IdeadorDAO" %>
 
-<%	Estandar estandar = new Estandar();
-	EstandarDAO daoEs = new EstandarDAO();
-	estandar = (Estandar) session.getAttribute("estandar");
+<%	Ideador Ideador= new Ideador();
+	IdeadorDAO daoEs = new IdeadorDAO();
+	Ideador= (Ideador) session.getAttribute("estandar");
 	
-	System.out.println(estandar.getApellidos()  + " " + estandar.getEmail() + " " + estandar.getDireccion());
+	System.out.println(Ideador.getApellidos()  + " " + Ideador.getEmail() + " " + Ideador.getDireccion());
  %>
 
 <%System.out.println("Entro al form-------------------------!!!");
 	String username = request.getParameter("user"); %>
-<%= username + estandar.getNombres() + estandar.getEmail() %>
+<%= username + Ideador.getNombres() + Ideador.getEmail() %>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -24,7 +24,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title><%= estandar.getNombres() + " " + estandar.getApellidos()%></title>
+	<title><%= Ideador.getNombres() + " " + Ideador.getApellidos()%></title>
 
 	<!-- Bootstrap Core CSS -->
 	<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -138,7 +138,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i><%= estandar.getNombres() + " " + estandar.getApellidos()%> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i><%= Ideador.getNombres() + " " + Ideador.getApellidos()%> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil de usuario</a>
@@ -195,7 +195,7 @@
 		            <div class="container-fluid">
 		                <div class="row">
 		                    <div class="col-lg-12">
-		                        <h2 class="page-header"><b><i> <%= estandar.getNombres() +" "+ estandar.getApellidos() %></i></b></h2> 
+		                        <h2 class="page-header"><b><i> <%= Ideador.getNombres() +" "+ Ideador.getApellidos() %></i></b></h2> 
 		
 		    <div class="row">
 		      <!-- left column -->
@@ -223,7 +223,7 @@
                     </div>
                    	<div class="form-group input-group ">
                         <span class="input-group-addon">@</span>
-                        <input type="email" class="form-control" placeholder="Correo electronico" required name="email" id="email" maxlength="30" data-error="Bruh, that email address is invalid" required value="<%=estandar.getEmail() %>" disabled>
+                        <input type="email" class="form-control" placeholder="Correo electronico" required name="email" id="email" maxlength="30" data-error="Bruh, that email address is invalid" required value="<%=Ideador.getEmail() %>" disabled>
                      </div>
                        <div class="form-group ">
 	                     <input type="password" data-minlength="6" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" required maxlength="30" disabled>
@@ -238,17 +238,17 @@
 				<!-- .col-md-4 -->
 				<div class="col-md-4">
 					  <div class="form-group">
-                         <input class="form-control"  type="text" placeholder="Tu Nombre" required name="nombre" id="nombre" maxlength="30" value="<%= estandar.getNombres()%>" disabled>   
+                         <input class="form-control"  type="text" placeholder="Tu Nombre" required name="nombre" id="nombre" maxlength="30" value="<%= Ideador.getNombres()%>" disabled>   
                        
                        </div>
                        <div class="form-group ">
-                          <input class="form-control" type="text" placeholder="Tu Apellido" required name="apellido" id="apellido" maxlength="30" value="<%=estandar.getApellidos()%>" disabled >
+                          <input class="form-control" type="text" placeholder="Tu Apellido" required name="apellido" id="apellido" maxlength="30" value="<%=Ideador.getApellidos()%>" disabled >
                       </div>
                       <div class="form-group">
-                         <input class="form-control" type="text" placeholder="Tu Teléfono" required name="telefono" id="telefono" maxlength="15" value="<%=estandar.getTelefono() %>" disabled >
+                         <input class="form-control" type="text" placeholder="Tu Teléfono" required name="telefono" id="telefono" maxlength="15" value="<%=Ideador.getTelefono() %>" disabled >
                       </div>
                      <div class="form-group">
-                         <input class="form-control"  type="text" placeholder="Tu dirección" required name="direccion" id="direccion" maxlength="90" value="<%=estandar.getDireccion()%>" disabled>   
+                         <input class="form-control"  type="text" placeholder="Tu dirección" required name="direccion" id="direccion" maxlength="90" value="<%=Ideador.getDireccion()%>" disabled>   
                        </div>
 					<div class="form-group">
                         <input  type="date" name="fechanacimiento">

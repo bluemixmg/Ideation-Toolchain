@@ -8,9 +8,9 @@ public class UserAdapter{
 	public static String nombreUsuario(int tipo, String username) {
 		String nombre=null;
 		switch(tipo){
-		case 1: //Estandar
-			EstandarDAO estdao = new EstandarDAO();
-			Estandar est=estdao.RetornarEstandar(username);
+		case 1: //Ideador
+			IdeadorDAO estdao = new IdeadorDAO();
+			Ideador est=estdao.RetornarEstandar(username);
 			nombre=est.getNombres()+est.getApellidos();
 			break;
 		case 2:// Asociado

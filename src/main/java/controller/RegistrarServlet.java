@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.AsociadoDAO;
-import dao.EstandarDAO;
+import dao.IdeadorDAO;
 import dao.UserDAO;
-import model.Estandar;
+import model.Ideador;
 import model.User;
 import model.Validacion;
 
@@ -57,7 +57,7 @@ public class RegistrarServlet extends HttpServlet {
 		
     	 UserDAO userdao = new UserDAO();
     	 response.setContentType("text/html;charset=UTF-8");
-    	 EstandarDAO daoEs = new EstandarDAO();
+    	 IdeadorDAO daoEs = new IdeadorDAO();
     	 
     	 String email, password, username;
     	 email= request.getParameter("email");
@@ -74,7 +74,7 @@ public class RegistrarServlet extends HttpServlet {
 		
     //--------------- Asignacion de parametros a la clase Estandamndar------------------------------
 
-    	 Estandar es = new Estandar(); 
+    	 Ideador es = new Ideador(); 
     	 es.setEmail(email);
     	 es.setNombres(request.getParameter("nombre"));
     	 es.setApellidos(request.getParameter("apellido"));

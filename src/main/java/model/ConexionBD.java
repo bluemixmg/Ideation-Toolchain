@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.logging.Level;
 
 import dao.AsociadoDAO;
-import dao.EstandarDAO;
+import dao.IdeadorDAO;
 import dao.OrganizacionDAO;
 import dao.UserDAO;
 
@@ -64,8 +64,8 @@ public class ConexionBD {
 //		User us = new User();
 //		UserDAO usd = new UserDAO();
 		
-    	Estandar e= new Estandar();
-    	EstandarDAO esdao = new EstandarDAO();
+    	Ideador e= new Ideador();
+    	IdeadorDAO esdao = new IdeadorDAO();
     	
     	e= esdao.RetornarEstandar("lfreitez@marna.com.ve");
     	

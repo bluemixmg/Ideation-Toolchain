@@ -5,7 +5,7 @@ public class User {
 	protected String password=null;
 	protected String email=null;
 	protected int tipo=-1; /* TODO Este tipo sera quien defina el usuario que ingresara a la aplicación
-							*	   	1-Estandar
+							*	   	1-Ideador
 							*		2-Asociado (Empleado)
 							*		3-Evaluador de ideas
 							*		4-Organizacion
