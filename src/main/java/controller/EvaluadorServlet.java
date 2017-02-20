@@ -79,6 +79,10 @@ public class EvaluadorServlet extends HttpServlet{
 		this.processRequest(request, response);
 	}
 	
+	/*Metodo para retornar la lista de organizaciones asociadas a un evaluador dada la lista
+	 * de desafios que tiene permiso para evaluar. Estas organizaciones no deben repetirse
+	  En caso de que varios desafios sean de una misma organizacion
+	 */
 	public ArrayList<Organizacion> organizacionesEvaluador(List<Desafio> desafios){
 		ArrayList<Organizacion> organizaciones = new ArrayList<Organizacion>();
 		Organizacion org;
