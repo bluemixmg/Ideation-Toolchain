@@ -55,12 +55,10 @@ public class EvaluadorServlet extends HttpServlet{
 		Desafio desafio;
 		
 		//Para cargar solo los desafios de la primera organizacion por defecto
-		System.out.println(desafios.size());
 		for(int i=0; i<desafios.size(); i++){
 			desafio = new Desafio();
 			desafio = desafios.get(i);
 			if(desafio.getOrg()==organizaciones.get(0).getRif()){
-				System.out.println(desafio.getOrg());
 				desafios_org.add(desafio);
 			}
 		}
