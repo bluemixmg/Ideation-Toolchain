@@ -40,6 +40,7 @@ public class EvaluadorServlet extends HttpServlet{
 			throws ServletException, IOException {
 		
 	    List<Desafio> desafios = new ArrayList<Desafio>();
+	    List<Desafio> desafios_org = new ArrayList<Desafio>();
 	    List<Organizacion> organizaciones =  new ArrayList<Organizacion>();
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
@@ -50,6 +51,20 @@ public class EvaluadorServlet extends HttpServlet{
 		desafios = evdesafio.desafiosEvaluador((User) session.getAttribute("user"));
 		organizaciones = this.organizacionesEvaluador(desafios);
 		session.setAttribute("organizaciones", organizaciones);
+		
+		Desafio desafio;
+		
+		//Para cargar solo los desafios de la primera organizacion por defecto
+		for(int i=0; i<desafios.size(); i++){
+			desafio = new Desafio();
+			desafio = desafios.get(i);
+			if(desafio.getOrg()==organizaciones.get(0).getRif()){
+				desafios_org.add(desafio);
+			}
+		}
+		
+		session.setAttribute("desafios_organizacion", desafios_org);
+		
 	
 		RequestDispatcher rd = request.getRequestDispatcher("/pages/" + EVALUADOR_JSP);
 		rd.forward(request, response);
@@ -60,7 +75,7 @@ public class EvaluadorServlet extends HttpServlet{
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Entro por el doPost de EvaluadorServlet");
+		//System.out.println("Entro por el doPost de EvaluadorServlet");
 		this.processRequest(request, response);
 	}
 	
@@ -75,6 +90,8 @@ public class EvaluadorServlet extends HttpServlet{
 		}
 		return organizaciones;
 	}
+	
+	
 
 
 }

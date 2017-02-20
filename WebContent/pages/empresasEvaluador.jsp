@@ -250,29 +250,17 @@
           </thead>
           <tbody>
             <tr>
-              <td class="col-xs-3">Espacio de trabajo</td><td class="col-xs-4">Construcciones y estructuras</td><td class="col-xs-3">11/11/2016</td><td class="col-xs-2">Alta</td>
-            </tr>
-             <tr>
-              <td class="col-xs-3">Espacio de trabajo</td><td class="col-xs-4">Construcciones y estructuras</td><td class="col-xs-3">11/11/2016</td><td class="col-xs-2">Alta</td>
-            </tr>
-             <tr>
-              <td class="col-xs-3">Espacios de trabajo</td><td class="col-xs-4">Construcciones y estructuras</td><td class="col-xs-3">11/11/2016</td><td class="col-xs-2">Alta</td>
-            </tr>
-             <tr>
-              <td class="col-xs-3">Espacios de trabajo</td><td class="col-xs-4">Construcciones y estructuras</td><td class="col-xs-3">11/11/2016</td><td class="col-xs-2">Alta</td>
-            </tr>
-             <tr>
-              <td class="col-xs-3">Espacios de trabajo</td><td class="col-xs-4">Construcciones y estructuras</td><td class="col-xs-3">11/11/2016</td><td class="col-xs-2">Alta</td>
-            </tr>
-             <tr>
-              <td class="col-xs-3">Espacios de trabajo</td><td class="col-xs-4">Construcciones y estructuras</td><td class="col-xs-3">11/11/2016</td><td class="col-xs-2">Alta</td>
-            </tr>
-             <tr>
-              <td class="col-xs-3">Espacios de trabajo</td><td class="col-xs-4">Construcciones y estructuras</td><td class="col-xs-3">11/11/2016</td><td class="col-xs-2">Alta</td>
-            </tr>
-             <tr>
-              <td class="col-xs-3">Espacios de trabajo</td><td class="col-xs-4">Construcciones y estructuras</td><td class="col-xs-3">11/11/2016</td><td class="col-xs-2">Alta</td>
-            </tr>            
+            <% List<Desafio> desafios = (List<Desafio>)session.getAttribute("desafios_organizacion");
+              Desafio desafio;
+              for(int i=0; i<desafios.size(); ++i){
+				desafio = new Desafio();
+				desafio.setTitulo(desafios.get(i).getTitulo());
+				desafio.setCategoria(desafios.get(i).getCategoria());
+				desafio.setFechaCaducidad(desafios.get(i).getFechaCaducidad());
+                    %>
+              <td class="col-xs-3"><%= desafio.getTitulo()%></td><td class="col-xs-4"><%= desafio.getCategoria() %></td><td class="col-xs-3"><%= desafio.getFechaCaducidad() %></td><td class="col-xs-2">Alta</td>
+              <%} %>
+            </tr>          
           </tbody>
         </table>
    </div>	     
@@ -285,11 +273,12 @@
                      Descripcion.
               </div>
                  <div class="panel-body" style="min-height: 145px; max-height: 145px;">
-                  <p>Idea para mejorar los espacios de trabajo para clientes y empleados del spa spinetti</p>
+                 <%desafio = desafios.get(0); %>
+                  <p><%= desafio.getDescripcion() %></p>
                  </div>
                  <div class="panel-footer">
                  <form method="get" action="/Evaluacion">
-                  <input type="hidden" name="id" id="id" value="112">
+                  <input type="hidden" name="id" id="id" value="<%= desafio.getId() %>">
                   <button id= "button" type="submit" class="btn btn-primary">Ver ideas</button>
                  </form>
                  </div>

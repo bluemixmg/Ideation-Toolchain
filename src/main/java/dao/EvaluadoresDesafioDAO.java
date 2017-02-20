@@ -33,7 +33,7 @@ public class EvaluadoresDesafioDAO {
 				if(c!=null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "SELECT iddesafio FROM evaluadoresdesafio WHERE evaluador= "+Validacion.Apost(evaluador.getUsername())+"";
+					String sql = "SELECT DISTINCT iddesafio FROM evaluadoresdesafio WHERE evaluador= "+Validacion.Apost(evaluador.getUsername())+"";
 					rs = st.executeQuery(sql);
 					while(rs.next()){
 						desafio = new Desafio();
