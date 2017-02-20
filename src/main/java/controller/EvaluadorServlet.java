@@ -55,7 +55,7 @@ public class EvaluadorServlet extends HttpServlet{
 		Desafio desafio;
 		
 		//Para cargar solo los desafios de la primera organizacion por defecto
-		for(int i=0; i<desafios.size(); i++){
+		/*for(int i=0; i<desafios.size(); i++){
 			desafio = new Desafio();
 			desafio = desafios.get(i);
 			if(desafio.getOrg()==organizaciones.get(0).getRif()){
@@ -63,7 +63,7 @@ public class EvaluadorServlet extends HttpServlet{
 			}
 		}
 		
-		session.setAttribute("desafios_organizacion", desafios_org);
+		session.setAttribute("desafios_organizacion", desafios_org);*/
 		
 	
 		RequestDispatcher rd = request.getRequestDispatcher("/pages/" + EVALUADOR_JSP);
