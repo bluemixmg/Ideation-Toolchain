@@ -39,8 +39,8 @@ public class EvaluadorServlet extends HttpServlet{
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-	    List<Desafio> desafios = new ArrayList<Desafio>();
-	    List<Desafio> desafios_org = new ArrayList<Desafio>();
+	    ArrayList<Desafio> desafios = new ArrayList<Desafio>();
+	    ArrayList<Desafio> desafios_org = new ArrayList<Desafio>();
 	    List<Organizacion> organizaciones =  new ArrayList<Organizacion>();
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();

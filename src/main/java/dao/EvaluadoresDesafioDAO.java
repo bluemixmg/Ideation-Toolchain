@@ -21,11 +21,11 @@ public class EvaluadoresDesafioDAO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public List<Desafio> desafiosEvaluador(User evaluador){
+	public ArrayList<Desafio> desafiosEvaluador(User evaluador){
 		ResultSet rs = null;
 		Desafio desafio;
 		DesafioDAO desdao = new DesafioDAO();
-		List<Desafio> desafios_ev = new ArrayList<Desafio>();
+		ArrayList<Desafio> desafios_ev = new ArrayList<Desafio>();
 		try{
 			try{
 				ConexionBD bd = new ConexionBD();
