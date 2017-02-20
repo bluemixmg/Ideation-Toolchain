@@ -214,9 +214,6 @@
               <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td>   
             </tr>
             <%} %>
-            <tr>
-            <td class="col-xs-4">Cualquier cosa</td><td class="col-xs-4">Cualquier cosa</td><td class="col-xs-4">Colombia</td>
-            </tr>
           </tbody>
         </table>
 
@@ -252,8 +249,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-            <% List<Desafio> desafios = (List<Desafio>)session.getAttribute("desafios_organizacion");
+          <% List<Desafio> desafios = (List<Desafio>)session.getAttribute("desafios_organizacion");
               Desafio desafio;
               for(int i=0; i<desafios.size(); ++i){
 				desafio = new Desafio();
@@ -261,9 +257,10 @@
 				desafio.setCategoria(desafios.get(i).getCategoria());
 				desafio.setFechaCaducidad(desafios.get(i).getFechaCaducidad());
                     %>
+            <tr>
               <td class="col-xs-3"><%= desafio.getTitulo()%></td><td class="col-xs-4"><%= desafio.getCategoria() %></td><td class="col-xs-3"><%= desafio.getFechaCaducidad() %></td><td class="col-xs-2">Alta</td>
-              <%} %>
-            </tr>          
+            </tr>
+             <%} %>          
           </tbody>
         </table>
    </div>	     
