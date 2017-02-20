@@ -49,7 +49,7 @@ public class EvaluadorServlet extends HttpServlet{
 		
 		EvaluadoresDesafioDAO evdesafio = new EvaluadoresDesafioDAO();
 		desafios = evdesafio.desafiosEvaluador((User) session.getAttribute("user"));
-		organizaciones = this.organizacionesEvaluador(desafios);
+		organizaciones = (ArrayList<Organizacion>)organizacionesEvaluador(desafios);
 		session.setAttribute("organizaciones", organizaciones);
 		
 		Desafio desafio;
@@ -79,8 +79,8 @@ public class EvaluadorServlet extends HttpServlet{
 		this.processRequest(request, response);
 	}
 	
-	public List<Organizacion> organizacionesEvaluador(List<Desafio> desafios){
-		List<Organizacion> organizaciones = new ArrayList<Organizacion>();
+	public ArrayList<Organizacion> organizacionesEvaluador(List<Desafio> desafios){
+		ArrayList<Organizacion> organizaciones = new ArrayList<Organizacion>();
 		Organizacion org;
 		OrganizacionDAO orgdao = new OrganizacionDAO();
 		for(int i=0; i<desafios.size(); i++){
