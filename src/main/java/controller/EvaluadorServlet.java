@@ -59,11 +59,11 @@ public class EvaluadorServlet extends HttpServlet{
 			desafio = new Desafio();
 			desafio = desafios.get(i);
 			if(desafio.getOrg().equals(organizaciones.get(0).getRif())){
-				System.out.println("Se cumple");
+			 desafios_org.add(desafio);
 			}
 		}
 		
-		session.setAttribute("desafios_organizacion", desafios);
+		session.setAttribute("desafios_organizacion", desafios_org);
 		
 	
 		RequestDispatcher rd = request.getRequestDispatcher("/pages/" + EVALUADOR_JSP);
