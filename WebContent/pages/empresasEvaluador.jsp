@@ -200,7 +200,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr onClick="addRowHandlers()">
+            <tr>
             <% List<Organizacion> organizaciones = (List<Organizacion>)session.getAttribute("organizaciones");
             Organizacion organizacion;
              for(int i=0; i<organizaciones.size(); ++i){
