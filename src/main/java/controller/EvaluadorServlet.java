@@ -55,15 +55,18 @@ public class EvaluadorServlet extends HttpServlet{
 		Desafio desafio;
 		
 		//Para cargar solo los desafios de la primera organizacion por defecto
-		/*for(int i=0; i<desafios.size(); i++){
+		System.out.println("Cantidad de desafios en la bd: ");
+		System.out.println(desafios.size());
+		for(int i=0; i<desafios.size(); i++){
 			desafio = new Desafio();
 			desafio = desafios.get(i);
+			System.out.println("Hasta aqui va bien");
 			if(desafio.getOrg()==organizaciones.get(0).getRif()){
 				desafios_org.add(desafio);
 			}
 		}
 		
-		session.setAttribute("desafios_organizacion", desafios_org);*/
+		session.setAttribute("desafios_organizacion", desafios_org);
 		
 	
 		RequestDispatcher rd = request.getRequestDispatcher("/pages/" + EVALUADOR_JSP);
