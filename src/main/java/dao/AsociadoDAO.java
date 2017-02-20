@@ -24,7 +24,7 @@ public class AsociadoDAO {
 					Statement st;
 					st = c.createStatement();
 					System.out.println("Antes de insertar un asociado");
-					String sql = "INSERT INTO asociado (email, nombre, apellido, telefono, cargo, "
+					String sql = "INSERT INTO empleado (email, nombre, apellido, telefono, cargo, "
 							+ "riforganizacion, estatus, direccion, genero, fechanacimiento) VALUES (";
 					sql+= Validacion.Apost(us.getEmail()) + ",";
 					sql+= Validacion.Apost(us.getNombres()) + ",";
@@ -64,7 +64,7 @@ public class AsociadoDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE asociado SET";
+					String sql = "UPDATE empleado SET";
 					sql+= "email=" + Validacion.Apost(us.getEmail()) + ",";
 					sql+= "nombre=" + Validacion.Apost(us.getNombres()) + ",";
 					sql+= "apellido=" + Validacion.Apost(us.getApellidos()) + ",";
@@ -101,7 +101,7 @@ public class AsociadoDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE asociado SET estatus= " + Validacion.Apost("E") +"WHERE email =" + us.getEmail();
+					String sql = "UPDATE empleado SET estatus= " + Validacion.Apost("E") +"WHERE email =" + us.getEmail();
 					st.executeUpdate(sql);
 					st.close();
 					modificar=true;
