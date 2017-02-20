@@ -200,8 +200,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-            <% List<Organizacion> organizaciones = (List<Organizacion>)session.getAttribute("organizaciones");
+          <% List<Organizacion> organizaciones = (List<Organizacion>)session.getAttribute("organizaciones");
             Organizacion organizacion;
              for(int i=0; i<organizaciones.size(); ++i){
 				organizacion = new Organizacion();
@@ -211,8 +210,12 @@
 				organizacion.setRif(organizaciones.get(i).getRif());
 
                     %>
-              <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td>
-              <%} %>
+            <tr>            
+              <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td>   
+            </tr>
+            <%} %>
+            <tr>
+            <td class="col-xs-4">Cualquier cosa</td><td class="col-xs-4">Cualquier cosa</td><td class="col-xs-4">Colombia</td>
             </tr>
           </tbody>
         </table>

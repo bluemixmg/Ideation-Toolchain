@@ -58,7 +58,6 @@ public class EvaluadorServlet extends HttpServlet{
 		for(int i=0; i<desafios.size(); i++){
 			desafio = new Desafio();
 			desafio = desafios.get(i);
-			System.out.println(desafio.getOrg());
 			if(desafio.getOrg().equals(organizaciones.get(0).getRif())){
 				desafios_org.add(desafio);
 			}
