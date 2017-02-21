@@ -336,8 +336,9 @@
 
 <script type="text/javascript">
 $("tr").click(function(){
-    $(this).addClass("selected").siblings().removeClass("selected");
-});​
+	  $("tr").removeClass("selected");
+	  $(this).addClass("selected");
+	});​
 </script>
 
 
