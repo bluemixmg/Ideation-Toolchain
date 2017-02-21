@@ -236,10 +236,10 @@
                  </div>
                  <div class="panel-footer">
                    <form method="get" action="/Evaluador">
-                    <%organizacion = new Organizacion();
-                    organizacion = (Organizacion) session.getAttribute("organizacion_consulta");                    
+                    <%String rif_org;
+                    rif_org = (String) session.getAttribute("rif_org");                    
                     %>
-                    <input type="hidden" name="id" id="id_org" value="<%= organizacion.getRif() %>">
+                    <input type="hidden" name="id" id="id_org" value="<%= rif_org %>">
                     <button id= "button_consultar" type="submit" class="btn btn-primary">Consultar desafios</button>
                    </form>
                  </div>

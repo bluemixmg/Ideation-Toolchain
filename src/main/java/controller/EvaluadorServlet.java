@@ -51,6 +51,7 @@ public class EvaluadorServlet extends HttpServlet{
 		desafios = evdesafio.desafiosEvaluador((User) session.getAttribute("user"));
 		organizaciones = (ArrayList<Organizacion>)organizacionesEvaluador(desafios);
 		session.setAttribute("organizaciones", organizaciones);
+		session.setAttribute("rif_org", "j-000009-j");
 		
 		Desafio desafio;
 		
