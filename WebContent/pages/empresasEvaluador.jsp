@@ -21,6 +21,16 @@
 
 <!-- jQuery -->
 	<script src="../vendor/jquery/jquery.min.js"></script>
+	
+	<script>
+$(document).ready(function(){
+$("tr").click(function(){
+	  $("tr").removeClass("selected");
+	  console.log("hi");
+	  $(this).addClass("selected");
+	});
+});​
+</script>
 
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -334,16 +344,6 @@
      }
    }
 		
-</script>
-
-<script>
-$(document).ready(function(){
-$("tr").click(function(){
-	  $("tr").removeClass("selected");
-	  console.log("hi");
-	  $(this).addClass("selected");
-	});
-});​
 </script>
 
 
