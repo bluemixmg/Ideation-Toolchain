@@ -298,7 +298,7 @@
    
  </div>
    
-   <script src="jquery-3.1.1.min.js"></script>
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"> </script>
    
    	<!-- jQuery -->
 	<script src="../vendor/jquery/jquery.min.js"></script>
