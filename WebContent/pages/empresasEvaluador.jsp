@@ -335,10 +335,13 @@
 </script>
 
 <script>
+$(document).ready(function(){
 $("tr").click(function(){
 	  $("tr").removeClass("selected");
+	  console.log("hi");
 	  $(this).addClass("selected");
-	});​
+	});
+});​
 </script>
 
 
