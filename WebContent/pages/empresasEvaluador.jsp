@@ -218,6 +218,9 @@
               <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td>   
             </tr>
             <%} %>
+            <tr>            
+              <td class="col-xs-4">Prueba</td><td class="col-xs-4">Prueba</td><td class="col-xs-4">Colombia</td> 
+            </tr>  
           </tbody>
         </table>
 
@@ -297,8 +300,6 @@
   </div>  
    
  </div>
-   
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"> </script>
    
    	<!-- jQuery -->
 	<script src="../vendor/jquery/jquery.min.js"></script>
