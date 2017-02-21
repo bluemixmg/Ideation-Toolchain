@@ -22,7 +22,7 @@
 <!-- jQuery -->
 	<script src="../vendor/jquery/jquery.min.js"></script>
 	
-	<script>
+<script>
 $(document).ready(function(){
 $("tr").click(function(){
 	  $("tr").removeClass("selected");
