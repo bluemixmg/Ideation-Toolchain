@@ -192,7 +192,7 @@
 <div class="table-responsive">
 
 
-<table id="table-organizaciones" class="table table-fixed table-hover">
+<table id="table-organizaciones" class="table table-fixed">
 
           <thead>
             <tr>
@@ -210,7 +210,7 @@
 				organizacion.setRif(organizaciones.get(i).getRif());
 
                     %>
-            <tr class="clickable-row">            
+            <tr>            
               <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td>   
             </tr>
             <%} %>
@@ -329,8 +329,8 @@
 </script>
 
 <script type="text/javascript">
-$('#table-organizaciones').on('click', '.clickable-row', function(event) {
-	  $(this).addClass('.bg-info').siblings().removeClass('.bg-info');
+$('#table-organizaciones').on('click', function(event) {
+	  $(this).addClass('active').siblings().removeClass('active');
 	});​
 </script>
 
