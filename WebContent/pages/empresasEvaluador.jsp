@@ -216,13 +216,10 @@
 				organizacion.setRif(organizaciones.get(i).getRif());
 
                     %>
-            <tr onClick="HighLightTR(this,'#c9cc99','cc3333');">            
-              <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td>   
+            <tr onClick="HighLightTR(this,'#c9cc99','cc3333'); addRowHandlers();">            
+              <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td><td style="display:none;"><%= organizacion.getRif() %></td>   
             </tr>
             <%} %>
-            <tr>            
-              <td class="col-xs-4">Prueba</td><td class="col-xs-4">Prueba</td><td class="col-xs-4">Colombia</td> 
-            </tr>  
           </tbody>
         </table>
 
@@ -238,7 +235,13 @@
                   <img src="../images/logo_prueba.jpg" class="media-object"  alt="imagen" style="margin-left:40px">
                  </div>
                  <div class="panel-footer">
-                   Panel Footer
+                   <form method="get" action="/Evaluador">
+                    <%organizacion = new Organizacion();
+                    organizacion = (Organizacion) session.getAttribute("organizacion_consulta");                    
+                    %>
+                    <input type="hidden" name="id" id="id_org" value="<%= organizacion.getRif() %>">
+                    <button id= "button_consultar" type="submit" class="btn btn-primary">Consultar desafios</button>
+                   </form>
                  </div>
         </div>                
 </div>
@@ -323,9 +326,11 @@
             function(row) 
             {
                 return function() { 
-                                        var cell = row.getElementsByTagName("td")[0];
+                                        var cell = row.getElementsByTagName("td")[3];
                                         var id = cell.innerHTML;
                                         alert("id:" + id);
+                                        document.getElementById('id_org').innerHTML = id;
+                                        alert(document.getElementById('id_org').innerHTML);
                                  };
             };
 

@@ -70,8 +70,10 @@ public class EvaluadorServlet extends HttpServlet{
 		rd.forward(request, response);
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
 		
-		
+		RequestDispatcher rd = request.getRequestDispatcher("/pages/" + EVALUADOR_JSP);
+		rd.forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
