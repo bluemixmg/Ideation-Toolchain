@@ -26,7 +26,7 @@
 $(document).ready(function(){
 $("tr").click(function(){
 	  $("tr").removeClass("selected");
-	  console.log("hi");
+	  Alert('Esta funcionando');
 	  $(this).addClass("selected");
 	});
 });​
