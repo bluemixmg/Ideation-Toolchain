@@ -19,21 +19,6 @@
 
 <head>
 
-<!-- jQuery -->
-<!--	<script src="../vendor/jquery/jquery.min.js"></script> -->
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	
-<script>
-$(document).ready(function(){
-$("tr").click(function(){
-	  $("tr").removeClass("selected");
-	  Alert('Esta funcionando');
-	  $(this).addClass("selected");
-	});
-});​
-</script>
-
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <meta name="description" content="">
@@ -87,6 +72,21 @@ $("tr").click(function(){
           }
         
 	</style>
+	
+	<!-- jQuery -->
+<!--	<script src="../vendor/jquery/jquery.min.js"></script> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
+<script>
+$(document).ready(function(){
+$("tr").click(function(){
+	  $(this).removeClass("selected");
+	  alert('Esta funcionando');
+	  $(this).addClass("selected");
+	});
+});​
+</script>
 </head>
 
  <body>
