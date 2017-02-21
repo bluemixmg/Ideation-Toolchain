@@ -216,7 +216,7 @@
 				organizacion.setRif(organizaciones.get(i).getRif());
 
                     %>
-            <tr>            
+            <tr onClick="HighLightTR(this,'#c9cc99','cc3333');">            
               <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td>   
             </tr>
             <%} %>
