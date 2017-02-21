@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
     
     <%@ page import = "model.Organizacion" %>
     <%@ page import = "model.Desafio" %>
@@ -73,20 +73,6 @@
         
 	</style>
 	
-	<!-- jQuery -->
-<!--	<script src="../vendor/jquery/jquery.min.js"></script> -->
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	
-<script>
-$(document).ready(function(){
-$("tr").click(function(){
-	  $(this).removeClass("selected");
-	  alert('Esta funcionando');
-	  $(this).addClass("selected");
-	});
-});​
-</script>
 </head>
 
  <body>
@@ -280,7 +266,7 @@ $("tr").click(function(){
 				desafio.setCategoria(desafios.get(i).getCategoria());
 				desafio.setFechaCaducidad(desafios.get(i).getFechaCaducidad());
                     %>
-            <tr>
+            <tr onClick="HighLightTR(this,'#c9cc99','cc3333');">
               <td class="col-xs-3"><%= desafio.getTitulo()%></td><td class="col-xs-4"><%= desafio.getCategoria() %></td><td class="col-xs-3"><%= desafio.getFechaCaducidad() %></td><td class="col-xs-2">Alta</td>
             </tr>
              <%} %>          
@@ -311,11 +297,12 @@ $("tr").click(function(){
    
 </div> 
     
-    </div> <!-- This row works as the overflow auto -->
-    
-  </div>  
-   
+    </div> <!-- This row works as the overflow auto -->    
+  </div>     
  </div>
+ 
+    <!-- jQuery -->
+	<script src="../vendor/jquery/jquery.min.js"></script> 
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -347,6 +334,31 @@ $("tr").click(function(){
    }
 		
 </script>
+
+  <script>
+  var preEl ;
+  var orgBColor;
+  var orgTColor;
+  function HighLightTR(el, backColor,textColor){
+  if(typeof(preEl)!='undefined') {
+     preEl.bgColor=orgBColor;
+     try{ChangeTextColor(preEl,orgTColor);}catch(e){;}
+  }
+   orgBColor = el.bgColor;
+   orgTColor = el.style.color;
+   el.bgColor=backColor;
+
+    try{ChangeTextColor(el,textColor);}catch(e){;}
+    preEl = el;
+  }
+
+
+  function ChangeTextColor(a_obj,a_color){  ;
+     for (i=0;i<a_obj.cells.length;i++)
+      a_obj.cells(i).style.color=a_color;
+  }
+</script>
+
 
 
  </body>
