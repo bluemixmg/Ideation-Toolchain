@@ -82,7 +82,7 @@ $("tr").click(function(){
           margin-top: 1px;
           }
           
-          tr:hover, tr.selected {
+          tr.selected {
            background-color: #FFCF8B
           }
         
