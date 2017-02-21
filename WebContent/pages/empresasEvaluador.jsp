@@ -334,7 +334,7 @@
 		
 </script>
 
-<script type="text/javascript">
+<script>
 $("tr").click(function(){
 	  $("tr").removeClass("selected");
 	  $(this).addClass("selected");
