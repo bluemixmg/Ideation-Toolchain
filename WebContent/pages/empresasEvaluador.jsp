@@ -127,12 +127,12 @@
 					<ul class="dropdown-menu dropdown-user">
 						<li><a href="#"><i class="fa fa-user fa-fw"></i> <%=usuario.getUsername() %></a>
 						</li>
-						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuración</a>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> ConfiguraciÃ³n</a>
 						</li>
 						<li><a href="#"><i class="fa fa-question fa-fw"></i> Ayuda</a>
 						</li>
 						<li class="divider"></li>
-						<li><a href="/LogoutServlet"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
+						<li><a href="/LogoutServlet"><i class="fa fa-sign-out fa-fw"></i> Cerrar SesiÃ³n</a>
 						</li>
 					</ul>
 					<!-- /.dropdown usario -->
@@ -160,7 +160,7 @@
 							<a href="page/Home.jsp"><i class="fa fa-home fa-fw"></i> Inicio</a>
 						</li>
 						<li>
-							<a href="/Desafio?id=112"><i class="fa fa-flash fa-fw"></i> Actividad del desafío</a>
+							<a href="/Desafio?id=112"><i class="fa fa-flash fa-fw"></i> Actividad del desafÃ­o</a>
 						</li>
 						<li>
 							<a href="/Ideas?id=112"><i class="fa fa-lightbulb-o fa-fw"></i> Ver Ideas</a>
@@ -327,6 +327,14 @@
    }
 		
 </script>
+
+<script type="text/javascript">
+$("tr").click(function(){
+    $(this).addClass("selected").siblings().removeClass("selected");
+});â€‹
+</script>
+
+
  </body>
 
 </html>
