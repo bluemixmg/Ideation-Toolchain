@@ -65,6 +65,10 @@
           #button{
           margin-top: 1px;
           }
+          
+          tr:hover, tr.selected {
+           background-color: #FFCF8B
+          }
         
 	</style>
 </head>
@@ -242,7 +246,7 @@
 <div class="row col-sm-12">
 <div class="col-sm-8">
 <div class="table-responsive">
-<table class="table table-fixed table-hover">
+<table class="table table-fixed">
           <thead>
             <tr>
               <th class="col-xs-3">Titulo</th><th class="col-xs-4">Categoria</th><th class="col-xs-3">Fecha de caducidad</th><th class="col-xs-2">Prioridad</th>
@@ -329,9 +333,9 @@
 </script>
 
 <script type="text/javascript">
-$('#table-organizaciones').on('click', function(event) {
-	  $(this).addClass('active').siblings().removeClass('active');
-	});​
+$("tr").click(function(){
+    $(this).addClass("selected").siblings().removeClass("selected");
+});​
 </script>
 
 
