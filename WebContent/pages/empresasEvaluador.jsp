@@ -18,6 +18,10 @@
 <html lang="es">
 
 <head>
+
+<!-- jQuery -->
+	<script src="../vendor/jquery/jquery.min.js"></script>
+
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <meta name="description" content="">
@@ -300,9 +304,6 @@
   </div>  
    
  </div>
-   
-   	<!-- jQuery -->
-	<script src="../vendor/jquery/jquery.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
