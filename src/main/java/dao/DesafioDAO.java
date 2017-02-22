@@ -276,7 +276,7 @@ public class DesafioDAO {
 					Statement st;
 					st = c.createStatement();
 					//String sql = "SELECT count(*) as cantideas FROM idea WHERE coddesafio=" + Validacion.Apost(codDesafio);
-					String sql = "SELECT count(*) as cantideas FROM idea WHERE coddesafio='" + id + "'";
+					String sql = "SELECT count(*) as cantideas FROM idea WHERE coddesafio=" + id;
 					ResultSet res = st.executeQuery(sql);
 					if(res.next()) {
 						cantIdeas = res.getInt("cantideas");
