@@ -216,7 +216,7 @@
 				organizacion.setRif(organizaciones.get(i).getRif());
 
                     %>
-            <tr onClick="HighLightTR(this,'#c9cc99','cc3333'); addRowHandlers();">            
+            <tr onClick="addRowHandlers();">            
               <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td><td style="display:none;"><%= organizacion.getRif() %></td>   
             </tr>
             <%} %>
@@ -239,7 +239,7 @@
                     <%String rif_org;
                     rif_org = (String) session.getAttribute("rif_org");                    
                     %>
-                    <input type="hidden" name="id" id="id_org" value="<%= rif_org %>">
+                    <input name="id" id="id_org" value="<%= rif_org %>">
                     <button id= "button_consultar" type="submit" class="btn btn-primary">Consultar desafios</button>
                    </form>
                  </div>
@@ -335,6 +335,7 @@
             };
 
         currentRow.onclick = createClickHandler(currentRow);
+        HighLightTR(this,'#c9cc99','cc3333');
      }
    }
 		
