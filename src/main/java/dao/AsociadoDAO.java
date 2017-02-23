@@ -138,7 +138,7 @@ public class AsociadoDAO {
 					usuario = st.executeQuery(sql);
 					
 					if(usuario.next()){
-						 us.setEmail(usuario.getString("email"));
+						 us.setEmail(usuario.getString("username"));
 						 us.setNombres(usuario.getString("nombre"));
 						 us.setApellidos(usuario.getString("apellido"));
 						 us.setTelefono(usuario.getString("telefono"));
@@ -181,7 +181,7 @@ public class AsociadoDAO {
 					usuario = st.executeQuery(sql);
 					
 					while(usuario.next()){
-						 us.setEmail(usuario.getString("email"));
+						 us.setEmail(usuario.getString("username"));
 						 us.setNombres(usuario.getString("nombre"));
 						 us.setApellidos(usuario.getString("apellido"));
 						 us.setTelefono(usuario.getString("telefono"));
