@@ -77,7 +77,7 @@ public class EvaluadorServlet extends HttpServlet{
 		List<Desafio> desafios = new ArrayList<Desafio>();
 		
 		HttpSession session = request.getSession();
-		String consulta = request.getParameter("value");
+		String consulta = request.getParameter("id");
 		desafios = desafio_dao.RetornarDesafiosPorOrganizacion(consulta);
 		session.setAttribute("desafios_organizacion", desafios);
 		RequestDispatcher rd = request.getRequestDispatcher("/pages/" + EVALUADOR_JSP);
