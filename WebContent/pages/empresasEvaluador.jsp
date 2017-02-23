@@ -330,13 +330,12 @@
                                         var id = cell.innerHTML;
                                         alert("id:" + id);
                                         document.getElementById('id_org').innerHTML = id;
-                                        alert(document.getElementById('id_org').innerHTML);
                                  };
             };
 
         currentRow.onclick = createClickHandler(currentRow);
-        HighLightTR(this,'#c9cc99','cc3333');
      }
+    HighLightTR(this,'#c9cc99','cc3333');
    }
 		
 </script>
