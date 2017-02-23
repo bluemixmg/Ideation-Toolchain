@@ -216,7 +216,7 @@
 				organizacion.setRif(organizaciones.get(i).getRif());
 
                     %>
-            <tr onClick="addRowHandlers();">            
+            <tr onClick="HighLightTR(this,'#c9cc99','cc3333');">            
               <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td><td style="display:none;"><%= organizacion.getRif() %></td>   
             </tr>
             <%} %>
@@ -334,28 +334,6 @@
             };
 
         currentRow.onclick = createClickHandler(currentRow);
-        
-        var preEl ;
-        var orgBColor;
-        var orgTColor;
-        function HighLightTR(el, backColor,textColor){
-        if(typeof(preEl)!='undefined') {
-           preEl.bgColor=orgBColor;
-           try{ChangeTextColor(preEl,orgTColor);}catch(e){;}
-        }
-         orgBColor = el.bgColor;
-         orgTColor = el.style.color;
-         el.bgColor=backColor;
-
-          try{ChangeTextColor(el,textColor);}catch(e){;}
-          preEl = el;
-        }
-
-
-        function ChangeTextColor(a_obj,a_color){  ;
-           for (i=0;i<a_obj.cells.length;i++)
-            a_obj.cells(i).style.color=a_color;
-        }
      }
    }
 		
@@ -376,6 +354,8 @@
 
     try{ChangeTextColor(el,textColor);}catch(e){;}
     preEl = el;
+    
+    addRowHandlers();
   }
 
 
