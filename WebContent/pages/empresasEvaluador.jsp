@@ -216,7 +216,7 @@
 				organizacion.setRif(organizaciones.get(i).getRif());
 
                     %>
-            <tr onClick="HighLightTR(this,'#c9cc99','cc3333');">            
+            <tr onClick="addRowHandlers();">            
               <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td><td style="display:none;"><%= organizacion.getRif() %></td>   
             </tr>
             <%} %>
@@ -328,8 +328,7 @@
                 return function() { 
                                         var cell = row.getElementsByTagName("td")[3];
                                         var id = cell.innerHTML;
-                                        alert("id:" + id);
-                                        document.getElementById('id_org').innerHTML = id;
+                                        document.getElementById('id_org').value = id;
                                  };
             };
 
@@ -357,7 +356,6 @@
     
     addRowHandlers();
   }
-
 
   function ChangeTextColor(a_obj,a_color){  ;
      for (i=0;i<a_obj.cells.length;i++)
