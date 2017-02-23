@@ -22,7 +22,7 @@ public class DesafioDAO {
 					Statement st;
 					st = c.createStatement();
 					//String sql = "INSERT INTO desafio (codigo, titulo, descripcion, categoria, fechacaducidad, tipo, rifOrganizacion, estatus) VALUES (";
-					String sql = "INSERT INTO desafio (titulo, descripcion, categoria, fechacaducidad, tipo, rifOrganizacion, estatus) VALUES (";
+					String sql = "INSERT INTO desafio (titulo, descripcion, categoria, fechacaducidad, tipo, riforganizacion, estatus) VALUES (";
 					//sql+= Validacion.Apost(des.getCodigo())+",";
 					sql+= Validacion.Apost(des.getTitulo())+",";
 					sql+= Validacion.Apost(des.getDescripcion())+",";
@@ -222,7 +222,7 @@ public class DesafioDAO {
 		}
 		for(int i = 0; i < adesafios.size(); i++) {
 			adesafios.get(i).setCantIdeas(contarIdeasPorDesafio(adesafios.get(i).getId()));
-			System.out.println("Cantidad de ideas asignada del desafío " + adesafios.get(i).getCodigo() + ": " + adesafios.get(i).getCantIdeas());
+			System.out.println("Cantidad de ideas asignada del desafío " + adesafios.get(i).getId() + ": " + adesafios.get(i).getCantIdeas());
 		}
 		return adesafios;
 	}
@@ -276,7 +276,7 @@ public class DesafioDAO {
 					Statement st;
 					st = c.createStatement();
 					//String sql = "SELECT count(*) as cantideas FROM idea WHERE coddesafio=" + Validacion.Apost(codDesafio);
-					String sql = "SELECT count(*) as cantideas FROM idea WHERE coddesafio='" + id + "'";
+					String sql = "SELECT count(*) as cantideas FROM idea WHERE coddesafio=" + id;
 					ResultSet res = st.executeQuery(sql);
 					if(res.next()) {
 						cantIdeas = res.getInt("cantideas");

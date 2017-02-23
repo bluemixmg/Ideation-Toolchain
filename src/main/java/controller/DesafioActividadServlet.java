@@ -47,9 +47,9 @@ public class DesafioActividadServlet extends HttpServlet {
     	 Desafio des= new Desafio();
     	 HttpSession session = request.getSession(false);
     	 
-    	 String id = request.getParameter("id");
+    	 int id = Integer.parseInt(request.getParameter("id"));
     	 System.out.println("Se trajo este id por request en DesafioActividadServlet: " + id);
-    	 des= new DesafioDAO().consultarDesafio(Integer.parseInt(id));
+    	 des= new DesafioDAO().consultarDesafio(id);
     	 session.setAttribute("desafio", des);
     	 
     	 List<Idea> lis_i = new IdeaDAO().retornarIdeasPorDesafio(id);

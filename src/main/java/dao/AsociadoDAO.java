@@ -24,7 +24,7 @@ public class AsociadoDAO {
 					Statement st;
 					st = c.createStatement();
 					System.out.println("Antes de insertar un asociado");
-					String sql = "INSERT INTO asociado (email, nombre, apellido, telefono, cargo, "
+					String sql = "INSERT INTO empleado (email, nombre, apellido, telefono, cargo, "
 							+ "riforganizacion, estatus, direccion, genero, fechanacimiento) VALUES (";
 					sql+= Validacion.Apost(us.getEmail()) + ",";
 					sql+= Validacion.Apost(us.getNombres()) + ",";
@@ -64,7 +64,7 @@ public class AsociadoDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE asociado SET";
+					String sql = "UPDATE empleado SET";
 					sql+= "email=" + Validacion.Apost(us.getEmail()) + ",";
 					sql+= "nombre=" + Validacion.Apost(us.getNombres()) + ",";
 					sql+= "apellido=" + Validacion.Apost(us.getApellidos()) + ",";
@@ -101,7 +101,7 @@ public class AsociadoDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE asociado SET estatus= " + Validacion.Apost("E") +"WHERE email =" + us.getEmail();
+					String sql = "UPDATE empleado SET estatus= " + Validacion.Apost("E") +"WHERE email =" + us.getEmail();
 					st.executeUpdate(sql);
 					st.close();
 					modificar=true;
@@ -132,13 +132,13 @@ public class AsociadoDAO {
 					Statement st;
 					st = c.createStatement();
 									
-					String sql = "SELECT * FROM asociado WHERE estatus != 'E' and "
+					String sql = "SELECT * FROM empleado WHERE estatus != 'E' and "
 							+ "email="+ Validacion.Apost(email) ;
 					System.out.println(sql);
 					usuario = st.executeQuery(sql);
 					
 					if(usuario.next()){
-						 us.setEmail(usuario.getString("email"));
+						 us.setEmail(usuario.getString("username"));
 						 us.setNombres(usuario.getString("nombre"));
 						 us.setApellidos(usuario.getString("apellido"));
 						 us.setTelefono(usuario.getString("telefono"));
@@ -175,13 +175,13 @@ public class AsociadoDAO {
 					Statement st;
 					st = c.createStatement();
 									
-					String sql = "SELECT * FROM asociado WHERE estatus != 'E' and "
+					String sql = "SELECT * FROM empleado WHERE estatus != 'E' and "
 							+ " riforganizacion = "+ Validacion.Apost(rif) ;
 					System.out.println(sql);
 					usuario = st.executeQuery(sql);
 					
 					while(usuario.next()){
-						 us.setEmail(usuario.getString("email"));
+						 us.setEmail(usuario.getString("username"));
 						 us.setNombres(usuario.getString("nombre"));
 						 us.setApellidos(usuario.getString("apellido"));
 						 us.setTelefono(usuario.getString("telefono"));

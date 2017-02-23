@@ -60,10 +60,10 @@ public class OrganizacionServlet extends HttpServlet {
 			session.setAttribute("desafios", lis_des);
 
 			//Mapa que guarda las votaciones totales por cada desafío
-			Map<String, Integer> mp = new HashMap<String, Integer>();
+			Map<Integer, Integer> mp = new HashMap<Integer, Integer>();
 			IdeaDAO daoI = new IdeaDAO();
 			for (int i = 0; i < lis_des.size(); i++) {
-				String codDesafio = lis_des.get(i).getCodigo();
+				int codDesafio = lis_des.get(i).getId();
 				mp.put(codDesafio, daoI.retornarVotacionesTotalesPorIdeasDeDesafio(codDesafio));
 			}
 			session.setAttribute("votaciones", mp);

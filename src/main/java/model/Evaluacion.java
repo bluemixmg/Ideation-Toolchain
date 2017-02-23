@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Evaluacion {
 	
-	private String idea_id;
+	private int idea_id;
 	private String username;
 	private Date fecha;
 	private String detalle;
@@ -15,7 +15,7 @@ public class Evaluacion {
 		
 	}
 	
-	public Evaluacion(String idea, String user, String detalle, int factibilidad, int impacto, Date fecha)
+	public Evaluacion(int idea, String user, String detalle, int factibilidad, int impacto, Date fecha)
 	{
 		this.idea_id=idea;
 		this.username=user;
@@ -28,14 +28,14 @@ public class Evaluacion {
 	/**
 	 * @return the idea_id
 	 */
-	public String getIdea_id() {
+	public int getIdea_id() {
 		return idea_id;
 	}
 
 	/**
 	 * @param idea_id the idea_id to set
 	 */
-	public void setIdea_id(String idea_id) {
+	public void setIdea_id(int idea_id) {
 		this.idea_id = idea_id;
 	}
 

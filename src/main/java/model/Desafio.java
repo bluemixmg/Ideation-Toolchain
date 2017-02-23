@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Desafio {
 	private int id;
-	private String codigo;
+	//private String codigo;
 	private String titulo;
 	private String descripcion;
 	private boolean tipo; //false=Publico true=Privado
@@ -33,10 +33,9 @@ public class Desafio {
 	}*/
 	
 	//Constructor con todos los parametros
-	public Desafio(int id, String codigo, String titulo, String descripcion, boolean tipo, Date fechaCaducidad,
+	public Desafio(int id, String titulo, String descripcion, boolean tipo, Date fechaCaducidad,
 			String categoria, String org, char estatus, int cantIdeas) {
 		super();
-		this.codigo = codigo;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.tipo = tipo;
@@ -48,10 +47,9 @@ public class Desafio {
 	}
 
 	//Constructor sin Organizacion
-	public Desafio(int id, String codigo, String titulo, String descripcion, boolean tipo, /*int duracion, */Date fechaInicio,
+	public Desafio(int id, String titulo, String descripcion, boolean tipo, /*int duracion, */Date fechaInicio,
 			String categoria, char estatus, int cantIdeas) {
 		super();
-		this.codigo = codigo;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.tipo = tipo;
@@ -60,21 +58,13 @@ public class Desafio {
 		this.categoria = categoria;
 	}
 	
+	//Getter y Setter
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	//Getter y Setter
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getTitulo() {

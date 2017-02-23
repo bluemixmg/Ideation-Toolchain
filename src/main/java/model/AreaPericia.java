@@ -1,7 +1,7 @@
 package model;
 
 public class AreaPericia {
-	private String codigo;
+	private int codigo;
 	private String descripcion;
 	private char estatus;
 
@@ -9,18 +9,18 @@ public class AreaPericia {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public AreaPericia(String codigo, String descripcion, char estatus) {
+	public AreaPericia(int codigo, String descripcion, char estatus) {
 		super();
 		this.codigo = codigo;
 		this.descripcion = descripcion;
 		this.estatus = estatus;
 	}
 
-	public String getCodigo() {
+	public int getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 
