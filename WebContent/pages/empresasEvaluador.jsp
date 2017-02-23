@@ -239,7 +239,7 @@
                     <%String rif_org;
                     rif_org = (String) session.getAttribute("rif_org");                    
                     %>
-                    <input name="id" id="id_org" value="<%= rif_org %>">
+                    <input name="id" id="id_org" type="hidden" value="<%= rif_org %>">
                     <button id= "button_consultar" type="submit" class="btn btn-primary">Consultar desafios</button>
                    </form>
                  </div>

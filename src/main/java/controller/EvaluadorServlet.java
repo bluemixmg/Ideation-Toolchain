@@ -6,6 +6,7 @@ import model.User;
 
 import dao.EvaluadoresDesafioDAO;
 import dao.OrganizacionDAO;
+import dao.DesafioDAO;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -71,8 +72,14 @@ public class EvaluadorServlet extends HttpServlet{
 		rd.forward(request, response);
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DesafioDAO desafio_dao = new DesafioDAO();
 		response.setContentType("text/html;charset=UTF-8");
+		List<Desafio> desafios = new ArrayList<Desafio>();
 		
+		HttpSession session = request.getSession();
+		String consulta = request.getParameter("value");
+		desafios = desafio_dao.RetornarDesafiosPorOrganizacion(consulta);
+		session.setAttribute("desafios_organizacion", desafios);
 		RequestDispatcher rd = request.getRequestDispatcher("/pages/" + EVALUADOR_JSP);
 		rd.forward(request, response);
 	}
