@@ -31,7 +31,8 @@
 		</script>
 	  <%
 	}
-	
+	User user = (User) session.getAttribute("user");
+            		int tipo = user.getTipo();
 %>
 
     <!-- <meta charset="utf-8"> -->
@@ -41,7 +42,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-    <title>Marna Centro de Innovación y Negocio - Gestión de ciclo de vida de los proyectos de innovación</title>
+    <title>Ideation - Gestión de ciclo de vida de los proyectos de innovación</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +81,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Marna CIN</a>
+                <a class="navbar-brand" href="#">Ideation</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -470,6 +471,36 @@
 									</small>
                      		   	</blockquote>
 							</div>
+							<div class="row">
+								<div class="form-group col-xs-9">
+									<%List<User> usuarios = new ArrayList<>();
+									usuarios.add(new User("miusuario","mipassword", "miemail", 3)); %>
+									<label>Lista de evaluadores</label>
+									<select multiple id="evlist" class="form-control">
+										<% for(int i = 0; i<usuarios.size(); i++) {%>
+										<option value="<%=usuarios.get(i).getUsername()%>"><%=usuarios.get(i).getUsername() %> - Profesión <%=i+1 %></option>
+										<%} %>
+										<!--  <option value="2">María Suárez - Tecnologías de información</option>
+										<option value="3">Pedro González - Leyes</option>-->
+									</select>
+								</div>
+								
+								<div class="form-group col-xs-2" style="margin-top: 3.5em;">
+									<button type="button" class="btn btn-success" onclick="asignar()">Asignar &gt;&gt;</button>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-xs-2" style="margin-top: 3.5em;">
+									<button type="button" class="btn btn-default" onclick="quitar()">&lt;&lt; Quitar</button>
+								</div>
+								
+								<div class="form-group col-xs-9">
+									<label>Evaluadores asignados al desafío</label>
+									<select multiple id="evasig" class="form-control" required>
+										
+									</select>
+								</div>
+							</div>
 						</div>
 						
 						<div class="row"></div>
@@ -518,14 +549,14 @@
             		des.setCantIdeas(lis_des.get(i).getCantIdeas());
             		System.out.println("Asignó la cantidad de ideas (se muestra como string): " + des.getCantIdeas());
             		
-            		Asociado aso = new Asociado();
-            		int tipo = ((User) session.getAttribute("user")).getTipo();
-            		if(tipo == 2 || tipo == 4) {
-            			AsociadoDAO daoa = new AsociadoDAO();
-            			aso = daoa.RetornarAsociado(((User) session.getAttribute("user")).getEmail());
-            		}
+            		//Asociado aso = new Asociado();
             		
-            		if(!des.getTipo() || (des.getTipo() && ((tipo == 2 || tipo == 4) && aso.getRifOrganizacion() == des.getOrg()))) {
+            		//if(tipo == 2 || tipo == 4) {
+            			//AsociadoDAO daoa = new AsociadoDAO();
+            			//aso = daoa.RetornarAsociado(((User) session.getAttribute("user")).getEmail());
+            		//}
+            		
+            		//if(!des.getTipo() || (des.getTipo() && ((tipo == 2 || tipo == 4) && aso.getRifOrganizacion() == des.getOrg()))) {
             	%> 
                 <div class="col-xs-8 col-md-6 col-lg-4" style="float:left">
                     <div class="panel panel-primary">
@@ -619,7 +650,9 @@
                         </div>
                         </div>
                     </div>
-                <% } } %>
+                    
+                <% //}
+                	} %>
                 </div>
                 <!--  </form>-->
                 
@@ -1005,6 +1038,29 @@
     
     <!-- Date Picker JavaScript -->
     <script src="../dist/js/bootstrap-datepicker.js"></script>
+
+	<script type="text/javascript">
+		var eva = document.getElementById("evlist");
+		var asig = document.getElementById("evasig");
+		
+		function asignar() {
+			for(i=0; i < eva.length; i++) {
+				if(eva.options[i].selected) {
+					asig.appendChild(eva.options[i]);
+					i--;
+				}
+			}
+		}
+		
+		function quitar() {
+			for(i=0; i < asig.length; i++) {
+				if(asig.options[i].selected) {
+					eva.appendChild(asig.options[i]);
+					i--;
+				}
+			}
+		}
+	</script>
 
 	<script type="text/javascript">
 		var nowTemp = new Date();
