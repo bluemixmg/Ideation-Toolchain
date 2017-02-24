@@ -475,7 +475,7 @@
 							</div>
 							<div class="row">
 								<div class="form-group col-xs-9">
-									<%List<User> usuarios = new ArrayList<>();
+									<%List<User> usuarios = new ArrayList<User>();
 									AreaPericia areapericia = new AreaPericia();
 									AreasPorEvaluadorDAO apedao = new AreasPorEvaluadorDAO();
 									

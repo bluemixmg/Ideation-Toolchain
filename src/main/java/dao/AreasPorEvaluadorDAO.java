@@ -107,7 +107,7 @@ public class AreasPorEvaluadorDAO {
 	}
 
 	public List<AreaPericia> RetornarAreasPorEvaluador(String usernameEv) {
-		List<AreaPericia> areas = new ArrayList<>();
+		List<AreaPericia> areas = new ArrayList<AreaPericia>();
 		ResultSet rs = null;
 		try{
 			try {
