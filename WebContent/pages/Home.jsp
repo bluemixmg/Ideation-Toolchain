@@ -239,7 +239,7 @@
 	 
 		$('#inputPasswordConfirm').keyup(function(){
 			var _this1 = $('#pass_1');
-			var _this2 = $('#pass_2')
+			var _this2 = $('#pass_2');
 			
 			var pass_1 = $('#inputPassword').val();
 			var pass_2 = $('#inputPasswordConfirm').val();

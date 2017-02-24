@@ -183,9 +183,10 @@
 		      <div class="col-xs-6 col-md-4">
 		        <div class="text-center">
 		          <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" class="avatar img-circle" alt="avatar">
-		          <h6>Cargar nueva imagen...</h6>
-		          
-		          <input type="file" class="form-control">
+		         
+		          <div id = "imagen" style="display  :none">
+		          		<input type="file" class="form-control" disabled>
+		          </div>
 		        </div>
 		      </div>
                 
@@ -204,6 +205,9 @@
                         <input class="form-control" placeholder="Correo electronico" required name="email" id="email" maxlength="30" data-error="Bruh, that email address is invalid" required " disabled>
                      </div>
                        <div class="form-group ">
+	                     <input type="password" data-minlength="6" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" value="12345678' required maxlength="30" disabled>
+                       </div>
+                        <div class="form-group " style="display:none"">
 	                     <input type="password" data-minlength="6" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" value="12345678' required maxlength="30" disabled>
                        </div>
                        <div class="form-group">
@@ -228,21 +232,22 @@
                          <input class="form-control"  type="text" placeholder="Tu dirección" required name="direccion" id="direccion" maxlength="90" value="<%=perfil.getDireccion()%>" disabled>   
                        </div>
 					<div class="form-group">
-                        <input  type="date" name="fechanacimiento">
+                        <input  type="date" id="fechanacimiento" name="fechanacimiento" disabled>
                      </div> 
 				</div>
   				
-  				<div class="form-group" >
-		          <input type="button" class="btn btn-success" value="Modificar"> 
- 		          <input type="button" class="btn btn-danger" value="Eliminar"> <br>
-		          
+  				<div class=" form-group" id='modificar' style=" display : inline " >
+			          <input type="button" class="btn btn-success" value="Modificar" onclick="mostrar()" > 
+	 		          <input type="button" class="btn btn-danger" value="Eliminar"> <br>
 		        </div>
-		          <div class="form-group" style="display  :none">
+		        
+		          <div class="form-group" >
 		            <label class="col-md-3 control-label"></label>
-		            <div class="col-md-8">
+		            
+		            <div class="col-md-8" id='oculto' style=" display : none ">
 		              <input type="button" class="btn btn-primary" value="Guardar">
 		              <span></span>
-		              <input type="reset" class="btn btn-default" value="Cancelar">
+		              <input type="reset" class="btn btn-default" value="Cancelar" onclick="ocultar()">
 		            </div>
 		          </div>
 		        </form>
@@ -285,43 +290,24 @@
     <!-- Date Picker JavaScript -->
     <script src="../dist/js/bootstrap-datepicker.js"></script>
 	
- <script type="text/javascript">
-		$(function(){
-		$('#modifcar').(function(){
-			var _this1 = $('#inputPassword');
-			var pass_1 = $('#inputPassword').val();
-	                _this1.attr('style', 'background:white');
-			if(pass_1.charAt(0) == ''){
-				_this1.attr('class', 'form-group has-error');
-			}
-	 
-			if(_this.val() == ''){
-				_this1.attr('class', 'form-group has-error');
-			}
-		});
-	 
-		$('#inputPasswordConfirm').keyup(function(){
-			var _this1 = $('#pass_1');
-			var _this2 = $('#pass_2')
+    
+    <script type="text/javascript">
+		function mostrar() {
+
+			document.getElementById('oculto').style.display = 'inline';
+			document.getElementById('modificar').style.display = 'none';
+			 $('direccion').removeAttr('disabled');
+			 $('telefono').removeAttr('disabled');
+			 
+				
+}
+		
+		function ocultar(){
+			document.getElementById('modificar').style.display ='inline';
+			document.getElementById('oculto').style.display = 'none';
 			
-			var pass_1 = $('#inputPassword').val();
-			var pass_2 = $('#inputPasswordConfirm').val();
-			var _this = $('#inputPasswordConfirm');
-	                _this.attr('style', 'background:white');
-	               
-	               console.log(pass_1);
-	               console.log(pass_2);
-			
-			if(pass_1 != pass_2 && pass_2 != ''){
-				_this1.attr('class', 'form-group has-error');
-				_this2.attr('class', 'form-group has-error')
-			}else{
-				_this1.attr('class', 'form-group has-success');
-				_this2.attr('class', 'form-group has-success')
-			}
-		});
-	});
-    </script>
+		}
+	</script>
 
 </body>
 </html>
