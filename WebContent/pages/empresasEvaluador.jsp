@@ -216,7 +216,7 @@
 				organizacion.setRif(organizaciones.get(i).getRif());
 
                     %>
-            <tr onClick="addRowHandlers();">            
+            <tr>            
               <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td><td style="display:none;"><%= organizacion.getRif() %></td>   
             </tr>
             <%} %>
@@ -239,7 +239,7 @@
                     <%String rif_org;
                     rif_org = (String) session.getAttribute("rif_org");                    
                     %>
-                    <input name="id" id="id_org" type="hidden" value="<%= rif_org %>">
+                    <input name="id" id="id_org" value="<%= rif_org %>">
                     <button id= "button_consultar" type="submit" class="btn btn-primary">Consultar desafios</button>
                    </form>
                  </div>
@@ -316,54 +316,59 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="../dist/js/sb-admin-2.js"></script>
 	
-	<script type="text/javascript"> 
-    function addRowHandlers() {
+<script type="text/javascript"> 
+var preEl;
+var orgBColor;
+var orgTColor;
+
+function HighLightTR(el, backColor, textColor) {
+    if (typeof (preEl) != 'undefined') {
+        preEl.bgColor = orgBColor;
+        try {
+            ChangeTextColor(preEl, 'black');
+        } catch (e) {;
+        }
+    }
+    orgBColor = el.bgColor;
+    el.bgColor = backColor;
+    
+    try {
+        ChangeTextColor(el, textColor);
+    } catch (e) {;
+    }
+    preEl = el;
+
+}
+
+function ChangeTextColor(a_obj, a_color) {;
+    for (i = 0; i < a_obj.cells.length; i++) {
+        a_obj.cells[i].style['color'] = a_color;
+    } 
+}
+
+function addRowHandlers() {
     var table = document.getElementById("table-organizaciones");
     var rows = table.getElementsByTagName("tr");
     for (i = 0; i < rows.length; i++) {
         var currentRow = table.rows[i];
-        var createClickHandler = 
-            function(row) 
-            {
-                return function() { 
-                                        var cell = row.getElementsByTagName("td")[3];
-                                        var id = cell.innerHTML;
-                                        document.getElementById('id_org').value = id;
-                                 };
+        var createClickHandler =
+            function (row) {
+                return function () {
+                    var cell = row.getElementsByTagName("td")[3];
+                    var id = cell.innerHTML;
+                    //alert("id:" + id);
+                    document.getElementById('id_org').value = id;
+                    alert(id);
+                    HighLightTR(row,'#c9cc99','#cc3333');
+                };
             };
 
         currentRow.onclick = createClickHandler(currentRow);
-     }
-   }
-		
+    }
+}
+
+   	
 </script>
-
-  <script>
-  var preEl ;
-  var orgBColor;
-  var orgTColor;
-  function HighLightTR(el, backColor,textColor){
-  if(typeof(preEl)!='undefined') {
-     preEl.bgColor=orgBColor;
-     try{ChangeTextColor(preEl,orgTColor);}catch(e){;}
-  }
-   orgBColor = el.bgColor;
-   orgTColor = el.style.color;
-   el.bgColor=backColor;
-
-    try{ChangeTextColor(el,textColor);}catch(e){;}
-    preEl = el;
-    
-    addRowHandlers();
-  }
-
-  function ChangeTextColor(a_obj,a_color){  ;
-     for (i=0;i<a_obj.cells.length;i++)
-      a_obj.cells(i).style.color=a_color;
-  }
-</script>
-
-
 
  </body>
 
