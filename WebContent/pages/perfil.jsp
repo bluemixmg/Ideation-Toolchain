@@ -1,7 +1,7 @@
 <%@page  contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
-<%@page import="model.Ideador, model.User" %>
-<%@page import="dao.IdeadorDAO" %>
+<%@page import="model.Perfil, model.User" %>
+<%@page import="dao.PerfilDAO" %>
 
 <%System.out.println("Entro al form-------------------------!!!");
 	
@@ -9,14 +9,14 @@
 <%	
 	User user = new User();
 	user =(User) session.getAttribute("user");
-	Ideador Ideador = new Ideador();
+	Perfil perfil = new Perfil();
 
-	System.out.println("Este es el tipo de usuario:" + user.getTipo());
+	System.out.println("Este es el tipo de usuario:" + user.getrol());
 	
 
-	switch(user.getTipo()){
+	switch(user.getrol()){
 		case 1:
-			Ideador= (Ideador) session.getAttribute("estandar");
+			perfil= (Perfil) session.getAttribute("estandar");
 		break;
 	};
 	
@@ -35,7 +35,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title><%= Ideador.getNombres() + " " + Ideador.getApellidos()%></title>
+	<title><%= perfil.getNombres() + " " + perfil.getApellidos()%></title>
 
 	<!-- Bootstrap Core CSS -->
 	<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -149,7 +149,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i><%= Ideador.getNombres() + " " + Ideador.getApellidos()%> <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i><%= perfil.getNombres() + " " + perfil.getApellidos()%> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil de usuario</a>
@@ -206,7 +206,7 @@
 		            <div class="container-fluid">
 		                <div class="row">
 		                    <div class="col-lg-12">
-		                        <h2 class="page-header"><b><i> <%= Ideador.getNombres() +" "+ Ideador.getApellidos() %></i></b></h2> 
+		                        <h2 class="page-header"><b><i> <%= perfil.getNombres() +" "+ perfil.getApellidos() %></i></b></h2> 
 		
 		    <div class="row">
 		      <!-- left column -->
@@ -234,7 +234,7 @@
                     </div>
                    	<div class="form-group input-group ">
                         <span class="input-group-addon">@</span>
-                        <input type="email" class="form-control" placeholder="Correo electronico" required name="email" id="email" maxlength="30" data-error="Bruh, that email address is invalid" required value="<%=Ideador.getEmail() %>" disabled>
+                        <input class="form-control" placeholder="Correo electronico" required name="email" id="email" maxlength="30" data-error="Bruh, that email address is invalid" required " disabled>
                      </div>
                        <div class="form-group ">
 	                     <input type="password" data-minlength="6" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" value="12345678' required maxlength="30" disabled>
@@ -249,17 +249,17 @@
 				<!-- .col-md-4 -->
 				<div class="col-md-4">
 					  <div class="form-group">
-                         <input class="form-control"  type="text" placeholder="Tu Nombre" required name="nombre" id="nombre" maxlength="30" value="<%= Ideador.getNombres()%>" disabled>   
+                         <input class="form-control"  type="text" placeholder="Tu Nombre" required name="nombre" id="nombre" maxlength="30" value="<%= perfil.getNombres()%>" disabled>   
                        
                        </div>
                        <div class="form-group ">
-                          <input class="form-control" type="text" placeholder="Tu Apellido" required name="apellido" id="apellido" maxlength="30" value="<%=Ideador.getApellidos()%>" disabled >
+                          <input class="form-control" type="text" placeholder="Tu Apellido" required name="apellido" id="apellido" maxlength="30" value="<%=perfil.getApellidos()%>" disabled >
                       </div>
                       <div class="form-group">
-                         <input class="form-control" type="text" placeholder="Tu Teléfono" required name="telefono" id="telefono" maxlength="15" value="<%=Ideador.getTelefono() %>" disabled >
+                         <input class="form-control" type="text" placeholder="Tu Teléfono" required name="telefono" id="telefono" maxlength="15" value="<%=perfil.getTelefono() %>" disabled >
                       </div>
                      <div class="form-group">
-                         <input class="form-control"  type="text" placeholder="Tu dirección" required name="direccion" id="direccion" maxlength="90" value="<%=Ideador.getDireccion()%>" disabled>   
+                         <input class="form-control"  type="text" placeholder="Tu dirección" required name="direccion" id="direccion" maxlength="90" value="<%=perfil.getDireccion()%>" disabled>   
                        </div>
 					<div class="form-group">
                         <input  type="date" name="fechanacimiento">

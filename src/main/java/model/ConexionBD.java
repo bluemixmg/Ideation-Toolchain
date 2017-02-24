@@ -8,11 +8,13 @@ import java.sql.Statement;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 
 import dao.EmpleadoDAO;
-import dao.IdeadorDAO;
+import dao.PerfilDAO;
 import dao.OrganizacionDAO;
 import dao.UserDAO;
 
@@ -56,45 +58,36 @@ public class ConexionBD {
     }
 
     
-    
     //Pruebas locales 
     public static void main (String[] args){
 
 		
-//		User us = new User();
-//		UserDAO usd = new UserDAO();
+    	User us = new User();
+		UserDAO usd = new UserDAO();
 		
-    	Ideador e= new Ideador();
-    	IdeadorDAO esdao = new IdeadorDAO();
-    	
-    	e= esdao.RetornarEstandar("lfreitez@marna.com.ve");
-    	
-    	
-		Empleado es = new Empleado();
-		EmpleadoDAO edao = new EmpleadoDAO();
+		us.setAvatar("https//Este es el avatar");
+		us.setEmail("lfreitez@mar7na.7com.vde0");
+		us.setPassword("qwert123457");
+		us.setrol(2);
+		us.setUsername("luisffg24377");
 		
-		es= edao.RetornarAsociado("aa@m.com");
+		usd.insertarUsuario(us);
 		
+		us = null;	
+		us = usd.buscarUser("luisffg24377");		
+		System.out.println("Usuario" + us.getAvatar() + us.getEmail() + us.getPassword() + us.getrol()+ us.getStatus()+ us.getUsername());
 		
-		System.out.println("Usuario" + es.getApellidos() + es.getEmail() + es.getEstatus());
+		List<User> list = new ArrayList<User>();
 		
+		list = usd.ListaUsuario_Rol(2);
+		for(User u : list ){
+			System.out.println("Usuario" + u.getAvatar() + u.getEmail() + u.getPassword() + u.getrol()+ u.getStatus()+ u.getUsername());
+
+		
+		}
 	
 	    	
   }
-    
-	public static Date CnvStringFecha(String fecha)
-	{
-	    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-	    Date fechaDate = null;
-	    try 
-	    {
-	        fechaDate = formato.parse(fecha);
-	    }
-	    catch (ParseException ex)
-	    {
-	        System.out.println(ex.getMessage());
-	    }
-	    return fechaDate;
-	}
+
 
 }

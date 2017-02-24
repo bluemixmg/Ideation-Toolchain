@@ -53,8 +53,9 @@ public class OrganizacionServlet extends HttpServlet {
 			
 			
 			//------------Busqueda del los desafio por el RIF a travez del asiciado--------------
+			
 			EmpleadoDAO adao = new EmpleadoDAO();
-			Empleado as=adao.RetornarAsociado(((User)session.getAttribute("user")).getEmail());
+			Empleado as=adao.RetornarEmpleado(((User)session.getAttribute("user")).getEmail());
 	
 			List<Desafio> lis_des = getDesafios(as.getRifOrganizacion());
 			session.setAttribute("desafios", lis_des);
@@ -69,6 +70,7 @@ public class OrganizacionServlet extends HttpServlet {
 			session.setAttribute("votaciones", mp);
 			
 			//Lista de asociado a la organizacion 
+			
 			EmpleadoDAO asd = new EmpleadoDAO();
 			List<Empleado> list_as  = asd.RetornarListaAsociado(as.getRifOrganizacion());
 			session.setAttribute("asociados", list_as);

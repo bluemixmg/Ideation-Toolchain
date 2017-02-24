@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 
-import model.Ideador;
+import model.Perfil;
 import model.ConexionBD;
 import model.Validacion;
 
-public class IdeadorDAO {
+public class PerfilDAO {
 
-	public boolean insertarEstandar(Ideador us){
+	public boolean insertarPerfil(Perfil us){
 		boolean registrado = false;
 		try{
 			try {
@@ -22,9 +22,9 @@ public class IdeadorDAO {
 					Statement st;
 					st = c.createStatement();
 
-					String sql = "INSERT INTO ideador (email, nombre, apellido, telefono,"
+					String sql = "INSERT INTO ideador (username, nombre, apellido, telefono,"
 							+ " estatus, direccion, genero) VALUES (";
-					sql+= Validacion.Apost(us.getEmail()) + ",";
+					sql+= Validacion.Apost(us.getusername()) + ",";
 					sql+= Validacion.Apost(us.getNombres()) + ",";
 					sql+= Validacion.Apost(us.getApellidos()) + ",";
 					sql+= Validacion.Apost(us.getTelefono()) + ",";
@@ -54,9 +54,9 @@ public class IdeadorDAO {
 		return registrado;
 	}
 	
-	public boolean modificarEstandar(Ideador us){
+	public boolean modificarPerfil(Perfil us){
 		boolean modificar = false;
-		String Email = us.getEmail();
+		String username = us.getusername();
 		try{
 			try {
 				ConexionBD bd = new ConexionBD();
@@ -65,7 +65,7 @@ public class IdeadorDAO {
 					Statement st;
 					st = c.createStatement();
 					String sql = "UPDATE ideador SET";
-					sql+= "email=" + Validacion.Apost(us.getEmail()) + ",";
+					sql+= "username=" + Validacion.Apost(us.getusername()) + ",";
 					sql+= "nombre=" + Validacion.Apost(us.getNombres()) + ",";
 					sql+= "apellido=" + Validacion.Apost(us.getApellidos()) + ",";
 					sql+= "telefono=" + Validacion.Apost(us.getTelefono()) + ",";
@@ -73,7 +73,7 @@ public class IdeadorDAO {
 					sql+= "direccion=" + Validacion.Apost(us.getDireccion()) + ",";
 					sql+= "genero=" + us.getGenero() + ",";
 					sql+= "fechanacimiento=" + Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(us.getFechaNacimiento())) + ",";
-					sql+= "WHERE email =" + Validacion.Apost(Email);
+					sql+= "WHERE username =" + Validacion.Apost(username);
 					st.executeUpdate(sql);
 					st.close();
 					modificar=true;
@@ -91,7 +91,7 @@ public class IdeadorDAO {
 		return modificar;
 	}
 	
-	public  boolean eliminarEstandar(Ideador us){
+	public  boolean eliminarPerfil(Perfil us){
 		boolean modificar = false;
 		try{
 			try {
@@ -100,7 +100,7 @@ public class IdeadorDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE ideador SET estatus= " + Validacion.Apost("E") +"WHERE email =" + us.getEmail();
+					String sql = "UPDATE ideador SET estatus= " + Validacion.Apost("E") +"WHERE username =" + us.getusername();
 					st.executeUpdate(sql);
 					st.close();
 					modificar=true;
@@ -120,9 +120,9 @@ public class IdeadorDAO {
 	
 	
 //-----------SUJETOS A CAMBIOS-----------
-	public Ideador RetornarEstandar(String email) {
+	public Perfil RetornarPerfil(String username) {
 		ResultSet usuario = null;
-		Ideador us = new Ideador();
+		Perfil us = new Perfil();
 		
 		
 		try{
@@ -133,12 +133,12 @@ public class IdeadorDAO {
 					Statement st;
 					st = c.createStatement();
 					String sql = "SELECT * FROM ideador WHERE estatus != 'E' and "
-							+ "email ="+ Validacion.Apost(email);
+							+ "username ="+ Validacion.Apost(username);
 					System.out.println(sql);
 
 					usuario = st.executeQuery(sql);
 					if(usuario.next()){
-						 us.setEmail(usuario.getString("email"));
+						 us.setusername(usuario.getString("usuario"));
 						 us.setNombres(usuario.getString("nombre"));
 						 us.setApellidos(usuario.getString("apellido"));
 						 us.setTelefono(usuario.getString("telefono"));

@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.EmpleadoDAO;
-import dao.IdeadorDAO;
+import dao.PerfilDAO;
 import model.Empleado;
-import model.Ideador;
+import model.Perfil;
 import model.User;
 
 /**
@@ -39,19 +39,19 @@ public class PerfilServlet extends HttpServlet {
     	User user = (User) session.getAttribute("user");
     	RequestDispatcher rq;
     	
-    	switch(user.getTipo()){
+    	switch(user.getrol()){
 			case 1: 
-				IdeadorDAO  idao = new IdeadorDAO();
-				Ideador ideador = new Ideador() ;
-				ideador = idao.RetornarEstandar(user.getEmail());
-				session.setAttribute("perfil", ideador);
+				PerfilDAO  idao = new PerfilDAO();
+				Perfil perfil = new Perfil() ;
+				perfil = idao.RetornarPerfil(user.getEmail());
+				session.setAttribute("perfil", perfil);
 				 rq = request.getRequestDispatcher("/pages/perfil.jsp");
 				rq.forward(request, response);
 			break;
 			case 2:
 				EmpleadoDAO edao = new EmpleadoDAO();
 				Empleado emp = new Empleado();
-				emp = edao.RetornarAsociado(user.getEmail());
+				emp = edao.RetornarEmpleado(user.getEmail());
 				rq = request.getRequestDispatcher("/pages/perfil.jsp");
 				rq.forward(request, response);
 			

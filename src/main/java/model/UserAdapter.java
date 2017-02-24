@@ -8,18 +8,19 @@ public class UserAdapter{
 	public static String nombreUsuario(int tipo, String username) {
 		String nombre=null;
 		switch(tipo){
-		case 1: //Ideador
-			IdeadorDAO estdao = new IdeadorDAO();
-			Ideador est=estdao.RetornarEstandar(username);
+		case 1: //Perfil
+			PerfilDAO estdao = new PerfilDAO();
+			Perfil est=estdao.RetornarPerfil(username);
 			nombre=est.getNombres()+est.getApellidos();
 			break;
 		case 2:// Empleado
 			EmpleadoDAO asodao=new EmpleadoDAO();
-			Empleado aso = asodao.RetornarAsociado(username);
-			nombre = aso.getNombres()+aso.getApellidos();
+			Empleado aso = asodao.RetornarEmpleado(username);
+			break;
 		case 3://Evaluado
 			EvaluacionDAO evadao = new EvaluacionDAO();
 			nombre="Usuario Evaluador";
+			break;
 		case 4://Organizacion
 			OrganizacionDAO orgdao = new OrganizacionDAO();
 			Organizacion org = orgdao.BuscarOrganizacion(username);

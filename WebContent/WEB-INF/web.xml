@@ -76,13 +76,13 @@
   </servlet-mapping>
 	
 	<servlet>
-		<servlet-name>RegistrarAsociadoServlet</servlet-name>
-		<servlet-class>controller.RegistrarAsociadoServlet</servlet-class>
+		<servlet-name>RegistrarEmpleadoServlet</servlet-name>
+		<servlet-class>controller.RegistrarEmpleadoServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>RegistrarAsociadoServlet</servlet-name>
-		<url-pattern>/RegistrarAsociadoServlet</url-pattern>
+		<servlet-name>RegistrarEmpleadoServlet</servlet-name>
+		<url-pattern>/RegistrarEmpleadoServlet</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

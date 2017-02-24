@@ -15,17 +15,18 @@ import javax.servlet.http.HttpSession;
 
 import dao.EmpleadoDAO;
 import dao.OrganizacionDAO;
+import dao.PerfilDAO;
 import dao.UserDAO;
 import model.Empleado;
-import model.Ideador;
+import model.Perfil;
 import model.Organizacion;
 import model.User;
 
 /**
  * Servlet implementation class RegistrarServlet
  */
-@WebServlet(name = "RegistrarAsociadoServlet", urlPatterns = { "/RegistrarAsociadoServlet" })
-public class RegistrarAsociadoServlet extends HttpServlet {
+@WebServlet(name = "RegistrarEmpleadoServlet", urlPatterns = { "/RegistrarEmpleadoServlet" })
+public class RegistrarEmpleadoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static String VARIABLES_JSP = "perfil.jsp";
 
@@ -33,7 +34,7 @@ public class RegistrarAsociadoServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegistrarAsociadoServlet() {
+    public RegistrarEmpleadoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -55,24 +56,27 @@ public class RegistrarAsociadoServlet extends HttpServlet {
 
 		 HttpSession session= request.getSession(true);
 		 RequestDispatcher rq;
+		 
 		 User us= new User();
+		 UserDAO userdao = new UserDAO();
+		 
 		 Organizacion org = new Organizacion();
 		 OrganizacionDAO orgdao = new OrganizacionDAO();
-		 UserDAO userdao = new UserDAO();
-    	 EmpleadoDAO daoAs = new EmpleadoDAO();
-    	 Empleado empleado = new Empleado();
-    	 
+
+		 EmpleadoDAO daoAs = new EmpleadoDAO();
+    	 Empleado emp = new Empleado();
+    	     	 
 		 us = (User)session.getAttribute("user");
 		 
     //---------------Busqueda de la organizacion --------------
 		 
-		 empleado = daoAs.RetornarAsociado(us.getEmail());
+		 emp = daoAs.RetornarEmpleado(us.getUsername());
 		 
 		 
-		 System.out.println("USUARIOORGANIZACION: " + us.getEmail()+us.getPassword()+us.getTipo()+us.getUsername());
-		 System.out.println("Retorno el asoRganizacion : "+ empleado.getEmail() + " y el rif es : " + empleado.getRifOrganizacion());
+		 System.out.println("USUARIOORGANIZACION: " + us.getEmail()+us.getPassword()+us.getrol()+us.getUsername());
+		 System.out.println("Retorno el EmpRganizacion : "+ emp.getUsername() + " y el rif es : " + emp.getRifOrganizacion());
 
-		 org=orgdao.BuscarOrganizacion(empleado.getRifOrganizacion());
+		 org=orgdao.BuscarOrganizacion(emp.getRifOrganizacion());
 		 		 
 		 
 	 //-------------------	VARIABLES GENERALES---------------------
@@ -81,6 +85,7 @@ public class RegistrarAsociadoServlet extends HttpServlet {
 		 password= request.getParameter("inputPassword");
 		 username = request.getParameter("user");
 		 rifOrg = org.getRif();
+		 
 
     	 
   
@@ -89,34 +94,40 @@ public class RegistrarAsociadoServlet extends HttpServlet {
 		 user.setEmail(email);
 		 user.setPassword(password);
 		 user.setUsername(username);
-		 user.setTipo(2);
+		 user.setrol(2);
 		
-	//--------------- Asignacion de parametros a la clase Asoaciado------------------------------
+	//--------------- Asignacion de parametros a la clase Empleado------------------------------
 
-		 Empleado es = new Empleado(); 
-    	 es.setEmail(email);
-		 es.setRifOrganizacion(rifOrg);
-    	 es.setNombres(request.getParameter("nombre"));
-    	 es.setApellidos(request.getParameter("apellido"));
-    	 es.setTelefono(request.getParameter("telefono"));
-		 es.setDireccion(request.getParameter("direccion"));
-		 es.setCargo(request.getParameter("cargo"));
-		 String fech= request.getParameter("fechanacimiento");
+		 emp.setUsername(username);
+		 emp.setRifOrganizacion(rifOrg);
+		 emp.setTipo(2);
+		 
+ 
+	//----------------Asignacion a Perfil------------------------------------------------------	 
+    	 Perfil perf = new Perfil();
+    	 PerfilDAO daop = new PerfilDAO();
+    	 
+    	 perf.setNombres(request.getParameter("nombre"));
+    	 perf.setApellidos(request.getParameter("apellido"));
+    	 perf.setTelefono(request.getParameter("telefono"));
+    	 perf.setDireccion(request.getParameter("direccion"));
+		
+    	 String fech= request.getParameter("fechanacimiento");
 		 
 		 System.out.println("FechaAsociado: " + fech);
 		 Date fechaD = CnvStringFecha(fech);
-		 es.setFechaNacimiento(fechaD); 
+		 perf.setFechaNacimiento(fechaD); 
 
 		 String genero = request.getParameter("genero");
 		 response.getWriter().print(genero);
 
 		 if (genero=="Masculino"){
-			 es.setGenero(1);
+			 perf.setGenero(1);
 		 }else 
-			 es.setGenero(0);
+			 perf.setGenero(0);
 		 
 			
-    	 if(userdao.insertarUsuario(user) && daoAs.insertarAsociado(es))   	 
+    	 if(userdao.insertarUsuario(user) && daoAs.insertarEmpleado(emp))   	 
     	 {
     		 //#######################################
     		 response.getWriter().print("Estoy en el processRequest de Registrar");
