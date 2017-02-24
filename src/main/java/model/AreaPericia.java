@@ -28,7 +28,7 @@ public class AreaPericia {
 		return descripcion;
 	}
 
-	public void setDecripion(String descripcion) {
+	public void setDescripion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 

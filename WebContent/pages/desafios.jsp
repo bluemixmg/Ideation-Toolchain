@@ -5,10 +5,12 @@
 <%@page import="dao.DesafioDAO" %>
 <%@page import="dao.CategoriaDAO" %>
 <%@page import="dao.AsociadoDAO" %>
+<%@page import="dao.AreasPorEvaluadorDAO" %>
 <%@page import="model.Desafio" %>
 <%@page import="model.Asociado" %>
 <%@page import="model.Categoria" %>
 <%@page import="model.User" %>
+<%@page import="model.AreaPericia" %>
 <%@page import="java.util.*" %>
 <%@page import="java.text.SimpleDateFormat" %>
 
@@ -474,11 +476,21 @@
 							<div class="row">
 								<div class="form-group col-xs-9">
 									<%List<User> usuarios = new ArrayList<>();
-									usuarios.add(new User("miusuario","mipassword", "miemail", 3)); %>
+									AreaPericia areapericia = new AreaPericia();
+									AreasPorEvaluadorDAO apedao = new AreasPorEvaluadorDAO();
+									
+									//TODO Llamar al método para retornar usuarios de rol 'Evaluador'
+									
+									usuarios.add(new User("miusuario","mipassword", "miemail", 3));
+									%>
 									<label>Lista de evaluadores</label>
 									<select multiple id="evlist" class="form-control">
-										<% for(int i = 0; i<usuarios.size(); i++) {%>
-										<option value="<%=usuarios.get(i).getUsername()%>"><%=usuarios.get(i).getUsername() %> - Profesión <%=i+1 %></option>
+										<% for(int i = 0; i<usuarios.size(); i++) {
+											List<AreaPericia> areas = apedao.RetornarAreasPorEvaluador(usuarios.get(i).getUsername());
+											%>
+										<option value="<%=usuarios.get(i).getUsername()%>"><%=usuarios.get(i).getUsername() %> (<%
+												for(int j=0; j<areas.size(); j++) { if(i > 0) {%><%=", "%><% }%>; <%=areas.get(j).getDescripcion() %>
+												<% }%>)</option>
 										<%} %>
 										<!--  <option value="2">María Suárez - Tecnologías de información</option>
 										<option value="3">Pedro González - Leyes</option>-->
