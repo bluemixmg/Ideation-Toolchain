@@ -487,7 +487,7 @@
 											List<AreaPericia> areas = apedao.RetornarAreasPorEvaluador(usuarios.get(i).getUsername());
 											%>
 										<option value="<%=usuarios.get(i).getUsername()%>"><%=usuarios.get(i).getUsername() %> (<%
-												for(int j=0; j<areas.size(); j++) { if(i > 0) {%><%=", "%><% }%>; <%=areas.get(j).getDescripcion() %>
+												for(int j=0; j<areas.size(); j++) { if(i > 0) {%><%=", "%><% }%> <%=areas.get(j).getDescripcion() %>
 												<% }%>)</option>
 										<%} %>
 										<!--  <option value="2">María Suárez - Tecnologías de información</option>
