@@ -72,8 +72,8 @@ public class OrganizacionServlet extends HttpServlet {
 			//Lista de asociado a la organizacion 
 			
 			EmpleadoDAO asd = new EmpleadoDAO();
-			List<Empleado> list_as  = asd.RetornarListaAsociado(as.getRifOrganizacion());
-			session.setAttribute("asociados", list_as);
+			//List<Empleado> list_as  = asd.RetornarListaAsociado(as.getRifOrganizacion());
+			//session.setAttribute("asociados", list_as);
 			
 			//Datos de la organizacion 
 			
