@@ -63,7 +63,7 @@ public class IdeaDAO {
 					//(codigo, titulo, descripcion, cantidadvotos, autor, coddesafio, estatus)
 					PreparedStatement ps;
 					
-					String sql = "INSERT INTO idea (titulo, descripcion, cantidadvotos, idAutor, estatus, codDesafio, url_imagen) VALUES(?, ?, ?, ?, ?, ?, ?)";
+					String sql = "INSERT INTO idea (titulo, descripcion, cantidadvotos, idautor, estatus, coddesafio, url_imagen) VALUES(?, ?, ?, ?, ?, ?, ?)";
 					ps = c.prepareStatement(sql);
 					ps.setString(1,idea.getTitulo());
 					ps.setString(2, idea.getDescripcion());
