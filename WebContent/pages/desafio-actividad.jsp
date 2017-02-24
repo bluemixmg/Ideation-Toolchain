@@ -188,7 +188,7 @@
 						<i class="fa fa-user fa-fw"></i><span class="hidden-xs"> <%=((User) session.getAttribute("user")).getUsername() %> </span><i class="fa fa-caret-down"></i> 
 					</a>
 					<ul class="dropdown-menu dropdown-user">
-						<li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
+						<li><a href="/PerfilServlet"><i class="fa fa-user fa-fw"></i> Perfil</a>
 						</li>
 						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuración</a>
 						</li>
@@ -231,7 +231,7 @@
 						<li>
 							<a href="/Desafios"><i class="fa fa-home fa-fw"></i> Inicio</a>
 						</li>
-						<% if(((User) session.getAttribute("user")).getTipo() <= 2) {%>
+						<% if(((User) session.getAttribute("user")).getrol() <= 2) {%>
 						<li>
 							<a href="pages/publicarIdea.jsp" target="_blank"><i class="fa fa-pencil fa-fw"></i> Publicar Idea</a>
 						</li>
@@ -423,7 +423,7 @@
 <!--         </div> -->
       </div> 
        	<% List<Idea> lis_i = (List<Idea>)session.getAttribute("ideas");
-       		Idea idea = new Idea("", "", "", 0, "", "", null, null, '*');
+       		Idea idea = new Idea("","", 0, "", 0, null, null, '*');
        	%>
       	
       	<% for(int i=0; i<lis_i.size() && i<3; i++){ %>
@@ -440,7 +440,7 @@
                           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
                               <div class="well">
                               <% IdeaNoSQL inosql = new IdeaNoSQL();
-                              	JsonObject jsono = inosql.getUnaIdea(idea.getCodigo());
+                              	JsonObject jsono = inosql.getUnaIdea(String.valueOf(idea.getCodigo()));
                               	String fecha =(String)jsono.get("fecha_creacion").getAsString();
                               %>
                                  <h4><b><%=idea.getIdAutor() %></b><small><i> En <%=fecha %></i></small></h4>
@@ -474,7 +474,7 @@
      									</button>
  									</section>     							
 		     					</h6>
-		     			<% if((idea.getEstatus()=='I' || idea.getEstatus()=='D')&& ((User) session.getAttribute("user")).getTipo() ==4) {%>
+		     			<% if((idea.getEstatus()=='I' || idea.getEstatus()=='D')&& ((User) session.getAttribute("user")).getrol() ==4) {%>
 		     					<a  href="#" class = "btn btn-success btn-sm" data-toggle="modal" data-target="#modalEvaluacion" >Ver Evaluacion</a>
 		     					
 		     					<% }%>

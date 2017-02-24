@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AsociadoDAO;
-import dao.EstandarDAO;
+import dao.EmpleadoDAO;
+import dao.PerfilDAO;
 import dao.UserDAO;
-import model.Estandar;
+import model.Perfil;
 import model.User;
 import model.Validacion;
 
@@ -57,7 +57,7 @@ public class RegistrarServlet extends HttpServlet {
 		
     	 UserDAO userdao = new UserDAO();
     	 response.setContentType("text/html;charset=UTF-8");
-    	 EstandarDAO daoEs = new EstandarDAO();
+    	 PerfilDAO daoEs = new PerfilDAO();
     	 
     	 String email, password, username;
     	 email= request.getParameter("email");
@@ -70,41 +70,48 @@ public class RegistrarServlet extends HttpServlet {
 		 user.setEmail(email.trim().toLowerCase());
 		 user.setPassword(password);
 		 user.setUsername(username.trim());
-		 user.setTipo(1);
+		 user.setrol(1);
 		
     //--------------- Asignacion de parametros a la clase Estandamndar------------------------------
 
-    	 Estandar es = new Estandar(); 
-    	 es.setEmail(email);
-    	 es.setNombres(request.getParameter("nombre"));
-    	 es.setApellidos(request.getParameter("apellido"));
-    	 es.setTelefono(request.getParameter("telefono"));
-		 es.setDireccion(request.getParameter("direccion"));
-		 System.out.println("Fecha traída por request: " + request.getParameter("fechanacimiento"));
-		 Date fecha = CnvStringFecha(request.getParameter("fechanacimiento"));
-		 es.setFechaNacimiento(fecha); 
+		 
+    	 Perfil perf = new Perfil(); 
+    	 perf.setusername(username);
+    	 perf.setNombres(request.getParameter("nombre"));
+    	 perf.setApellidos(request.getParameter("apellido"));
+    	 //es.setTelefono(request.getParameter("telefono"));
+		// es.setDireccion(request.getParameter("direccion"));
+		 //System.out.println("Fecha traída por request: " + request.getParameter("fechanacimiento"));
+		 //Date fecha = CnvStringFecha(request.getParameter("fechanacimiento"));
+		 //es.setFechaNacimiento(fecha); 
 		 
 		 String genero = request.getParameter("genero");
 		 response.getWriter().print(genero);
 
 		 if (genero=="Masculino"){
-			 es.setGenero(1);
+			 perf.setGenero(1);
 		 }else 
-			 es.setGenero(0);
+			 perf.setGenero(0);
 		 
 	//---------- INSERTAR EL USER Y EL ESTANDAR EN LA BASE DE DATOS-------------
 		
-    	 if(userdao.insertarUsuario(user) && daoEs.insertarEstandar(es))   	 
+    	 if(userdao.insertarUsuario(user))   	 
     	 {
-    		 HttpSession misession= request.getSession(true);
-    		 //#######################################
-    		 response.getWriter().print("Estoy en el processRequest de Registrar");
-    		 System.out.println("Inserto estandar");
-    		 //#######################################
-
-    		 misession.setAttribute("user", user);
-    		 RequestDispatcher rq = request.getRequestDispatcher("/pages/desa.jsp");
-    		 rq.forward(request, response);
+    		 if(daoEs.insertarPerfil(perf)){
+	    		 HttpSession misession= request.getSession(true);
+	    		 //#######################################
+	    		 response.getWriter().print("Estoy en el processRequest de Registrar");
+	    		 System.out.println("Inserto ");
+	    		 //#######################################
+	
+	    		 misession.setAttribute("user", user);
+	    		 RequestDispatcher rq = request.getRequestDispatcher("/pages/desa.jsp");
+	    		 rq.forward(request, response);
+    		 }else {
+    			 userdao.eliminarUser(user);
+        		 response.getWriter().print("Error al intentar Registrarse, comuniquese con el administrador de la pagina");
+        		 System.out.println("No inserto");
+    		 }
     	 }else{
     		 
     		 response.getWriter().print("Error al intentar Registrarse, comuniquese con el administrador de la pagina");

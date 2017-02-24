@@ -1,10 +1,14 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.ConexionBD;
+import model.Desafio;
 import model.User;
 import model.AreaPericia;
 import model.Validacion;
@@ -100,6 +104,51 @@ public class AreasPorEvaluadorDAO {
 			eliminado = false;
 		}
 		return eliminado;
+	}
+
+	public List<AreaPericia> RetornarAreasPorEvaluador(String usernameEv) {
+		List<AreaPericia> areas = new ArrayList<AreaPericia>();
+		ResultSet rs = null;
+		try{
+			try {
+				ConexionBD bd = new ConexionBD();
+				Connection c = bd.getConexion();
+				if(c!= null){
+					System.out.println("c es distinto de null");
+					Statement st;
+					st = c.createStatement();
+					String sql = "SELECT * FROM areadepericia ap"
+							+ " JOIN areasporevaluador ae ON codigoarea = codarea"
+							+ " JOIN usuario u ON u.username = ae.username"
+							+ " WHERE ap.estatus != 'E' AND ae.username = '" + usernameEv + "'";
+					System.out.println("Voy a ejecutar la consulta");
+					rs = st.executeQuery(sql);
+					try{
+						while(rs.next()){
+							AreaPericia a = new AreaPericia();
+							a.setCodigo(rs.getInt("codigoarea"));
+							System.out.println("Código de área asignado: " + a.getCodigo());
+							a.setDescripion(rs.getString("descripcion"));
+							System.out.println("Descripción asignada: " + a.getDescripcion());
+							a.setEstatus(rs.getString("ap.estatus").charAt(0));
+							System.out.println("Estatus asignado: " + a.getDescripcion());
+							areas.add(a);
+						}
+					}catch(SQLException e){
+						e.printStackTrace();
+					}
+					st.close();
+					System.out.println("Cerré statement");
+				}
+			bd.closeConexion();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return areas;
 	}
 	
 }

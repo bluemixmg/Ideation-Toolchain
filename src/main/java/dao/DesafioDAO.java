@@ -266,7 +266,7 @@ public class DesafioDAO {
 		return des;
 	}
 	
-	public int contarIdeasPorDesafio(int id /*String codDesafio*/) {
+	public int contarIdeasPorDesafio(int id) {
 		int cantIdeas = 0;
 		try{
 			try {

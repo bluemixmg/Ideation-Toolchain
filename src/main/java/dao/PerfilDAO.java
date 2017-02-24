@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 
-import model.Estandar;
+import model.Perfil;
 import model.ConexionBD;
 import model.Validacion;
 
-public class EstandarDAO {
+public class PerfilDAO {
 
-	public boolean insertarEstandar(Estandar us){
+	public boolean insertarPerfil(Perfil us){
 		boolean registrado = false;
 		try{
 			try {
@@ -22,17 +22,17 @@ public class EstandarDAO {
 					Statement st;
 					st = c.createStatement();
 
-					String sql = "INSERT INTO estandar (email, nombre, apellido, telefono,"
-							+ " estatus, direccion, genero, fechanacimiento) VALUES (";
-					sql+= Validacion.Apost(us.getEmail()) + ",";
+					String sql = "INSERT INTO ideador (username, nombre, apellido, telefono,"
+							+ " estatus, direccion, genero) VALUES (";
+					sql+= Validacion.Apost(us.getusername()) + ",";
 					sql+= Validacion.Apost(us.getNombres()) + ",";
 					sql+= Validacion.Apost(us.getApellidos()) + ",";
 					sql+= Validacion.Apost(us.getTelefono()) + ",";
 					sql+= Validacion.Apost("A")+ ",";
 					sql+= Validacion.Apost(us.getDireccion()) + ",";
-					sql+= us.getGenero() + ",";
-					System.out.println("fecha de nacimiento = " + us.getFechaNacimiento());
-					sql+= Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(us.getFechaNacimiento())) + ")";
+					sql+= us.getGenero() + ")";
+					//System.out.println("fecha de nacimiento = " + us.getFechaNacimiento());
+					//sql+= Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(us.getFechaNacimiento())) + ")";
 					
 					System.out.println(sql);
 					
@@ -54,9 +54,9 @@ public class EstandarDAO {
 		return registrado;
 	}
 	
-	public boolean modificarEstandar(Estandar us){
+	public boolean modificarPerfil(Perfil us){
 		boolean modificar = false;
-		String Email = us.getEmail();
+		String username = us.getusername();
 		try{
 			try {
 				ConexionBD bd = new ConexionBD();
@@ -64,16 +64,16 @@ public class EstandarDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE estandar SET";
-					sql+= "email=" + Validacion.Apost(us.getEmail()) + ",";
+					String sql = "UPDATE ideador SET";
+					sql+= "username=" + Validacion.Apost(us.getusername()) + ",";
 					sql+= "nombre=" + Validacion.Apost(us.getNombres()) + ",";
 					sql+= "apellido=" + Validacion.Apost(us.getApellidos()) + ",";
 					sql+= "telefono=" + Validacion.Apost(us.getTelefono()) + ",";
 					sql+= "estatus=" + Validacion.Apost(us.getEstatus()) + ",";
 					sql+= "direccion=" + Validacion.Apost(us.getDireccion()) + ",";
 					sql+= "genero=" + us.getGenero() + ",";
-					sql+= "fechanacimiento=" + us.getFechaNacimiento() + ",";
-					sql+= "WHERE email =" + Validacion.Apost(Email);
+					sql+= "fechanacimiento=" + Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(us.getFechaNacimiento())) + ",";
+					sql+= "WHERE username =" + Validacion.Apost(username);
 					st.executeUpdate(sql);
 					st.close();
 					modificar=true;
@@ -91,7 +91,7 @@ public class EstandarDAO {
 		return modificar;
 	}
 	
-	public  boolean eliminarEstandar(Estandar us){
+	public  boolean eliminarPerfil(Perfil us){
 		boolean modificar = false;
 		try{
 			try {
@@ -100,7 +100,7 @@ public class EstandarDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE estandar SET estatus= " + Validacion.Apost("E") +"WHERE email =" + us.getEmail();
+					String sql = "UPDATE ideador SET estatus= " + Validacion.Apost("E") +"WHERE username =" + us.getusername();
 					st.executeUpdate(sql);
 					st.close();
 					modificar=true;
@@ -120,9 +120,9 @@ public class EstandarDAO {
 	
 	
 //-----------SUJETOS A CAMBIOS-----------
-	public Estandar RetornarEstandar(String email) {
+	public Perfil RetornarPerfil(String username) {
 		ResultSet usuario = null;
-		Estandar us = new Estandar();
+		Perfil us = new Perfil();
 		
 		
 		try{
@@ -132,13 +132,13 @@ public class EstandarDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "SELECT * FROM estandar WHERE estatus != 'E' and "
-							+ "email ="+ Validacion.Apost(email);
+					String sql = "SELECT * FROM ideador WHERE estatus != 'E' and "
+							+ "username ="+ Validacion.Apost(username);
 					System.out.println(sql);
 
 					usuario = st.executeQuery(sql);
 					if(usuario.next()){
-						 us.setEmail(usuario.getString("email"));
+						 us.setusername(usuario.getString("usuario"));
 						 us.setNombres(usuario.getString("nombre"));
 						 us.setApellidos(usuario.getString("apellido"));
 						 us.setTelefono(usuario.getString("telefono"));

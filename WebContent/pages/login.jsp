@@ -8,7 +8,7 @@
 	 if(session.getAttribute("user") != null){
 	   	User us = new User();
 	 	us= (User) session.getAttribute("user");
-	 	switch(us.getTipo()){
+	 	switch(us.getrol()){
 				case 1:
 					%>
 					  <script type="text/javascript">
@@ -32,7 +32,7 @@
 				case 4:
 					%>
 					  <script type="text/javascript">
-					  	window.location="/pages/perfil-organizacion.jsp"";
+					  	window.location="/pages/perfil-organizacion.jsp";
 					  </script>
 					<%
 					 break;			

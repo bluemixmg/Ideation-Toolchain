@@ -165,7 +165,7 @@
 						<li>
 							<a href="/Desafio?id=<%=des.getId()%>"><i class="fa fa-flash fa-fw"></i> Actividad del desafío</a>
 						</li>
-						<%if (usuario.getTipo() <= 2) { %>
+						<%if (usuario.getrol() <= 2) { %>
 						<li>
 							<a href="pages/publicarIdea.jsp" target="_blank"><i class="fa fa-pencil fa-fw"></i> Publicar Idea</a>
 						</li>
