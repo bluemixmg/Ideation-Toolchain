@@ -114,7 +114,7 @@ public class RegistrarEmpleadoServlet extends HttpServlet {
 		
     	 String fech= request.getParameter("fechanacimiento");
 		 
-		 System.out.println("FechaAsociado: " + fech);
+		 System.out.println("Fechausuario: " + fech);
 		 Date fechaD = CnvStringFecha(fech);
 		 perf.setFechaNacimiento(fechaD); 
 
