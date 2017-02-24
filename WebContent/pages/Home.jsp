@@ -37,7 +37,7 @@
 				case 4:
 					%>
 					  <script type="text/javascript">
-					  	window.location="/pages/perfil-organizacion.jsp"";
+					  	window.location="/pages/perfil-organizacion.jsp";
 					  </script>
 					<%
 					 break;			

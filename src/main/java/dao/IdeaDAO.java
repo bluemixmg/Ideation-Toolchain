@@ -29,13 +29,12 @@ public class IdeaDAO {
 					//(codigo, titulo, descripcion, cantidadvotos, autor, coddesafio, estatus)
 					Statement st;
 					st = c.createStatement();
-					String sql = "INSERT INTO idea VALUES (";
-					sql+= Validacion.Apost(idea.getCodigo())+", ";
+					String sql = "INSERT INTO idea (titulo, descripcion, cantidadvotos, autor, coddesafio, estatus) VALUES (";
 					sql+= Validacion.Apost(idea.getTitulo())+", ";
 					sql+= Validacion.Apost(idea.getDescripcion())+", ";
 					sql+= idea.getCantVotos()+", ";
 					sql+= Validacion.Apost(idea.getIdAutor())+", ";
-					sql+= Validacion.Apost(idea.getCodDesafio())+", ";
+					sql+= idea.getCodDesafio()+", ";
 					sql+= Validacion.Apost("A")+");";
 					st.executeUpdate(sql);
 					st.close();
@@ -65,7 +64,7 @@ public class IdeaDAO {
 					sql += "titulo=" + Validacion.Apost(idea.getTitulo()) + ", ";
 					sql += "descripcion=" + Validacion.Apost(idea.getDescripcion()) + ", ";
 					sql += "estatus=" + Validacion.Apost(String.valueOf(idea.getEstatus()));
-					sql += "WHERE codigo="+Validacion.Apost(idea.getCodigo());
+					sql += "WHERE codigo="+idea.getCodigo();
 					st.executeUpdate(sql);
 					
 					modificado = true;
@@ -92,7 +91,7 @@ public class IdeaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE idea SET estatus = 'E' WHERE codigo=" + Validacion.Apost(idea.getCodigo());
+					String sql = "UPDATE idea SET estatus = 'E' WHERE codigo=" +idea.getCodigo();
 					st.executeUpdate(sql);
 					st.close();
 					eliminado = true;
@@ -109,7 +108,7 @@ public class IdeaDAO {
 		return eliminado;
 	}
 	
-	public List<Idea> retornarIdeasPorDesafio(String codDesafio) {
+	public List<Idea> retornarIdeasPorDesafio(int codDesafio) {
 		ResultSet ideas = null;
 		List<Idea> lis_i = new ArrayList<>();
 		try{
@@ -119,16 +118,16 @@ public class IdeaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "SELECT * FROM idea WHERE estatus != 'E' AND coddesafio="+Validacion.Apost(codDesafio) + " ORDER BY cantidadvotos DESC";
+					String sql = "SELECT * FROM idea WHERE estatus != 'E' AND coddesafio="+codDesafio+ " ORDER BY cantidadvotos DESC";
 					ideas = st.executeQuery(sql);
 					while (ideas.next()) {
 						Idea idea = new Idea();
-						idea.setCodigo(ideas.getString("codigo"));
+						idea.setCodigo(ideas.getInt("codigo"));
 						idea.setTitulo(ideas.getString("titulo"));
 						idea.setDescripcion(ideas.getString("descripcion"));
 						idea.setCantVotos(ideas.getInt("cantidadvotos"));
 						idea.setIdAutor(ideas.getString("autor"));
-						idea.setCodDesafio(ideas.getString("coddesafio"));
+						idea.setCodDesafio(ideas.getInt("coddesafio"));
 						idea.setEstatus(ideas.getString("estatus").charAt(0));
 						lis_i.add(idea);
 					}
@@ -145,7 +144,7 @@ public class IdeaDAO {
 		return lis_i;
 	}
 
-	public int retornarVotacionesTotalesPorIdeasDeDesafio(String codDesafio) {
+	public int retornarVotacionesTotalesPorIdeasDeDesafio(int codDesafio) {
 		ResultSet votaciones;
 		int votos = 0;
 		try {
@@ -154,7 +153,7 @@ public class IdeaDAO {
 			if (c != null) {
 				Statement st;
 				st = c.createStatement();
-				String sql = "SELECT sum(cantidadvotos) AS votos FROM idea WHERE estatus != 'E' AND coddesafio="+Validacion.Apost(codDesafio);
+				String sql = "SELECT sum(cantidadvotos) AS votos FROM idea WHERE estatus != 'E' AND coddesafio="+codDesafio;
 				votaciones = st.executeQuery(sql);
 				if (votaciones.next()) {
 					votos = votaciones.getInt("votos");
@@ -171,7 +170,7 @@ public class IdeaDAO {
 	}
 	
 
-	public boolean buscarIdea(String id){
+	public boolean buscarIdea(int id){
 		ResultSet idea = null;
 		boolean encontro=false;
 		try{
@@ -181,7 +180,7 @@ public class IdeaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "SELECT * FROM idea WHERE estatus != 'E' AND codigo="+Validacion.Apost(id);
+					String sql = "SELECT * FROM idea WHERE estatus != 'E' AND codigo="+id;
 					idea = st.executeQuery(sql);
 					
 					if(idea.next())
@@ -198,7 +197,8 @@ public class IdeaDAO {
 		}
 		return encontro;
 	}
-	public Idea getUnaIdea(String id){
+
+	public Idea getUnaIdea(int id){
 		ResultSet idea = null;
 		Idea i= new Idea();
 		try{
@@ -208,16 +208,16 @@ public class IdeaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "SELECT * FROM idea WHERE estatus != 'E' AND codigo="+Validacion.Apost(id);
+					String sql = "SELECT * FROM idea WHERE estatus != 'E' AND codigo="+id;
 					idea = st.executeQuery(sql);
 					
 					while (idea.next()) {
-						i.setCodigo(idea.getString("codigo"));
+						i.setCodigo(idea.getInt("codigo"));
 						i.setTitulo(idea.getString("titulo"));
 						i.setDescripcion(idea.getString("descripcion"));
 						i.setCantVotos(idea.getInt("cantidadvotos"));
 						i.setIdAutor(idea.getString("autor"));
-						i.setCodDesafio(idea.getString("coddesafio"));
+						i.setCodDesafio(idea.getInt("coddesafio"));
 						i.setEstatus(idea.getString("estatus").charAt(0));
 					}
 					st.close();
@@ -233,7 +233,7 @@ public class IdeaDAO {
 		return i;
 	}
 
-	public boolean insertarCategoriasPorIdea(String codigoCategoria, String codigoIdea){
+	public boolean insertarCategoriasPorIdea(int codigoCategoria, int codigoIdea){
 		boolean registrado=false;
 		try{
 			try {
@@ -243,8 +243,8 @@ public class IdeaDAO {
 					Statement st;
 					st = c.createStatement();
 					String sql = "INSERT INTO categoriasporidea (codigocategoria, codigoidea, estatus) VALUES (";
-					sql+= Validacion.Apost(codigoCategoria)+",";
-					sql+= Validacion.Apost(codigoIdea)+",";
+					sql+= codigoCategoria+",";
+					sql+= codigoIdea+",";
 					sql+= Validacion.Apost("A")+");";
 					st.executeUpdate(sql);
 					st.close();
@@ -262,7 +262,7 @@ public class IdeaDAO {
 		}
 		return registrado;
 	}
-	public ArrayList<String> getCategoriasPorIdea(String codigoIdea){
+	public ArrayList<String> getCategoriasPorIdea(int codigoIdea){
 		ResultSet cate = null;
 		ArrayList<String> categorias = new ArrayList<String>();
 		try{
@@ -272,7 +272,7 @@ public class IdeaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "SELECT nombre FROM categoria, categoriasporidea WHERE codigocategoria = codigo AND codigoidea ="+Validacion.Apost(codigoIdea);
+					String sql = "SELECT nombre FROM categoria, categoriasporidea WHERE codigocategoria = codigo AND codigoidea ="+codigoIdea;
 					cate = st.executeQuery(sql);
 					while (cate.next())
 						categorias.add(cate.getString("nombre"));

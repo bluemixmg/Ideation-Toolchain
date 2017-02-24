@@ -4,11 +4,13 @@
     pageEncoding="UTF-8"%>
 <%@page import="dao.DesafioDAO" %>
 <%@page import="dao.CategoriaDAO" %>
+<%@page import="dao.AreasPorEvaluadorDAO" %>
 <%@page import="dao.EmpleadoDAO" %>
 <%@page import="model.Desafio" %>
 <%@page import="model.Empleado" %>
 <%@page import="model.Categoria" %>
 <%@page import="model.User" %>
+<%@page import="model.AreaPericia" %>
 <%@page import="java.util.*" %>
 <%@page import="java.text.SimpleDateFormat" %>
 
@@ -31,7 +33,8 @@
 		</script>
 	  <%
 	}
-	
+	User user = (User) session.getAttribute("user");
+            		int tipo = user.getrol();
 %>
 
     <!-- <meta charset="utf-8"> -->
@@ -41,7 +44,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-    <title>Marna Centro de Innovación y Negocio - Gestión de ciclo de vida de los proyectos de innovación</title>
+    <title>Ideation - Gestión de ciclo de vida de los proyectos de innovación</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +83,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Marna CIN</a>
+                <a class="navbar-brand" href="#">Ideation</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -326,7 +329,7 @@
                         <li>
                             <a href="Desafios"> <i class="fa fa-bullhorn fa-fw"></i> Desafíos</a>
                         </li>
-                        <% if(((User) session.getAttribute("user")).getTipo() == 4) {%>
+                        <% if(((User) session.getAttribute("user")).getrol() == 4) {%>
                         <li data-toggle="modal" data-target="#myModal">
                             <a href="#"> <i class="fa fa-pencil fa-fw"></i> Crear desafío</a>
                         </li>
@@ -470,6 +473,46 @@
 									</small>
                      		   	</blockquote>
 							</div>
+							<div class="row">
+								<div class="form-group col-xs-9">
+									<%List<User> usuarios = new ArrayList<>();
+									AreaPericia areapericia = new AreaPericia();
+									AreasPorEvaluadorDAO apedao = new AreasPorEvaluadorDAO();
+									
+									//TODO Llamar al método para retornar usuarios de rol 'Evaluador'
+									
+									usuarios.add(new User("miusuario","mipassword", "miemail", 3));
+									%>
+									<label>Lista de evaluadores</label>
+									<select multiple id="evlist" class="form-control">
+										<% for(int i = 0; i<usuarios.size(); i++) {
+											List<AreaPericia> areas = apedao.RetornarAreasPorEvaluador(usuarios.get(i).getUsername());
+											%>
+										<option value="<%=usuarios.get(i).getUsername()%>"><%=usuarios.get(i).getUsername() %> (<%
+												for(int j=0; j<areas.size(); j++) { if(i > 0) {%><%=", "%><% }%>; <%=areas.get(j).getDescripcion() %>
+												<% }%>)</option>
+										<%} %>
+										<!--  <option value="2">María Suárez - Tecnologías de información</option>
+										<option value="3">Pedro González - Leyes</option>-->
+									</select>
+								</div>
+								
+								<div class="form-group col-xs-2" style="margin-top: 3.5em;">
+									<button type="button" class="btn btn-success" onclick="asignar()">Asignar &gt;&gt;</button>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-xs-2" style="margin-top: 3.5em;">
+									<button type="button" class="btn btn-default" onclick="quitar()">&lt;&lt; Quitar</button>
+								</div>
+								
+								<div class="form-group col-xs-9">
+									<label>Evaluadores asignados al desafío</label>
+									<select multiple id="evasig" class="form-control" required>
+										
+									</select>
+								</div>
+							</div>
 						</div>
 						
 						<div class="row"></div>
@@ -519,12 +562,17 @@
             		System.out.println("Asignó la cantidad de ideas (se muestra como string): " + des.getCantIdeas());
             		
             		Empleado emp = new Empleado();
-            		int tipo = ((User) session.getAttribute("user")).getTipo();
             		if(tipo == 2 || tipo == 4) {
             			EmpleadoDAO daoe = new EmpleadoDAO();
-            			emp = daoe.RetornarAsociado(((User) session.getAttribute("user")).getEmail());
+            			emp = daoe.RetornarEmpleado(((User) session.getAttribute("user")).getEmail());
             		}
             		
+            		//if(tipo == 2 || tipo == 4) {
+            			//AsociadoDAO daoa = new AsociadoDAO();
+            			//aso = daoa.RetornarAsociado(((User) session.getAttribute("user")).getEmail());
+            		//}
+            		
+            		//if(!des.getTipo() || (des.getTipo() && ((tipo == 2 || tipo == 4) && aso.getRifOrganizacion() == des.getOrg()))) {
             		if(!des.getTipo() || (des.getTipo() && ((tipo == 2 || tipo == 4) && emp.getRifOrganizacion() == des.getOrg()))) {
             	%> 
                 <div class="col-xs-8 col-md-6 col-lg-4" style="float:left">
@@ -619,7 +667,9 @@
                         </div>
                         </div>
                     </div>
-                <% } } %>
+                    
+                <% }
+                	} %>
                 </div>
                 <!--  </form>-->
                 
@@ -1005,6 +1055,29 @@
     
     <!-- Date Picker JavaScript -->
     <script src="../dist/js/bootstrap-datepicker.js"></script>
+
+	<script type="text/javascript">
+		var eva = document.getElementById("evlist");
+		var asig = document.getElementById("evasig");
+		
+		function asignar() {
+			for(i=0; i < eva.length; i++) {
+				if(eva.options[i].selected) {
+					asig.appendChild(eva.options[i]);
+					i--;
+				}
+			}
+		}
+		
+		function quitar() {
+			for(i=0; i < asig.length; i++) {
+				if(asig.options[i].selected) {
+					eva.appendChild(asig.options[i]);
+					i--;
+				}
+			}
+		}
+	</script>
 
 	<script type="text/javascript">
 		var nowTemp = new Date();

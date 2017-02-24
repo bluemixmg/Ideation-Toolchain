@@ -46,8 +46,8 @@ public class EvaluacionServlet extends HttpServlet {
     	 Desafio des= new Desafio();
     	 HttpSession session = request.getSession();
     	 
-    	 String id = request.getParameter("id");
-    	 des= new DesafioDAO().consultarDesafio(Integer.parseInt(id));
+    	 int id = Integer.parseInt(request.getParameter("id"));
+    	 des= new DesafioDAO().consultarDesafio(id);
     	 session.setAttribute("desafio", des);
     	 
     	 List<Idea> lis_i = new IdeaDAO().retornarIdeasPorDesafio(id);
@@ -82,7 +82,6 @@ public class EvaluacionServlet extends HttpServlet {
 		Evaluacion evaluacion = new Evaluacion();
 		Date fecha = new Date();
 		evaluacion.setUsername("prueba");
-		evaluacion.setIdea_id("prueba");
 		evaluacion.setDetalle(request.getParameter("detalle"));
 		evaluacion.setFactibilidad(1);
 		evaluacion.setImpacto(2);		

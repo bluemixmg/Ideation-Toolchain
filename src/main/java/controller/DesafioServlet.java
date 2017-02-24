@@ -66,10 +66,10 @@ public class DesafioServlet extends HttpServlet {
 			session.setAttribute("desafios", lis_des);
 			
 			//Mapa que guarda las votaciones totales por cada desafío
-			Map<String, Integer> mp = new HashMap<String, Integer>();
+			Map<Integer, Integer> mp = new HashMap<Integer, Integer>();
 			IdeaDAO daoI = new IdeaDAO();
 			for (int i = 0; i < lis_des.size(); i++) {
-				String codDesafio = "" + lis_des.get(i).getId();
+				int codDesafio = lis_des.get(i).getId();
 				mp.put(codDesafio, daoI.retornarVotacionesTotalesPorIdeasDeDesafio(codDesafio));
 			}
 			session.setAttribute("votaciones", mp);
@@ -134,8 +134,8 @@ public class DesafioServlet extends HttpServlet {
 		System.out.println("Título traído por request: " + titulo);
 		String descripcion = getPartString(request.getPart("descripcion"));
 		System.out.println("Descripción traída por request: " + descripcion);
-		EmpleadoDAO daoa = new EmpleadoDAO();
-		Empleado aso = daoa.RetornarAsociado(user.getEmail());
+		EmpleadoDAO daoe = new EmpleadoDAO();
+		Empleado aso = daoe.RetornarEmpleado(user.getEmail());
 		String org = aso.getRifOrganizacion();
 		System.out.println("Rif organizacion: " + org);
 		String categoria = getPartString(request.getPart("categoria"));
@@ -214,7 +214,7 @@ public class DesafioServlet extends HttpServlet {
 	        			} finally {
 	        				input.close();
 	        			}*/	
-				JsonObject resultadoDesafioJson = desNoSQL.create(db, des.getCodigo(), des.getTitulo(), filePart, fileName);
+				JsonObject resultadoDesafioJson = desNoSQL.create(db, String.valueOf(des.getId()), des.getTitulo(), filePart, fileName);
 				System.out.println("Carga del desafío completo en la BD NoSQL");
 				System.out.println("resultadoDesafioJson = " + resultadoDesafioJson.toString());
 

@@ -259,19 +259,21 @@
                                     <th>Cargo</th>
                                     <th>Email</th>
                                     <th>Sociales</th>
+                                    <th>Estatus</th>
                                 </tr>
                             </thead>
                          <%for(int i=0 ; i<lis_as.size(); i++){ %>
                             <tbody>
                                 <tr>
-                                    <td><%= lis_as.get(i).getNombres() + lis_as.get(i).getApellidos() %></td>
-                                    <td><%=lis_as.get(i).getTelefono() %></td>
-                                    <td><%= lis_as.get(i).getCargo() %></td>
-                                    <td><%=lis_as.get(i).getEmail() %></td>
+                                    <td><%--= lis_as.get(i).getNombres() + lis_as.get(i).getApellidos() --%></td>
+                                    <td><%--=lis_as.get(i).getTelefono() --%></td>
+                                    <td><%--= lis_as.get(i).getCargo() --%></td>
+                                    <td><%--=lis_as.get(i).getEmail() --%></td>
                                     <td>
                                         <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
                                         <a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
                                     </td>
+                                    <td><a class="btn btn-primary">Desafiante</a></td>
                                 </tr>
                           <%} %>
                                
