@@ -326,5 +326,29 @@ public class IdeaDAO {
 		}
 		return categorias ;
 	}
-		
+	
+	public int siguienteCodigoIdea() {
+		ResultSet nextID;
+		int proximo = 0;
+		try {
+			ConexionBD bd = new ConexionBD();
+			Connection c = bd.getConexion();
+			if (c != null) {
+				Statement st;
+				st = c.createStatement();
+				String sql = "SELECT (last_value + 1) AS next FROM idea_codigo_seq";
+				nextID = st.executeQuery(sql);
+				if (nextID.next()) {
+					proximo = nextID.getInt("next");
+				}
+				st.close();
+			}
+			bd.closeConexion();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return proximo;
+	}
 }

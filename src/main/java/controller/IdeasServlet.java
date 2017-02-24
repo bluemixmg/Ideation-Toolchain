@@ -104,12 +104,12 @@ public class IdeasServlet extends HttpServlet {
 	    		if(fotoSize>0)
 	    			if(daoIdea.insertarIdeaConImagen(i)){
 	    				System.out.println("Inserto idea");
-	    				guardarIdeaEnCloudant(i);
+	    				guardarIdeaEnCloudant(i, daoIdea.siguienteCodigoIdea());
 	    			}
 	    		else
 	    			if(daoIdea.insertarIdea(i)){
 	    				System.out.println("Inserto idea");
-	    				guardarIdeaEnCloudant(i);
+	    				guardarIdeaEnCloudant(i, daoIdea.siguienteCodigoIdea());
 	    			}
 	    		
 	    		for(Integer cate : i.getCategorias())
@@ -134,14 +134,14 @@ public class IdeasServlet extends HttpServlet {
     	}*/
     }
 
-   private void guardarIdeaEnCloudant(Idea i)
+   private void guardarIdeaEnCloudant(Idea i, int siguienteValor)
    {
 	   Database db = null;
    	   db = ConexionCloudantBD.getDB();
    	   IdeaNoSQL conNSQL = new IdeaNoSQL();
 	   try {
    			db = conNSQL.getDB();
-			JsonObject resultadoIdeaJson = conNSQL.create(db, i.getCodigo(), i);
+			JsonObject resultadoIdeaJson = conNSQL.create(db, siguienteValor, i);
 			System.out.println("Carga de la idea completa en la BD NoSQL");
 			System.out.println(resultadoIdeaJson.toString());
 

@@ -70,7 +70,7 @@ public class IdeaNoSQL {
 		//Crear un nuevo documento
 		System.out.println("Creando un nuevo documento con el id : " + idP);
 		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("_id", String.valueOf(idea.getCodigo()));
+		data.put("_id", String.valueOf(idea.getCodigo())+idea.getTitulo());
 		data.put("codigo", String.valueOf(idea.getCodigo()));
 		data.put("titulo", idea.getTitulo());
 		data.put("votos",0);
@@ -78,7 +78,7 @@ public class IdeaNoSQL {
 		data.put("creation_date", fecha_creacion);
 		db.save(data);
 
-		obj = db.find(HashMap.class, String.valueOf(idP));
+		obj = db.find(HashMap.class, String.valueOf(idP)+idea.getTitulo());
 		JsonObject resultObject = toJsonObject(obj);
 
 		return resultObject;
