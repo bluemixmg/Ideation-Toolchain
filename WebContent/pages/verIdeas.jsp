@@ -165,7 +165,7 @@
 						<li>
 							<a href="/Desafio?id=<%=des.getId()%>"><i class="fa fa-flash fa-fw"></i> Actividad del desafío</a>
 						</li>
-						<%if (usuario.getTipo() <= 2) { %>
+						<%if (usuario.getrol() <= 2) { %>
 						<li>
 							<a href="pages/publicarIdea.jsp" target="_blank"><i class="fa fa-pencil fa-fw"></i> Publicar Idea</a>
 						</li>
@@ -225,9 +225,9 @@
 				    <!-- /.col-lg-4 -->
 				    <% for(int i=0; i<lis_i.size(); i++){ 
 				    	System.out.println(lis_i.size()+" indice: "+i);
-				    	Idea idea = new Idea("", "", "", 0, "", "", null, null, '*');
+				    	Idea idea = new Idea("", "", 0, "", -1, null, null, '*');
 				    	idea = lis_i.get(i);
-				    	ideaJson = ideaN.getUnaIdea(idea.getCodigo());
+				    	ideaJson = ideaN.getUnaIdea(String.valueOf(idea.getCodigo()));
 				    %>			    
                 <div class="col-lg-4">
                     <div class="well well-lg">

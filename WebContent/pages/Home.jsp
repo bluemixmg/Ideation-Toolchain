@@ -13,7 +13,7 @@
 		 System.out.print("User no es null por tanto entró al if");
 	   	User us = new User();
 	 	us= (User) session.getAttribute("user");
-	 	switch(us.getTipo()){
+	 	switch(us.getrol()){
 				case 1:
 					%>
 					  <script type="text/javascript">
@@ -37,7 +37,7 @@
 				case 4:
 					%>
 					  <script type="text/javascript">
-					  	window.location="/pages/perfil-organizacion.jsp"";
+					  	window.location="/pages/perfil-organizacion.jsp";
 					  </script>
 					<%
 					 break;			
@@ -153,7 +153,7 @@
 	  
 	   
 	   </div>
-       <div class="col-sm-6" style="float: right">
+	      <div class="col-sm-6" style="float: right">
             <form action="/RegistrarServlet" method="POST" role="form">   <!-- FORM HACIA EL SERVLET -->
                 <div class="col-md-6 ">                                       
                	   	<div class="form-group has-success">
@@ -183,15 +183,7 @@
                        <div class="form-group ">
                           <input class="form-control" type="text" placeholder="Tu Apellido" required name="apellido" id="apellido" maxlength="30">
                       </div>
-                      <div class="form-group">
-                         <input class="form-control" type="text" placeholder="Tu Teléfono" required name="telefono" id="telefono" maxlength="15">
-                      </div>
-                     <div class="form-group">
-                         <input class="form-control"  type="text" placeholder="Tu dirección" required name="direccion" id="direccion" maxlength="90">   
-                       </div>
-					<div class="form-group">
-                        <input  type="date" id="fechanacimiento" name="fechanacimiento">
-                     </div> 
+                      
                      <div class="form-group" >
                         <label style="color: #999999; font-weight: 900;">Género: </label>
                         <label class="radio-inline" style="color: #999999; font-weight: 900;">
@@ -209,6 +201,7 @@
              </form>
 
        </div>
+	   
       </div>         		             
             
    </div>

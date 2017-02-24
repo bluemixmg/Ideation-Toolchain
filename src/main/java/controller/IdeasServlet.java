@@ -69,21 +69,20 @@ public class IdeasServlet extends HttpServlet {
 	    	Idea i = new Idea();
 	    	String titulo = request.getParameter("titulo");
 	    	String descripcion = request.getParameter("descripcion");
-
 	    	String palabras = request.getParameter("palabraclave");
 	    	String[] categorias = request.getParameterValues("categoria");
 	    	ArrayList<String> palabrasC = separarPalabrasClave(palabras);
-	    	ArrayList<String> categoriasI = convertirArrayToArrayList(categorias);
-	    	String codigoIdea= generarCodigoIdea(user.getUsername(), des.getId());
+	    	ArrayList<Integer> categoriasI = convertirArrayToArrayList(categorias);
+	    	/*int codigoIdea= generarCodigoIdea(user.getUsername(), des.getId());
 	    	while(daoIdea.buscarIdea(codigoIdea)){
 	    		System.out.println("El codigo de la idea ya existe");
 	    		codigoIdea= generarCodigoIdea(user.getUsername(), des.getId());
 	    	}
-	    	i.setCodigo(codigoIdea);
+	    	i.setCodigo(codigoIdea);*/
 	    	i.setTitulo(titulo);
 	    	i.setDescripcion(descripcion);
 	    	i.setCantVotos(0);
-	    	i.setCodDesafio(String.valueOf(des.getId()));
+	    	i.setCodDesafio(des.getId());
 	    	i.setIdAutor(user.getUsername());
 	    	i.setPalabrasClave(palabrasC);
 	    	i.setCategorias(categoriasI);
@@ -91,7 +90,7 @@ public class IdeasServlet extends HttpServlet {
 	    
 	    	for(String p : i.getPalabrasClave())
 	    		System.out.println(p);
-	    	for(String c : i.getCategorias())
+	    	for(Integer c : i.getCategorias())
 	    		System.out.println("Codigo Categoria:"+c);
 	    	
 	    	//session.setAttribute("idea1", i);
@@ -103,7 +102,7 @@ public class IdeasServlet extends HttpServlet {
 	    		if(daoIdea.insertarIdea(i)){
 	    			System.out.println("Inserto");
 	    		
-	    		for(String cate : i.getCategorias())
+	    		for(Integer cate : i.getCategorias())
 	    			daoIdea.insertarCategoriasPorIdea(cate, i.getCodigo());
 	    		
 	    		//session.setAttribute("nom_cate", daoIdea.getCategoriasPorIdea(i.getCodigo()));
@@ -147,21 +146,22 @@ public class IdeasServlet extends HttpServlet {
 		}
 	return palabras;
 	}
-	private ArrayList<String> convertirArrayToArrayList(String[] arrayBase){
-		ArrayList<String> salida = new ArrayList<String>();
+	private ArrayList<Integer> convertirArrayToArrayList(String[] arrayBase){
+		ArrayList<Integer> salida = new ArrayList<Integer>();
 		for(String obj1: arrayBase)
-			salida.add(obj1);
+			salida.add(Integer.parseInt(obj1));
 		return salida;
 	}
     
-	private String generarCodigoIdea(String idUser, int idDesafio) throws ServletException, IOException{
-		String codigo=null;
+	/*private String generarCodigoIdea(String idUser, int idDesafio) throws ServletException, IOException{
+		int codigo=null;
 		String usuario = idUser.trim();
 		Random rnd = new Random();
 		int extremoIzq = (int)rnd.nextInt()*400+1;
 		codigo="I"+usuario+idDesafio+"-"+extremoIzq;
 		return codigo;
-	}
+	}*/
+	//Determinar el porcentaje de la idea e acuerdo al progreso registrado
 	private String porcentajeProgresoIdea(char e){
 		String progreso;
 		System.out.println(e);
@@ -183,7 +183,7 @@ public class IdeasServlet extends HttpServlet {
             throws ServletException, IOException
     {
 		HttpSession session = request.getSession(false);
-		String id = request.getParameter("codDes");
+		int id = Integer.parseInt(request.getParameter("codDes"));
 		System.out.println("El codigo del desafio es: "+id);
    	 	List<Idea> lis_i = new IdeaDAO().retornarIdeasPorDesafio(id);
    	 	session.setAttribute("ver_ideas", lis_i);

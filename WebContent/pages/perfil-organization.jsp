@@ -2,9 +2,9 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="dao.DesafioDAO" %>
 <%@page import="dao.CategoriaDAO" %>
-<%@page import="dao.AsociadoDAO" %>
+<%@page import="dao.EmpleadoDAO" %>
 <%@page import="model.Desafio" %>
-<%@page import="model.Asociado" %>
+<%@page import="model.Empleado" %>
 <%@page import="model.User" %>
 <%@page import="java.util.*" %>
 <%@page import="java.text.SimpleDateFormat" %>
@@ -249,8 +249,8 @@
                     <div class="table-responsive">
                         <table class="table table-hover">
                         <%System.out.print("Entro al jsp");
-                         List<Asociado> lis_as = new ArrayList<Asociado>();
-                         lis_as= (List<Asociado>)session.getAttribute("asociados");
+                         List<Empleado> lis_as = new ArrayList<Empleado>();
+                         lis_as= (List<Empleado>)session.getAttribute("asociados");
                           %>
                             <thead>
                                 <tr>
@@ -259,19 +259,21 @@
                                     <th>Cargo</th>
                                     <th>Email</th>
                                     <th>Sociales</th>
+                                    <th>Estatus</th>
                                 </tr>
                             </thead>
                          <%for(int i=0 ; i<lis_as.size(); i++){ %>
                             <tbody>
                                 <tr>
-                                    <td><%= lis_as.get(i).getNombres() + lis_as.get(i).getApellidos() %></td>
-                                    <td><%=lis_as.get(i).getTelefono() %></td>
-                                    <td><%= lis_as.get(i).getCargo() %></td>
-                                    <td><%=lis_as.get(i).getEmail() %></td>
+                                    <td><%--= lis_as.get(i).getNombres() + lis_as.get(i).getApellidos() --%></td>
+                                    <td><%--=lis_as.get(i).getTelefono() --%></td>
+                                    <td><%--= lis_as.get(i).getCargo() --%></td>
+                                    <td><%--=lis_as.get(i).getEmail() --%></td>
                                     <td>
                                         <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
                                         <a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
                                     </td>
+                                    <td><a class="btn btn-primary">Desafiante</a></td>
                                 </tr>
                           <%} %>
                                

@@ -601,7 +601,7 @@
       </div> 
       
       <% List<Idea> lis_i = (List<Idea>)session.getAttribute("ideas");
-       		Idea idea = new Idea("", "", "", 0, "", "", null, null, '*');
+       		Idea idea = new Idea("", "", 0, "", -1, null, null, '*');
        	%>
       	
       	<% for(int i=0; i<lis_i.size() && i<3; i++){ %>

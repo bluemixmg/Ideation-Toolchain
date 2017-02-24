@@ -3,23 +3,22 @@ package model;
 import java.util.ArrayList;
 
 public class Idea {
-	private String codigo;
+	private int codigo;
 	private String titulo;
 	private String descripcion;
 	private int cantVotos; //Cantidad de votos
 	private String idAutor; //Rif o ID del autor de la idea
-	private String codDesafio; //Codigo del desafio al cual pertenece la idea
+	private int codDesafio; //Codigo del desafio al cual pertenece la idea
 	private char estatus; //Este valor vendra desde la BD para definir la etapa en la que encuentra la idea
 	private ArrayList<String> palabrasClave; //Palabras clave de una idea
-	private ArrayList<String> categorias; //
+	private ArrayList<Integer> categorias; //
 	//Constructor sin parametros
 	public Idea() {
 		// TODO Auto-generated constructor stub
 	}
 	//Constructor para crear una idea que se esta trayendo desde la base de datos y ya todos los campos estan llenos 
-	public Idea(String codigo, String titulo, String descripcion, int cantVotos, String idAutor, String codDesafio, ArrayList<String> palabras, ArrayList<String> categorias,char estatus) {
+	public Idea(String titulo, String descripcion, int cantVotos, String idAutor, int codDesafio, ArrayList<String> palabras, ArrayList<Integer> categorias,char estatus) {
 		super();
-		this.codigo = codigo;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.cantVotos = cantVotos;
@@ -30,9 +29,8 @@ public class Idea {
 		this.estatus = estatus;
 	}
 	//Constructor para crear una idea inicial, es decir, sin la cantidad de votos
-	public Idea(String codigo, String titulo, String descripcion, String idAutor, String codDesafio, char estatus) {
+	public Idea(String titulo, String descripcion, String idAutor, int codDesafio, char estatus) {
 		super();
-		this.codigo = codigo;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.idAutor = idAutor;
@@ -41,11 +39,11 @@ public class Idea {
 	}
 
 	//Getter & Setter
-	public String getCodigo() {
+	public int getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 
@@ -81,11 +79,11 @@ public class Idea {
 		this.idAutor = idAutor;
 	}
 
-	public String getCodDesafio() {
+	public int getCodDesafio() {
 		return codDesafio;
 	}
 
-	public void setCodDesafio(String codDesafio) {
+	public void setCodDesafio(int codDesafio) {
 		this.codDesafio = codDesafio;
 	}
 	public char getEstatus() {
@@ -108,18 +106,18 @@ public class Idea {
 	public String getUnaPalabraClave(int pos){
 		return this.palabrasClave.get(pos);
 	}
-	public ArrayList<String> getCategorias() {
+	public ArrayList<Integer> getCategorias() {
 		return categorias;
 	}
-	public void setCategorias(ArrayList<String> categorias) {
+	public void setCategorias(ArrayList<Integer> categorias) {
 		this.categorias = categorias;
 	}
 	
-	public void setUnaCategoria(String categoria){
+	public void setUnaCategoria(int categoria){
 		this.categorias.add(categoria);
 	}
 	
-	public String getUnaCategoria(int pos){
+	public int getUnaCategoria(int pos){
 		return this.categorias.get(pos);
 	}
 	

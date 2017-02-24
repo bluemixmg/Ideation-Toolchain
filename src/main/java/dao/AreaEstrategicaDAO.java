@@ -19,8 +19,7 @@ public class AreaEstrategicaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "INSERT INTO areaestrategica (codareaest, descripcion, estatus) VALUES (";
-					sql+= ae.getCodigo() + ",";
+					String sql = "INSERT INTO areaestrategica (descripcion, estatus) VALUES (";
 					sql+= Validacion.Apost(ae.getDescripcion())+",";
 					sql+= Validacion.Apost("A")+");";
 					st.executeUpdate(sql);
@@ -51,7 +50,7 @@ public class AreaEstrategicaDAO {
 					st = c.createStatement();
 					String sql = "UPDATE areaestrategica SET ";
 					sql+= "descripcion=" + Validacion.Apost(ae.getDescripcion());
-					sql+= " WHERE codareaest=" + Validacion.Apost(Integer.toString(ae.getCodigo()));
+					sql+= " WHERE codareaest=" + ae.getCodigo();
 					st.executeUpdate(sql);
 					st.close();
 					modificado = true;
@@ -77,7 +76,7 @@ public class AreaEstrategicaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE areaestrategica SET estatus = 'E' WHERE codAreaEst=" + ae.getCodigo();
+					String sql = "UPDATE areaestrategica SET estatus = 'E' WHERE codareaest=" + ae.getCodigo();
 					st.executeUpdate(sql);
 					st.close();
 					eliminado = true;

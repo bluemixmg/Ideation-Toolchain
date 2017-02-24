@@ -1,7 +1,7 @@
 package model;
 
 public class Categoria {
-	private String codigo;
+	private int codigo;
 	private String nombre;
 	private String descripcion; //Este atributo es opcional
 	private String estatus;
@@ -11,7 +11,7 @@ public class Categoria {
 		// TODO Auto-generated constructor stub
 	}
 	//Constructor para crear una categoria con descripcion
-	public Categoria(String codigo, String nombre, String descripcion, String estatus) {
+	public Categoria(int codigo, String nombre, String descripcion, String estatus) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -19,7 +19,7 @@ public class Categoria {
 		this.estatus = estatus;
 	}
 	//Constructor para crear una categoria sin descripcion
-	public Categoria(String codigo, String nombre, String estatus) {
+	public Categoria(int codigo, String nombre, String estatus) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -27,11 +27,11 @@ public class Categoria {
 	}
 
 	//Getter  y Setter
-	public String getCodigo() {
+	public int getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 

@@ -63,9 +63,9 @@ public class LoginServlet extends HttpServlet {
 			response.getWriter().print("Entro a la session");
 			
 
-			System.out.println("Atributos del USER: "+ usuario + password + us.getEmail().trim() + us.getPassword() + us.getTipo());
+			System.out.println("Atributos del USER: "+ usuario + password + us.getEmail().trim() + us.getPassword() + us.getrol());
 
-			switch(us.getTipo()){
+			switch(us.getrol()){
 				case 1:
 					rq = request.getRequestDispatcher("/pages/desa.jsp");
 					break;
@@ -80,7 +80,7 @@ public class LoginServlet extends HttpServlet {
 					 rq = request.getRequestDispatcher("/OrganizacionServlet");
 					 break;
 				case 0:
-					 rq = request.getRequestDispatcher("/pages/" + "");
+					 rq = request.getRequestDispatcher("/OrganizacionServlet");
 					 break;
 				default:
 					System.out.println("Entro por defecto");

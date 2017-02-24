@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AsociadoDAO;
+import dao.EmpleadoDAO;
 import dao.CategoriaDAO;
 import dao.DesafioDAO;
 import dao.IdeaDAO;
 import dao.OrganizacionDAO;
-import model.Asociado;
+import model.Empleado;
 import model.Categoria;
 import model.Desafio;
 import model.Organizacion;
@@ -53,25 +53,28 @@ public class OrganizacionServlet extends HttpServlet {
 			
 			
 			//------------Busqueda del los desafio por el RIF a travez del asiciado--------------
-			AsociadoDAO adao = new AsociadoDAO();
-			Asociado as=adao.RetornarAsociado(((User)session.getAttribute("user")).getEmail());
+			
+			EmpleadoDAO adao = new EmpleadoDAO();
+			Empleado as=adao.RetornarEmpleado(((User)session.getAttribute("user")).getUsername());
 	
 			List<Desafio> lis_des = getDesafios(as.getRifOrganizacion());
 			session.setAttribute("desafios", lis_des);
 
 			//Mapa que guarda las votaciones totales por cada desafío
-			Map<String, Integer> mp = new HashMap<String, Integer>();
+			Map<Integer, Integer> mp = new HashMap<Integer, Integer>();
 			IdeaDAO daoI = new IdeaDAO();
 			for (int i = 0; i < lis_des.size(); i++) {
-				String codDesafio = lis_des.get(i).getCodigo();
+				int codDesafio = lis_des.get(i).getId();
 				mp.put(codDesafio, daoI.retornarVotacionesTotalesPorIdeasDeDesafio(codDesafio));
 			}
 			session.setAttribute("votaciones", mp);
 			
 			//Lista de asociado a la organizacion 
-			AsociadoDAO asd = new AsociadoDAO();
-			List<Asociado> list_as  = asd.RetornarListaAsociado(as.getRifOrganizacion());
-			session.setAttribute("asociados", list_as);
+			
+			
+			//List<Empleado> list_as  = asd.RetornarListaAsociado(as.getRifOrganizacion());
+			//session.setAttribute("asociados", list_as);
+
 			
 			//Datos de la organizacion 
 			
