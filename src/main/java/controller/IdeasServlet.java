@@ -75,8 +75,8 @@ public class IdeasServlet extends HttpServlet {
 	    	String[] categorias = request.getParameterValues("categoria");
 	    	ArrayList<String> palabrasC = separarPalabrasClave(palabras);
 	    	ArrayList<Integer> categoriasI = convertirArrayToArrayList(categorias);
-	    	Part fotoPart = request.getPart("foto");
-	    	int fotoSize = (int)fotoPart.getSize(); //Si no tiene tamano, no hay imagen
+	    	Part fotoPart = request.getPart("imagen");
+	    	int fotoSize = (int)fotoPart.getSize(); //Si no tiene tamanno, no hay imagen
 	    	byte[] foto=null;
 	    	if(fotoSize>0){
 	    		foto= new byte[fotoSize];

@@ -278,9 +278,9 @@ public class IdeaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "INSERT INTO categoriasporidea (codigocategoria, codigoidea, estatus) VALUES (";
-					sql+= codigoCategoria+",";
+					String sql = "INSERT INTO categoriasporidea (id_idea, id_categoria) VALUES (";
 					sql+= codigoIdea+",";
+					sql+= codigoCategoria+",";
 					sql+= Validacion.Apost("A")+");";
 					st.executeUpdate(sql);
 					st.close();
@@ -308,7 +308,7 @@ public class IdeaDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "SELECT nombre FROM categoria, categoriasporidea WHERE codigocategoria = codigo AND codigoidea ="+codigoIdea;
+					String sql = "SELECT nombre FROM categoria, categoriasporidea WHERE id_categoria = codigo AND id_idea ="+codigoIdea;
 					cate = st.executeQuery(sql);
 					while (cate.next())
 						categorias.add(cate.getString("nombre"));
