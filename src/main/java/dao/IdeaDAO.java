@@ -162,9 +162,10 @@ public class IdeaDAO {
 						idea.setTitulo(ideas.getString("titulo"));
 						idea.setDescripcion(ideas.getString("descripcion"));
 						idea.setCantVotos(ideas.getInt("cantidadvotos"));
-						idea.setIdAutor(ideas.getString("autor"));
+						idea.setIdAutor(ideas.getString("idautor"));
 						idea.setCodDesafio(ideas.getInt("coddesafio"));
 						idea.setEstatus(ideas.getString("estatus").charAt(0));
+						idea.setImagen(ideas.getBytes("url_imagen"));
 						lis_i.add(idea);
 					}
 					st.close();
@@ -252,9 +253,10 @@ public class IdeaDAO {
 						i.setTitulo(idea.getString("titulo"));
 						i.setDescripcion(idea.getString("descripcion"));
 						i.setCantVotos(idea.getInt("cantidadvotos"));
-						i.setIdAutor(idea.getString("autor"));
+						i.setIdAutor(idea.getString("idautor"));
 						i.setCodDesafio(idea.getInt("coddesafio"));
 						i.setEstatus(idea.getString("estatus").charAt(0));
+						i.setImagen(idea.getBytes("url_imagen"));
 					}
 					st.close();
 				}
