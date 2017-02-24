@@ -114,7 +114,7 @@ public class EmpleadoDAO {
 	
 	
 //-----------SUJETOS A CAMBIOS-----------
-	public Empleado RetornarEmpleado(String email) {
+	public Empleado RetornarEmpleado(String username) {
 		ResultSet usuario = null;
 		Empleado us = new Empleado();
 		try{
@@ -126,7 +126,7 @@ public class EmpleadoDAO {
 					st = c.createStatement();
 									
 					String sql = "SELECT * FROM empleado WHERE estatus != 'E' and "
-							+ "email="+ Validacion.Apost(email) ;
+							+ "username="+ Validacion.Apost(username) ;
 					System.out.println(sql);
 					usuario = st.executeQuery(sql);
 					
