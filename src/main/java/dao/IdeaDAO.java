@@ -280,8 +280,7 @@ public class IdeaDAO {
 					st = c.createStatement();
 					String sql = "INSERT INTO categoriasporidea (id_idea, id_categoria) VALUES (";
 					sql+= codigoIdea+",";
-					sql+= codigoCategoria+",";
-					sql+= Validacion.Apost("A")+");";
+					sql+= codigoCategoria+");";
 					st.executeUpdate(sql);
 					st.close();
 					registrado=true;

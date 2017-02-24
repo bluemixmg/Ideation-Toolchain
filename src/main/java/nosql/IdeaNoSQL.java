@@ -70,8 +70,8 @@ public class IdeaNoSQL {
 		//Crear un nuevo documento
 		System.out.println("Creando un nuevo documento con el id : " + idP);
 		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("_id", idea.getCodigo());
-		data.put("codigo", idea.getCodigo());
+		data.put("_id", String.valueOf(idea.getCodigo()));
+		data.put("codigo", String.valueOf(idea.getCodigo()));
 		data.put("titulo", idea.getTitulo());
 		data.put("votos",0);
 		data.put("palabras_clave",idea.getPalabrasClave());
