@@ -8,13 +8,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Asociado;
+import model.Empleado;
 import model.ConexionBD;
 import model.Validacion;
 
-public class AsociadoDAO {
+public class EmpleadoDAO {
 	
-	public boolean insertarAsociado(Asociado us){
+	public boolean insertarEmpleado(Empleado us){
 		boolean registrado = false;
 		try{
 			try {
@@ -23,20 +23,16 @@ public class AsociadoDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					System.out.println("Antes de insertar un asociado");
-					String sql = "INSERT INTO empleado (email, nombre, apellido, telefono, cargo, "
-							+ "riforganizacion, estatus, direccion, genero, fechanacimiento) VALUES (";
-					sql+= Validacion.Apost(us.getEmail()) + ",";
-					sql+= Validacion.Apost(us.getNombres()) + ",";
-					sql+= Validacion.Apost(us.getApellidos()) + ",";
-					sql+= Validacion.Apost(us.getTelefono()) + ",";
+					System.out.println("Antes de insertar un empleado");
+					String sql = "INSERT INTO empleado (username, cargo, "
+							+ "riforganizacion, tipo, estatus) VALUES (";
+					sql+= Validacion.Apost(us.getUsername()) + ",";
 					sql+= Validacion.Apost(us.getCargo()) + ",";
 					sql+= Validacion.Apost(us.getRifOrganizacion()) + ",";
-					sql+= Validacion.Apost("A")+",";
-					sql+= Validacion.Apost(us.getDireccion()) + ",";
-					sql+= us.getGenero() + ",";
-					sql+= Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(us.getFechaNacimiento())) + ")";
-					System.out.println(sql);
+					sql+= us.getTipo() + ",";
+					sql+= Validacion.Apost("A")+")";
+
+					System.out.println("Inserta Empleado" + sql);
 					st.executeUpdate(sql);
 					st.close();
 					registrado=true;
@@ -54,9 +50,9 @@ public class AsociadoDAO {
 		return registrado;
 	}
 	
-	public boolean modificarAsociado(Asociado us){
+	public boolean modificarEmpleado(Empleado us){
 		boolean modificar = false;
-		String Email = us.getEmail();
+		String username = us.getUsername();
 		try{
 			try {
 				ConexionBD bd = new ConexionBD();
@@ -65,16 +61,13 @@ public class AsociadoDAO {
 					Statement st;
 					st = c.createStatement();
 					String sql = "UPDATE empleado SET";
-					sql+= "email=" + Validacion.Apost(us.getEmail()) + ",";
-					sql+= "nombre=" + Validacion.Apost(us.getNombres()) + ",";
-					sql+= "apellido=" + Validacion.Apost(us.getApellidos()) + ",";
-					sql+= "telefono=" + Validacion.Apost(us.getTelefono()) + ",";
+					sql+= "username=" + Validacion.Apost(us.getUsername()) + ",";
 					sql+= "cargo=" + Validacion.Apost(us.getCargo()) + ",";
-					sql+= "estatus=" + Validacion.Apost(us.getEstatus()) + ",";
-					sql+= "direccion=" + Validacion.Apost(us.getDireccion()) + ",";
-					sql+= "genero=" + us.getGenero() + ",";
-					sql+= "fechanacimiento=" + Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(us.getFechaNacimiento())) + ")" + ",";
-					sql+= "WHERE email =" + Validacion.Apost(Email);
+					sql+= "estatus=" + Validacion.Apost(Character.toString(us.getStatus())) + ",";
+					sql+= "riforganizacion=" + Validacion.Apost(us.getRifOrganizacion()) + ",";
+					sql+= "tipo=" + us.getTipo() + ")" + ",";
+					sql+= "WHERE usrname =" + Validacion.Apost(username);
+					System.out.println(sql);
 					st.executeUpdate(sql);
 					st.close();
 					modificar=true;
@@ -92,7 +85,7 @@ public class AsociadoDAO {
 		return modificar;
 	}
 	
-	public  boolean eliminarAsociado(Asociado us){
+	public  boolean eliminarEmpleado(Empleado us){
 		boolean modificar = false;
 		try{
 			try {
@@ -101,7 +94,7 @@ public class AsociadoDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE empleado SET estatus= " + Validacion.Apost("E") +"WHERE email =" + us.getEmail();
+					String sql = "UPDATE empleado SET estatus= " + Validacion.Apost("E") +"WHERE username =" + us.getUsername();
 					st.executeUpdate(sql);
 					st.close();
 					modificar=true;
@@ -121,9 +114,9 @@ public class AsociadoDAO {
 	
 	
 //-----------SUJETOS A CAMBIOS-----------
-	public Asociado RetornarAsociado(String email) {
+	public Empleado RetornarEmpleado(String email) {
 		ResultSet usuario = null;
-		Asociado us = new Asociado();
+		Empleado us = new Empleado();
 		try{
 			try {
 				ConexionBD bd = new ConexionBD();
@@ -138,17 +131,14 @@ public class AsociadoDAO {
 					usuario = st.executeQuery(sql);
 					
 					if(usuario.next()){
-						 us.setEmail(usuario.getString("username"));
-						 us.setNombres(usuario.getString("nombre"));
-						 us.setApellidos(usuario.getString("apellido"));
-						 us.setTelefono(usuario.getString("telefono"));
+						 us.setUsername(usuario.getString("username"));
 						 us.setCargo(usuario.getString("cargo"));
 						 us.setRifOrganizacion(usuario.getString("riforganizacion"));
-						 System.out.println("Este es el rif traido por el asociado: " +usuario.getString("riforganizacion"));
-						 us.setEstatus(usuario.getString("estatus"));
-						 us.setDireccion(usuario.getString("direccion"));
-						 us.setGenero(usuario.getInt("genero"));						 
-					}
+						 System.out.println("Este es el rif traido por el empleado: " +usuario.getString("riforganizacion"));
+						 String estatus = usuario.getString("estatus");
+						 us.setTipo(estatus.charAt(0));
+						 us.setTipo(usuario.getInt("tipo"));
+						 }
 					st.close();
 				}
 			bd.closeConexion();
@@ -162,10 +152,9 @@ public class AsociadoDAO {
 		return us;
 	}
 	
-	public List<Asociado> RetornarListaAsociado(String rif) {
+	public List<Empleado> RetornarListaEmpleado(String rif) {
 		ResultSet usuario = null;
-		Asociado us = new Asociado();
-		List<Asociado> list = new ArrayList<Asociado>();
+		List<Empleado> list = new ArrayList<Empleado>();
 		
 		try{
 			try {
@@ -181,16 +170,14 @@ public class AsociadoDAO {
 					usuario = st.executeQuery(sql);
 					
 					while(usuario.next()){
-						 us.setEmail(usuario.getString("username"));
-						 us.setNombres(usuario.getString("nombre"));
-						 us.setApellidos(usuario.getString("apellido"));
-						 us.setTelefono(usuario.getString("telefono"));
+						Empleado us = new Empleado();
+						 us.setUsername(usuario.getString("username"));
 						 us.setCargo(usuario.getString("cargo"));
 						 us.setRifOrganizacion(usuario.getString("riforganizacion"));
-						 System.out.println("Este es el rif traido por el asociado: " +usuario.getString("riforganizacion"));
-						 us.setEstatus(usuario.getString("estatus"));
-						 us.setDireccion(usuario.getString("direccion"));
-						 us.setGenero(usuario.getInt("genero"));	
+						 System.out.println("Este es el rif traido por el empleado: " +usuario.getString("riforganizacion"));
+						 String estatus = usuario.getString("estatus");
+						 us.setTipo(estatus.charAt(0));
+						 us.setTipo(usuario.getInt("tipo"));
 						 list.add(us);
 					}
 					st.close();

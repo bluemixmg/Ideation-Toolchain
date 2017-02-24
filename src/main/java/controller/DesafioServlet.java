@@ -1,11 +1,11 @@
 package controller;
 
 
-import dao.AsociadoDAO;
+import dao.EmpleadoDAO;
 import dao.CategoriaDAO;
 import dao.DesafioDAO;
 import dao.IdeaDAO;
-import model.Asociado;
+import model.Empleado;
 import model.Categoria;
 import model.Desafio;
 import model.User;
@@ -134,8 +134,8 @@ public class DesafioServlet extends HttpServlet {
 		System.out.println("Título traído por request: " + titulo);
 		String descripcion = getPartString(request.getPart("descripcion"));
 		System.out.println("Descripción traída por request: " + descripcion);
-		AsociadoDAO daoa = new AsociadoDAO();
-		Asociado aso = daoa.RetornarAsociado(user.getEmail());
+		EmpleadoDAO daoe = new EmpleadoDAO();
+		Empleado aso = daoe.RetornarEmpleado(user.getEmail());
 		String org = aso.getRifOrganizacion();
 		System.out.println("Rif organizacion: " + org);
 		String categoria = getPartString(request.getPart("categoria"));

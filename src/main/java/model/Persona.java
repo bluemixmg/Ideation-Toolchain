@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Persona {
 	
-	protected String email;
+	protected String username;
 	protected String nombres;
 	protected String apellidos;
 	protected String telefono;
@@ -15,9 +15,9 @@ public class Persona {
 
 	
 	//Constructor basico, solo con la informacion basica de contacto
-	public Persona(String email, String nombres, String apellidos, String telefono, String direccion, String estatus) {
+	public Persona(String username, String nombres, String apellidos, String telefono, String direccion, String estatus) {
 		super();
-		this.email = email;
+		this.username = username;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.telefono = telefono;
@@ -26,10 +26,10 @@ public class Persona {
 	}
 
 	//Constructor CON TODOS LOS DATOS
-	public Persona(String email, String nombres, String apellidos, String telefono, String direccion,
+	public Persona(String username, String nombres, String apellidos, String telefono, String direccion,
 			Date fechaNacimiento, int genero, String estatus) {
 		super();
-		this.email = email;
+		this.username = username;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.telefono = telefono;
@@ -45,12 +45,12 @@ public class Persona {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getEmail() {
-		return email;
+	public String getusername() {
+		return username;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setusername(String username) {
+		this.username = username;
 	}
 
 	public String getNombres() {

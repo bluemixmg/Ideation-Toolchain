@@ -1,13 +1,13 @@
 <%@page import="dao.OrganizacionDAO"%>
-<%@page import="dao.AsociadoDAO"%>
+<%@page import="dao.EmpleadoDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="dao.DesafioDAO" %>
 <%@page import="dao.CategoriaDAO" %>
-<%@page import="dao.AsociadoDAO" %>
 <%@page import="dao.AreasPorEvaluadorDAO" %>
+<%@page import="dao.EmpleadoDAO" %>
 <%@page import="model.Desafio" %>
-<%@page import="model.Asociado" %>
+<%@page import="model.Empleado" %>
 <%@page import="model.Categoria" %>
 <%@page import="model.User" %>
 <%@page import="model.AreaPericia" %>
@@ -34,7 +34,7 @@
 	  <%
 	}
 	User user = (User) session.getAttribute("user");
-            		int tipo = user.getTipo();
+            		int tipo = user.getrol();
 %>
 
     <!-- <meta charset="utf-8"> -->
@@ -283,7 +283,7 @@
                         <i class="fa fa-user fa-fw"></i><%=((User) session.getAttribute("user")).getUsername() %> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profile.jsp"><i class="fa fa-user fa-fw"></i> Perfil de usuario</a>
+                        <li><a href="/PerfilServlet"><i class="fa fa-user fa-fw"></i> Perfil de usuario</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Ajustes</a>
                         </li>
@@ -329,7 +329,7 @@
                         <li>
                             <a href="Desafios"> <i class="fa fa-bullhorn fa-fw"></i> Desafíos</a>
                         </li>
-                        <% if(((User) session.getAttribute("user")).getTipo() == 4) {%>
+                        <% if(((User) session.getAttribute("user")).getrol() == 4) {%>
                         <li data-toggle="modal" data-target="#myModal">
                             <a href="#"> <i class="fa fa-pencil fa-fw"></i> Crear desafío</a>
                         </li>
@@ -561,7 +561,11 @@
             		des.setCantIdeas(lis_des.get(i).getCantIdeas());
             		System.out.println("Asignó la cantidad de ideas (se muestra como string): " + des.getCantIdeas());
             		
-            		//Asociado aso = new Asociado();
+            		Empleado emp = new Empleado();
+            		if(tipo == 2 || tipo == 4) {
+            			EmpleadoDAO daoe = new EmpleadoDAO();
+            			emp = daoe.RetornarEmpleado(((User) session.getAttribute("user")).getEmail());
+            		}
             		
             		//if(tipo == 2 || tipo == 4) {
             			//AsociadoDAO daoa = new AsociadoDAO();
@@ -569,6 +573,7 @@
             		//}
             		
             		//if(!des.getTipo() || (des.getTipo() && ((tipo == 2 || tipo == 4) && aso.getRifOrganizacion() == des.getOrg()))) {
+            		if(!des.getTipo() || (des.getTipo() && ((tipo == 2 || tipo == 4) && emp.getRifOrganizacion() == des.getOrg()))) {
             	%> 
                 <div class="col-xs-8 col-md-6 col-lg-4" style="float:left">
                     <div class="panel panel-primary">
@@ -663,7 +668,7 @@
                         </div>
                     </div>
                     
-                <% //}
+                <% }
                 	} %>
                 </div>
                 <!--  </form>-->
