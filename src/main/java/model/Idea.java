@@ -12,12 +12,13 @@ public class Idea {
 	private char estatus; //Este valor vendra desde la BD para definir la etapa en la que encuentra la idea
 	private ArrayList<String> palabrasClave; //Palabras clave de una idea
 	private ArrayList<Integer> categorias; //
+	private byte[] imagen;
 	//Constructor sin parametros
 	public Idea() {
 		// TODO Auto-generated constructor stub
 	}
 	//Constructor para crear una idea que se esta trayendo desde la base de datos y ya todos los campos estan llenos 
-	public Idea(String titulo, String descripcion, int cantVotos, String idAutor, int codDesafio, ArrayList<String> palabras, ArrayList<Integer> categorias,char estatus) {
+	public Idea(String titulo, String descripcion, int cantVotos, String idAutor, int codDesafio, ArrayList<String> palabras, ArrayList<Integer> categorias, byte[] imagen, char estatus) {
 		super();
 		this.titulo = titulo;
 		this.descripcion = descripcion;
@@ -26,6 +27,7 @@ public class Idea {
 		this.codDesafio = codDesafio;
 		this.palabrasClave = palabras;
 		this.categorias = categorias;
+		this.imagen = imagen;
 		this.estatus = estatus;
 	}
 	//Constructor para crear una idea inicial, es decir, sin la cantidad de votos
@@ -117,6 +119,12 @@ public class Idea {
 		this.categorias.add(categoria);
 	}
 	
+	public byte[] getImagen() {
+		return imagen;
+	}
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
 	public int getUnaCategoria(int pos){
 		return this.categorias.get(pos);
 	}

@@ -1,6 +1,9 @@
 package dao;
 
+import java.awt.HeadlessException;
+import java.io.FileInputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -47,6 +50,39 @@ public class IdeaDAO {
 		}catch(SQLException e){
 			registrado=false;
 			e.printStackTrace();
+		}
+		return registrado;
+	}
+	
+	public boolean insertarIdeaConImagen(Idea idea) {
+		boolean registrado=false;
+		try{
+			try {
+				ConexionBD bd = new ConexionBD();
+				Connection c = bd.getConexion();
+					//(codigo, titulo, descripcion, cantidadvotos, autor, coddesafio, estatus)
+					PreparedStatement ps;
+					
+					String sql = "INSERT INTO idea (titulo, descripcion, cantidadvotos, idAutor, estatus, codDesafio, url_imagen) VALUES(?, ?, ?, ?, ?, ?, ?)";
+					ps = c.prepareStatement(sql);
+					ps.setString(1,idea.getTitulo());
+					ps.setString(2, idea.getDescripcion());
+					ps.setInt(3, idea.getCantVotos());
+					ps.setString(4, idea.getIdAutor());
+					ps.setString(5, "A");
+					ps.setInt(6, idea.getCodDesafio());
+					ps.setBytes(7,  idea.getImagen());
+					ps.execute();
+					ps.close();
+					registrado=true;
+				
+			bd.closeConexion();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}catch(SQLException | NumberFormatException | HeadlessException x){
+			registrado=false;
+			x.printStackTrace();
 		}
 		return registrado;
 	}

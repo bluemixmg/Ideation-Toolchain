@@ -225,7 +225,7 @@
 				    <!-- /.col-lg-4 -->
 				    <% for(int i=0; i<lis_i.size(); i++){ 
 				    	System.out.println(lis_i.size()+" indice: "+i);
-				    	Idea idea = new Idea("", "", 0, "", -1, null, null, '*');
+				    	Idea idea = new Idea();
 				    	idea = lis_i.get(i);
 				    	ideaJson = ideaN.getUnaIdea(String.valueOf(idea.getCodigo()));
 				    %>			    
@@ -234,7 +234,7 @@
                         <div class="header">
 	                       	<div class="media">
 							   <a href="#" class="pull-left"  data-toggle="modal" data-target="#modalDescIdea">
-							      <img src="../images/user2.png" class="media-object img-circle" alt="imagen">
+							      <img src="<%=request.getContextPath()%>/MostrarImagenServlet?id=<%= idea.getCodigo() %>" class="media-object img-circle" alt="imagen">
 							   </a>
 							   <div class="media-body">
 							    	<h6 class="media-heading">

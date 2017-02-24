@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -13,11 +14,13 @@ import com.google.gson.JsonObject;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import dao.IdeaDAO;
 import model.Idea;
@@ -29,7 +32,9 @@ import model.Desafio;
 /**
  * Servlet implementation class IdeaServlet
  */
+@MultipartConfig
 @WebServlet(name = "Ideas", urlPatterns = { "/Ideas" })
+
 public class IdeasServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static String VERIDEAS_JSP =  "verIdeas.jsp";
@@ -55,16 +60,13 @@ public class IdeasServlet extends HttpServlet {
     	System.out.println("Entro al process");
     	response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-    	try{
     		
     		HttpSession session = request.getSession(false);
 	    	User user = new User();
 	    	user = (User) session.getAttribute("user");
 	    	Desafio des = (Desafio)session.getAttribute("desafio");
 	    	IdeaDAO daoIdea = new IdeaDAO();
-	    	Database db = null;
-	    	db = ConexionCloudantBD.getDB();
-	    	IdeaNoSQL conNSQL = new IdeaNoSQL();
+	    	
 	    	response.setContentType("text/html;charset=UTF-8");
 	    	Idea i = new Idea();
 	    	String titulo = request.getParameter("titulo");
@@ -73,12 +75,15 @@ public class IdeasServlet extends HttpServlet {
 	    	String[] categorias = request.getParameterValues("categoria");
 	    	ArrayList<String> palabrasC = separarPalabrasClave(palabras);
 	    	ArrayList<Integer> categoriasI = convertirArrayToArrayList(categorias);
-	    	/*int codigoIdea= generarCodigoIdea(user.getUsername(), des.getId());
-	    	while(daoIdea.buscarIdea(codigoIdea)){
-	    		System.out.println("El codigo de la idea ya existe");
-	    		codigoIdea= generarCodigoIdea(user.getUsername(), des.getId());
+	    	Part fotoPart = request.getPart("foto");
+	    	int fotoSize = (int)fotoPart.getSize(); //Si no tiene tamano, no hay imagen
+	    	byte[] foto=null;
+	    	if(fotoSize>0){
+	    		foto= new byte[fotoSize];
+	    		try(DataInputStream dis = new DataInputStream(fotoPart.getInputStream())){
+	    			dis.readFully(foto);
+	    		}
 	    	}
-	    	i.setCodigo(codigoIdea);*/
 	    	i.setTitulo(titulo);
 	    	i.setDescripcion(descripcion);
 	    	i.setCantVotos(0);
@@ -87,38 +92,33 @@ public class IdeasServlet extends HttpServlet {
 	    	i.setPalabrasClave(palabrasC);
 	    	i.setCategorias(categoriasI);
 	    	i.setEstatus('A');
-	    
+	    	if(fotoSize>0)
+	    		i.setImagen(foto);
+	    	
 	    	for(String p : i.getPalabrasClave())
 	    		System.out.println(p);
 	    	for(Integer c : i.getCategorias())
 	    		System.out.println("Codigo Categoria:"+c);
-	    	
-	    	//session.setAttribute("idea1", i);
-	    	
-	  
-	    	if(!daoIdea.buscarIdea(i.getCodigo())){
 	    		
 	    		System.out.println("Estoy en el processRequest de IdeaServlet");
-	    		if(daoIdea.insertarIdea(i)){
-	    			System.out.println("Inserto");
+	    		if(fotoSize>0)
+	    			if(daoIdea.insertarIdeaConImagen(i)){
+	    				System.out.println("Inserto idea");
+	    				guardarIdeaEnCloudant(i);
+	    			}
+	    		else
+	    			if(daoIdea.insertarIdea(i)){
+	    				System.out.println("Inserto idea");
+	    				guardarIdeaEnCloudant(i);
+	    			}
 	    		
 	    		for(Integer cate : i.getCategorias())
 	    			daoIdea.insertarCategoriasPorIdea(cate, i.getCodigo());
 	    		
 	    		//session.setAttribute("nom_cate", daoIdea.getCategoriasPorIdea(i.getCodigo()));
 		    	System.out.println(daoIdea.getCategoriasPorIdea(i.getCodigo()));
-	    		}
-	    		try {
-		    		db = conNSQL.getDB();
-					JsonObject resultadoIdeaJson = conNSQL.create(db, i.getCodigo(), i);
-					System.out.println("Carga de la idea completa en la BD NoSQL");
-					System.out.println(resultadoIdeaJson.toString());
-
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					System.out.println("Entro en la excepcion del no sql");
-					e.printStackTrace();
-				}
+	    		
+	    		
 	    		//String p=porcentajeProgresoIdea(i.getEstatus());
 	    		//System.out.println(i.getEstatus());
 	    		//session.setAttribute("idea_nosql", conNSQL.getUnaIdea(i.getCodigo()));
@@ -126,18 +126,31 @@ public class IdeasServlet extends HttpServlet {
 	    		processRequest2(request, response);
 	    		RequestDispatcher rq=request.getRequestDispatcher("/pages/"+VERIDEAS_JSP);
 	    		rq.forward(request, response);
-	    	}else{
-	    		System.out.println("Estoy en el processRequest de IdeasServlet y fallo el insertar ");
-	    		System.out.println("No inserto");
-	    	}
-    	}catch(IOException ioe){
-    		//throw new ServletException(ioe);
-    		response.getWriter().print("Genero un error en IOException");
+   
+    	/*catch(IOException ioe){
+    		throw new ServletException(ioe);
+    		//response.getWriter().print("Genero un error en IOException");
     		response.getWriter().print(ioe.getMessage());
-    	}
+    	}*/
     }
 
-   
+   private void guardarIdeaEnCloudant(Idea i)
+   {
+	   Database db = null;
+   	   db = ConexionCloudantBD.getDB();
+   	   IdeaNoSQL conNSQL = new IdeaNoSQL();
+	   try {
+   			db = conNSQL.getDB();
+			JsonObject resultadoIdeaJson = conNSQL.create(db, i.getCodigo(), i);
+			System.out.println("Carga de la idea completa en la BD NoSQL");
+			System.out.println(resultadoIdeaJson.toString());
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Entro en la excepcion del no sql");
+			e.printStackTrace();
+		}
+   }
 	private ArrayList<String> separarPalabrasClave(String cadena){
 		ArrayList<String> palabras = new ArrayList<String>();
 		String[] aux = cadena.split("[ ,]+");
@@ -153,14 +166,6 @@ public class IdeasServlet extends HttpServlet {
 		return salida;
 	}
     
-	/*private String generarCodigoIdea(String idUser, int idDesafio) throws ServletException, IOException{
-		int codigo=null;
-		String usuario = idUser.trim();
-		Random rnd = new Random();
-		int extremoIzq = (int)rnd.nextInt()*400+1;
-		codigo="I"+usuario+idDesafio+"-"+extremoIzq;
-		return codigo;
-	}*/
 	//Determinar el porcentaje de la idea e acuerdo al progreso registrado
 	private String porcentajeProgresoIdea(char e){
 		String progreso;

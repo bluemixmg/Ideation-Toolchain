@@ -258,7 +258,7 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-6">
-									<form action="/Ideas" method="post"> 
+									<form action="/Ideas" method="post" enctype="multipart/form-data"> 
 										<div class="form-group">
 											<label>Título de la Idea: <font color="red">*</font></label>
 											<input class="form-control" placeholder="Mi idea..." required name="titulo" id="titulo" maxlength="50">
@@ -296,6 +296,10 @@
 													<input type="checkbox" value="" checked>Al suscribirse recibirá un correo electronico de notificación para cualquier actividad generada en la idea
 												</label>
 											</div>
+										</div>
+										<div class="form-group">
+											<label>Imagen adjunto(Archivo JPG):  </label>
+											<input class="form-control" type="file" name="imagen" id="imagen" placeholder="Inserte su imagen aqui..." >
 										</div>
 										<div class="col-xs-12 col-sm-6 col-md-8">
 											<div align="left">
