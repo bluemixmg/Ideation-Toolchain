@@ -217,7 +217,7 @@
 
                     %>
             <tr>            
-              <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Colombia</td><td style="display:none;"><%= organizacion.getRif() %></td>   
+              <td class="col-xs-4"><%= organizacion.getNombre()%></td><td class="col-xs-4"><%= organizacion.getRazonSocial() %></td><td class="col-xs-4">Venezuela</td><td style="display:none;"><%= organizacion.getRif() %></td>   
             </tr>
             <%} %>
           </tbody>
