@@ -1,3 +1,4 @@
+<%@page import="dao.UserDAO"%>
 <%@page import="dao.OrganizacionDAO"%>
 <%@page import="dao.EmpleadoDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -475,13 +476,10 @@
 							</div>
 							<div class="row">
 								<div class="form-group col-xs-9">
-									<%List<User> usuarios = new ArrayList<User>();
+									<%List<User> usuarios = new UserDAO().ListaUsuario_Rol(3);
 									AreaPericia areapericia = new AreaPericia();
 									AreasPorEvaluadorDAO apedao = new AreasPorEvaluadorDAO();
 									
-									//TODO Llamar al método para retornar usuarios de rol 'Evaluador'
-									
-									usuarios.add(new User("miusuario","mipassword", "miemail", 3));
 									%>
 									<label>Lista de evaluadores</label>
 									<select multiple id="evlist" class="form-control">
