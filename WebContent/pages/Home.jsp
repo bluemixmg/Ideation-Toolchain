@@ -13,7 +13,7 @@
 		 System.out.print("User no es null por tanto entró al if");
 	   	User us = new User();
 	 	us= (User) session.getAttribute("user");
-	 	switch(us.getTipo()){
+	 	switch(us.getrol()){
 				case 1:
 					%>
 					  <script type="text/javascript">
