@@ -1,3 +1,4 @@
+<%@page import="dao.UserDAO"%>
 <%@page import="dao.OrganizacionDAO"%>
 <%@page import="dao.EmpleadoDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -475,13 +476,10 @@
 							</div>
 							<div class="row">
 								<div class="form-group col-xs-9">
-									<%List<User> usuarios = new ArrayList<>();
+									<%List<User> usuarios = new UserDAO().ListaUsuario_Rol(3);
 									AreaPericia areapericia = new AreaPericia();
 									AreasPorEvaluadorDAO apedao = new AreasPorEvaluadorDAO();
 									
-									//TODO Llamar al método para retornar usuarios de rol 'Evaluador'
-									
-									usuarios.add(new User("miusuario","mipassword", "miemail", 3));
 									%>
 									<label>Lista de evaluadores</label>
 									<select multiple id="evlist" class="form-control">
@@ -489,7 +487,7 @@
 											List<AreaPericia> areas = apedao.RetornarAreasPorEvaluador(usuarios.get(i).getUsername());
 											%>
 										<option value="<%=usuarios.get(i).getUsername()%>"><%=usuarios.get(i).getUsername() %> (<%
-												for(int j=0; j<areas.size(); j++) { if(i > 0) {%><%=", "%><% }%>; <%=areas.get(j).getDescripcion() %>
+												for(int j=0; j<areas.size(); j++) { if(i > 0) {%><%=", "%><% }%> <%=areas.get(j).getDescripcion() %>
 												<% }%>)</option>
 										<%} %>
 										<!--  <option value="2">María Suárez - Tecnologías de información</option>

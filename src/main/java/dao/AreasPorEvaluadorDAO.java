@@ -107,7 +107,7 @@ public class AreasPorEvaluadorDAO {
 	}
 
 	public List<AreaPericia> RetornarAreasPorEvaluador(String usernameEv) {
-		List<AreaPericia> areas = new ArrayList<>();
+		List<AreaPericia> areas = new ArrayList<AreaPericia>();
 		ResultSet rs = null;
 		try{
 			try {
@@ -118,9 +118,9 @@ public class AreasPorEvaluadorDAO {
 					Statement st;
 					st = c.createStatement();
 					String sql = "SELECT * FROM areadepericia ap"
-							+ "JOIN areasporevaluador ae ON codigoarea = codarea"
-							+ "JOIN usuario u ON u.username = ae.username"
-							+ "WHERE estatus != 'E' AND ae.username = '" + usernameEv + "'";
+							+ " JOIN areasporevaluador ae ON codigoarea = codarea"
+							+ " JOIN usuario u ON u.username = ae.username"
+							+ " WHERE ap.estatus != 'E' AND ae.username = '" + usernameEv + "'";
 					System.out.println("Voy a ejecutar la consulta");
 					rs = st.executeQuery(sql);
 					try{

@@ -55,7 +55,7 @@ public class OrganizacionServlet extends HttpServlet {
 			//------------Busqueda del los desafio por el RIF a travez del asiciado--------------
 			
 			EmpleadoDAO adao = new EmpleadoDAO();
-			Empleado as=adao.RetornarEmpleado(((User)session.getAttribute("user")).getEmail());
+			Empleado as=adao.RetornarEmpleado(((User)session.getAttribute("user")).getUsername());
 	
 			List<Desafio> lis_des = getDesafios(as.getRifOrganizacion());
 			session.setAttribute("desafios", lis_des);
