@@ -121,7 +121,7 @@
 			<div class="row"><br></div>
 		 	<div class="row">
 			 	<div Class="col-md-3"  align="center">
-			 	  <a class="navbar-brand" href="#">Marna CIN</a>	
+			 	  <a class="navbar-brand" href="#">Innovation</a>	
 			 	</div>
 			 	<div class="col-md-3">
 			 	</div>

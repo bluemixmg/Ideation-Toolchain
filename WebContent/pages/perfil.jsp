@@ -10,7 +10,7 @@
 	User user = new User();
 	user =(User) session.getAttribute("user");
 	Perfil perfil = new Perfil();
-	perfil= (Perfil) session.getAttribute("estandar");
+	perfil= (Perfil) session.getAttribute("perfil");
 
 	System.out.println("Este es el tipo de usuario:" + user.getrol());
 	
