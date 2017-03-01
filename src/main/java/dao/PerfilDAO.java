@@ -33,7 +33,7 @@ public class PerfilDAO {
 					sql+= us.getGenero() + ")";
 					//System.out.println("fecha de nacimiento = " + us.getFechaNacimiento());
 					//sql+= Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(us.getFechaNacimiento())) + ")";
-					
+					System.out.println("Entro al registrar perfil");
 					System.out.println(sql);
 					
 					st.executeUpdate(sql);
@@ -138,7 +138,7 @@ public class PerfilDAO {
 
 					usuario = st.executeQuery(sql);
 					if(usuario.next()){
-						 us.setusername(usuario.getString("usuario"));
+						 us.setusername(usuario.getString("username"));
 						 us.setNombres(usuario.getString("nombre"));
 						 us.setApellidos(usuario.getString("apellido"));
 						 us.setTelefono(usuario.getString("telefono"));
