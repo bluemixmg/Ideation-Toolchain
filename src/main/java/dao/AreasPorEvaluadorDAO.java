@@ -117,7 +117,7 @@ public class AreasPorEvaluadorDAO {
 					System.out.println("c es distinto de null");
 					Statement st;
 					st = c.createStatement();
-					String sql = "SELECT * FROM areadepericia ap"
+					String sql = "SELECT codigoarea, descripcion, ap.estatus FROM areadepericia ap"
 							+ " JOIN areasporevaluador ae ON codigoarea = codarea"
 							+ " JOIN usuario u ON u.username = ae.username"
 							+ " WHERE ap.estatus != 'E' AND ae.username = '" + usernameEv + "'";
@@ -130,7 +130,7 @@ public class AreasPorEvaluadorDAO {
 							System.out.println("Código de área asignado: " + a.getCodigo());
 							a.setDescripion(rs.getString("descripcion"));
 							System.out.println("Descripción asignada: " + a.getDescripcion());
-							a.setEstatus(rs.getString("ap.estatus").charAt(0));
+							a.setEstatus(rs.getString("areadepericia.estatus").charAt(0));
 							System.out.println("Estatus asignado: " + a.getDescripcion());
 							areas.add(a);
 						}
