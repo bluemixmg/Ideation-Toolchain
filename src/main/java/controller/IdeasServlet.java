@@ -101,6 +101,7 @@ public class IdeasServlet extends HttpServlet {
 	    		System.out.println("Codigo Categoria:"+c);
 	    		
 	    		System.out.println("Estoy en el processRequest de IdeaServlet");
+	    		System.out.println("El siguiente codigo: "+daoIdea.siguienteCodigoIdea());
 	    		if(fotoSize>0)
 	    			if(daoIdea.insertarIdeaConImagen(i)){
 	    				System.out.println("Inserto idea");
@@ -139,10 +140,11 @@ public class IdeasServlet extends HttpServlet {
 	   Database db = null;
    	   db = ConexionCloudantBD.getDB();
    	   IdeaNoSQL conNSQL = new IdeaNoSQL();
+   	   System.out.println("recibe: "+siguienteValor);
 	   try {
    			db = conNSQL.getDB();
 			JsonObject resultadoIdeaJson = conNSQL.create(db, siguienteValor, i);
-			System.out.println("Carga de la idea completa en la BD NoSQL");
+			System.out.println("Carga de la idea completa en la BD NoSQL"+" con el id: "+siguienteValor);
 			System.out.println(resultadoIdeaJson.toString());
 
 		} catch (Exception e) {
