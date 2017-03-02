@@ -173,9 +173,7 @@
 
                           
                        </div>
-           		 </div>
-				<!-- .col-md-4 -->
-				<div class="col-md-6">
+                       
 					  <div class="form-group">
                          <input class="form-control"  type="text" placeholder="Tu Nombre" required name="nombre" id="nombre" maxlength="30">   
                        
@@ -199,21 +197,20 @@
 			    </div>	
 			  </div>    	 	
              </form>
-           <%String error= (String) request.getAttribute("error");
+
+       </div>
+	              <%String error= (String) request.getAttribute("error");
            		if(error == "correo") {%>  
-		         	<div class="alert alert-danger alert-dismissable">
+		         	<div class="alert alert-danger alert-dismissable col-md-6">
 		            	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 		           		<strong>Correo</strong> ya registrado
 		          	</div>
-          	 <%}else  {%>
-          	 		<div class="alert alert-danger alert-dismissable">
+          	 <%}else if(error=="username"){%>
+          	 		<div class="alert alert-danger alert-dismissable col-md-6">
 		            	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 		           		<strong>Username</strong>  ya registrado
 		          	</div>
 		          	<%} %>
-
-       </div>
-	   
       </div>         		             
             
    </div>
