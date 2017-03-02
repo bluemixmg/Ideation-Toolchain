@@ -26,8 +26,8 @@ public class EvaluacionDAO {
 					sql+= evaluacion.getImpacto()+",";
 					sql+= evaluacion.getFactibilidad()+",";
 					sql+= Validacion.Apost(evaluacion.getDetalle())+",";
-					sql+= Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(evaluacion.getFecha()))+")";
-					sql+= evaluacion.getIdea_id()+",";
+					sql+= Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(evaluacion.getFecha()))+",";
+					sql+= evaluacion.getIdea_id()+")";
 					st.executeUpdate(sql);
 					st.close();
 					registrado=true;
