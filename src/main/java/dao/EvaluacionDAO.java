@@ -21,7 +21,7 @@ public class EvaluacionDAO {
 				if(c!=null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "INSERT INTO evaluacion (evaluador_username, impacto, factibilidad, detalle_evaluacion, fecha, codigo_idea) VALUES (";
+					String sql = "INSERT INTO evaluacion (evaluador_username, impacto, factibilidad, detalle, fecha, codigo_idea) VALUES (";
 					sql+= Validacion.Apost(evaluacion.getUsername())+",";
 					sql+= evaluacion.getImpacto()+",";
 					sql+= evaluacion.getFactibilidad()+",";
