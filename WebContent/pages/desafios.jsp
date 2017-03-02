@@ -477,6 +477,7 @@
 							<div class="row">
 								<div class="form-group col-xs-9">
 									<%List<User> usuarios = new UserDAO().ListaUsuario_Rol(3);
+									System.out.print("Tamaño de lista de evaluadores = " + usuarios.size());
 									AreaPericia areapericia = new AreaPericia();
 									AreasPorEvaluadorDAO apedao = new AreasPorEvaluadorDAO();
 									
@@ -485,9 +486,11 @@
 									<select multiple id="evlist" class="form-control">
 										<% for(int i = 0; i<usuarios.size(); i++) {
 											List<AreaPericia> areas = apedao.RetornarAreasPorEvaluador(usuarios.get(i).getUsername());
+											System.out.print("Tamaño de lista de areas = " + areas.size());
+											System.out.print("Username = " + usuarios.get(i).getUsername());
 											%>
 										<option value="<%=usuarios.get(i).getUsername()%>"><%=usuarios.get(i).getUsername() %> (<%
-												for(int j=0; j<areas.size(); j++) { if(i > 0) {%><%=", "%><% }%> <%=areas.get(j).getDescripcion() %>
+												for(int j=0; j<areas.size(); j++) { if(i > 0) {System.out.print("Entro al if > 0"); System.out.println("areas de pericia = " + areas.get(j).getDescripcion());%><%=", "%><% }%> <%=areas.get(j).getDescripcion() %>
 												<% }%>)</option>
 										<%} %>
 										<!--  <option value="2">María Suárez - Tecnologías de información</option>
