@@ -130,7 +130,7 @@ public class AreasPorEvaluadorDAO {
 							System.out.println("Código de área asignado: " + a.getCodigo());
 							a.setDescripion(rs.getString("descripcion"));
 							System.out.println("Descripción asignada: " + a.getDescripcion());
-							a.setEstatus(rs.getString("areadepericia.estatus").charAt(0));
+							a.setEstatus(rs.getString("ap.estatus").charAt(0));
 							System.out.println("Estatus asignado: " + a.getDescripcion());
 							areas.add(a);
 						}
