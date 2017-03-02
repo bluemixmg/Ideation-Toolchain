@@ -145,7 +145,7 @@ public class PerfilDAO {
 						 us.setEstatus(usuario.getString("estatus"));
 						 us.setDireccion(usuario.getString("direccion"));
 						 us.setGenero(usuario.getInt("genero"));	
-						
+
 					}
 					st.close();
 					
@@ -158,6 +158,7 @@ public class PerfilDAO {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+		System.out.println("Retorno el perfil:" + us.getApellidos() +us.getusername() +us.getNombres());
 		return us;
 	}
 

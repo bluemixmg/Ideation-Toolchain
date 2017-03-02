@@ -46,7 +46,6 @@ public class PerfilServlet extends HttpServlet {
 
     	
     	switch(user.getrol()){
-
 			case 2:
 				EmpleadoDAO edao = new EmpleadoDAO();
 				Empleado emp = new Empleado();
@@ -54,6 +53,7 @@ public class PerfilServlet extends HttpServlet {
 				session.setAttribute("empleado", emp);
 			break;			
     	}
+    	System.out.println("Entro al perfilservlet y esta por enviar los valores");
     	
 		rq = request.getRequestDispatcher("/pages/perfil.jsp");
 		rq.forward(request, response);

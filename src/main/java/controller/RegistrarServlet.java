@@ -112,7 +112,6 @@ public class RegistrarServlet extends HttpServlet {
     		 if(daoEs.insertarPerfil(perf)){
 	    		 HttpSession misession= request.getSession(true);
 	    		 //#######################################
-	    		 response.getWriter().print("Estoy en el processRequest de Registrar");
 	    		 System.out.println("Inserto ");
 	    		 //#######################################
 	
