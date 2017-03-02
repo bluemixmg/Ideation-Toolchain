@@ -105,19 +105,19 @@ public class IdeasServlet extends HttpServlet {
 	    		if(fotoSize>0)
 	    			if(daoIdea.insertarIdeaConImagen(i)){
 	    				System.out.println("Inserto idea");
-	    				guardarIdeaEnCloudant(i, daoIdea.siguienteCodigoIdea());
+	    				guardarIdeaEnCloudant(i, daoIdea.siguienteCodigoIdea()-1);
 	    			}
 	    		else
 	    			if(daoIdea.insertarIdea(i)){
 	    				System.out.println("Inserto idea");
-	    				guardarIdeaEnCloudant(i, daoIdea.siguienteCodigoIdea());
+	    				guardarIdeaEnCloudant(i, daoIdea.siguienteCodigoIdea()-1);
 	    			}
 	    		
 	    		for(Integer cate : i.getCategorias())
-	    			daoIdea.insertarCategoriasPorIdea(cate, i.getCodigo());
+	    			daoIdea.insertarCategoriasPorIdea(cate, daoIdea.siguienteCodigoIdea()-1);
 	    		
 	    		//session.setAttribute("nom_cate", daoIdea.getCategoriasPorIdea(i.getCodigo()));
-		    	System.out.println(daoIdea.getCategoriasPorIdea(i.getCodigo()));
+		    	System.out.println(daoIdea.getCategoriasPorIdea(daoIdea.siguienteCodigoIdea()-1));
 	    		
 	    		
 	    		//String p=porcentajeProgresoIdea(i.getEstatus());

@@ -156,7 +156,7 @@ public class IdeaNoSQL {
 		JsonObject jsonObject=new JsonObject();
 		//JsonArray jsonArray = new JsonArray();
 		// check if document exists 
-		HashMap<String, Object> obj = db.find(HashMap.class, id + "");
+		HashMap<String, Object> obj = db.find(HashMap.class, id);
 		if (obj != null) {
 			jsonObject = toJsonObject(obj);
 			return jsonObject;
