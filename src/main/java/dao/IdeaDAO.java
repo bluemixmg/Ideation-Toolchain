@@ -63,7 +63,7 @@ public class IdeaDAO {
 					//(codigo, titulo, descripcion, cantidadvotos, autor, coddesafio, estatus)
 					PreparedStatement ps;
 					
-					String sql = "INSERT INTO idea (titulo, descripcion, cantidadvotos, idautor, estatus, coddesafio, url_imagen) VALUES(?, ?, ?, ?, ?, ?, ?)";
+					String sql = "INSERT INTO idea (titulo, descripcion, cantidadvotos, autor, estatus, coddesafio, url_imagen) VALUES(?, ?, ?, ?, ?, ?, ?)";
 					ps = c.prepareStatement(sql);
 					ps.setString(1,idea.getTitulo());
 					ps.setString(2, idea.getDescripcion());
@@ -162,7 +162,7 @@ public class IdeaDAO {
 						idea.setTitulo(ideas.getString("titulo"));
 						idea.setDescripcion(ideas.getString("descripcion"));
 						idea.setCantVotos(ideas.getInt("cantidadvotos"));
-						idea.setIdAutor(ideas.getString("idautor"));
+						idea.setIdAutor(ideas.getString("autor"));
 						idea.setCodDesafio(ideas.getInt("coddesafio"));
 						idea.setEstatus(ideas.getString("estatus").charAt(0));
 						idea.setImagen(ideas.getBytes("url_imagen"));
@@ -253,7 +253,7 @@ public class IdeaDAO {
 						i.setTitulo(idea.getString("titulo"));
 						i.setDescripcion(idea.getString("descripcion"));
 						i.setCantVotos(idea.getInt("cantidadvotos"));
-						i.setIdAutor(idea.getString("idautor"));
+						i.setIdAutor(idea.getString("autor"));
 						i.setCodDesafio(idea.getInt("coddesafio"));
 						i.setEstatus(idea.getString("estatus").charAt(0));
 						i.setImagen(idea.getBytes("url_imagen"));
