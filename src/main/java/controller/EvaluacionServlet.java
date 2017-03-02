@@ -51,19 +51,16 @@ public class EvaluacionServlet extends HttpServlet {
     	 session.setAttribute("desafio", des);
     	 
     	 List<Idea> lis_i = new IdeaDAO().retornarIdeasPorDesafio(id);
+    	 System.out.println("Tamaño de la lista de ideas: ");
+    	 System.out.println(lis_i.size());
     	 session.setAttribute("ideas", lis_i);
     	 
     	 int votosTotales = new IdeaDAO().retornarVotacionesTotalesPorIdeasDeDesafio(id);
     	 session.setAttribute("cantidadvotos", votosTotales);
     	 
     	 if(des!=null){
-    		 response.getWriter().print("Estoy en el processRequest de DesafioActividadServlet");
-    		 System.out.println("entro");
     		 RequestDispatcher rq=request.getRequestDispatcher("/pages/"+EVALUACIONES_JSP);
     		 rq.forward(request, response);
-    	 }else{
-    		 response.getWriter().print("Estoy en el processRequest de IdeasServlet y fallo el insertar ");
-    		 System.out.println("No entro");
     	 }
     	}catch(IOException ioe){
     		throw new ServletException(ioe);
