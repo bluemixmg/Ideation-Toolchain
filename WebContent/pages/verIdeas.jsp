@@ -227,7 +227,7 @@
 				    	System.out.println(lis_i.size()+" indice: "+i);
 				    	Idea idea = new Idea("", "", 0, "", -1, null, null, null, '*');
 				    	idea = lis_i.get(i);
-				    	ideaJson = ideaN.getUnaIdea(String.valueOf(idea.getCodigo()));
+				    	ideaJson = ideaN.getUnaIdea("I"+String.valueOf(idea.getCodigo())+"D"+idea.getCodDesafio());
 				    %>			    
                 <div class="col-lg-4">
                     <div class="well well-lg">
