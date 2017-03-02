@@ -199,6 +199,18 @@
 			    </div>	
 			  </div>    	 	
              </form>
+           <%String error= (String) request.getAttribute("error");
+           		if(error == "correo") {%>  
+		         	<div class="alert alert-danger alert-dismissable">
+		            	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		           		<strong>Correo</strong> ya registrado
+		          	</div>
+          	 <%}else  {%>
+          	 		<div class="alert alert-danger alert-dismissable">
+		            	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		           		<strong>Username</strong>  ya registrado
+		          	</div>
+		          	<%} %>
 
        </div>
 	   

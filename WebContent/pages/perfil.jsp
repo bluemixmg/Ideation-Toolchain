@@ -1,7 +1,7 @@
 <%@page  contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
-<%@page import="model.Perfil, model.User, model.Empleado" %>
-<%@page import="dao.PerfilDAO" %>
+<%@page import="model.Perfil, model.User, model.Empleado, model.Organizacion" %>
+<%@page import="dao.PerfilDAO, dao.OrganizacionDAO" %>
 
 <%System.out.println("Entro al form-------------------------!!!");
 	
@@ -11,15 +11,18 @@
 	user =(User) session.getAttribute("user");
 	Perfil perfil = new Perfil();
 	perfil= (Perfil) session.getAttribute("perfil");
-
+	Organizacion  org;
+	Empleado emp;
+	
 	System.out.println("Este es el tipo de usuario:" + user.getrol());
 	
 
 	switch(user.getrol()){
 		case 2:
-			Empleado emp = new Empleado();
 			emp= (Empleado) session.getAttribute("empleado");
-		break;
+			org = new OrganizacionDAO().BuscarOrganizacion(emp.getRifOrganizacion());
+			
+			break;
 	};
 	
 
@@ -225,13 +228,13 @@
 		        <h3>Información personal</h3>
 		        
 		        <form role="form" class="form-horizontal" >
-		          <div class="col-xs-9 col-md-6">                                       
+		          <div class="col-xs-9 col-md-5">                                       
                	   	<div class="form-group ">
-                          <input class="form-control" placeholder="Elige un nombre de usuario" required name="user" id="user" maxlength="25" value="<% %>" disabled >
+                          <input class="form-control" placeholder="Elige un nombre de usuario" required name="user" id="user" maxlength="25" value="<%= user.getUsername() %>" disabled >
                     </div>
                    	<div class="form-group input-group ">
                         <span class="input-group-addon">@</span>
-                        <input class="form-control" placeholder="Correo electronico" required name="email" id="email" maxlength="30" data-error="Bruh, that email address is invalid" required " disabled>
+                        <input class="form-control" placeholder="Correo electronico" required name="email" id="email" maxlength="30" data-error="Bruh, that email address is invalid" required " value="<%= user.getEmail() %>" disabled>
                      </div>
                        <div class="form-group ">
 	                     <input type="password" data-minlength="6" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" value="12345678' required maxlength="30" disabled>
@@ -246,7 +249,7 @@
                     </div>
            		 </div>
 				<!-- .col-md-4 -->
-				<div class="col-xs-9 col-md-6">
+				<div class="col-xs-9 col-md-5 col-xs-offset-1">
 					  <div class="form-group">
                          <input class="form-control"  type="text" placeholder="Tu Nombre" required name="nombre" id="nombre" maxlength="30" value="<%= perfil.getNombres()%>" disabled>   
                        
@@ -288,16 +291,24 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-                
+             <% if (user.getrol()==2){ %>
                 <!-- .div informacion de la organizacion -->     
 				
 				<div class="alert alert-info alert-dismissable">
-					<h3>Nombre de la Organizacion	</h3>	
+					<h3><%=org.getNombre()%>	</h3>
+					<p>
+					<strong>Tipo de empleado:</strong> <% if (emp.getTipo()==2){%> Ideador 
+														<% }else {%>
+															Desafiate <%} %><br>
+					<strong>Cargo: </strong> <%=emp.getCargo() %> <br>
+
+					
+					</p>	
 				</div>
 				
 				
  			  <!-- /.div informacion de la organizacion -->   
-                
+             <%} %>
             </div>
             <!-- /.container-fluid -->
         </div>
