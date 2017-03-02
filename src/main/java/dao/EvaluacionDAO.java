@@ -21,13 +21,13 @@ public class EvaluacionDAO {
 				if(c!=null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "INSERT INTO evaluaciones (evaluador_username, impacto, factibilidad, detalle_evaluacion, fecha) VALUES (";
-					//sql+= Validacion.Apost(evaluacion.getIdea_id())+",";
+					String sql = "INSERT INTO evaluacion (evaluador_username, impacto, factibilidad, detalle_evaluacion, fecha, codigo_idea) VALUES (";
 					sql+= Validacion.Apost(evaluacion.getUsername())+",";
 					sql+= evaluacion.getImpacto()+",";
 					sql+= evaluacion.getFactibilidad()+",";
 					sql+= Validacion.Apost(evaluacion.getDetalle())+",";
 					sql+= Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(evaluacion.getFecha()))+")";
+					sql+= evaluacion.getIdea_id()+",";
 					st.executeUpdate(sql);
 					st.close();
 					registrado=true;

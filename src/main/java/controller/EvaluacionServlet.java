@@ -83,6 +83,7 @@ public class EvaluacionServlet extends HttpServlet {
 		evaluacion.setFactibilidad(1);
 		evaluacion.setImpacto(2);		
 		evaluacion.setFecha(fecha);
+		evaluacion.setIdea_id(2);
 		if(EvaluacionDAO.registrarEvaluacion(evaluacion)) {
 			RequestDispatcher rd = request.getRequestDispatcher("/pages/" + EVALUACIONES_JSP);
 			rd.forward(request, response);
