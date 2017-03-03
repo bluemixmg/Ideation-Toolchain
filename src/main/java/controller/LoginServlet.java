@@ -67,7 +67,6 @@ public class LoginServlet extends HttpServlet {
 
 			switch(us.getrol()){
 				case 1:
-				case 4:
 					rq = request.getRequestDispatcher("/pages/desa.jsp");
 					break;
 				case 2:
@@ -76,9 +75,9 @@ public class LoginServlet extends HttpServlet {
 				case 3: 
 					 rq = request.getRequestDispatcher("/pages/empresasEvaluador.jsp");
 					 break;
-				/*case 4:
+				case 4:
 					 rq = request.getRequestDispatcher("/OrganizacionServlet");
-					 break;*/
+					 break;
 				case 0:
 					 rq = request.getRequestDispatcher("/OrganizacionServlet");
 					 break;
