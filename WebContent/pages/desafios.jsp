@@ -7,11 +7,13 @@
 <%@page import="dao.CategoriaDAO" %>
 <%@page import="dao.AreasPorEvaluadorDAO" %>
 <%@page import="dao.EmpleadoDAO" %>
+<%@page import="dao.PerfilDAO" %>
 <%@page import="model.Desafio" %>
 <%@page import="model.Empleado" %>
 <%@page import="model.Categoria" %>
 <%@page import="model.User" %>
 <%@page import="model.AreaPericia" %>
+<%@page import="model.Perfil" %>
 <%@page import="java.util.*" %>
 <%@page import="java.text.SimpleDateFormat" %>
 
@@ -476,20 +478,20 @@
 							</div>
 							<div class="row">
 								<div class="form-group col-xs-9">
-									<%List<User> usuarios = new UserDAO().ListaUsuario_Rol(3);
-									System.out.print("Tamaño de lista de evaluadores = " + usuarios.size());
+								<%List<Perfil> perfiles = new PerfilDAO().Retornar_Perfil_Rol(3);
+									System.out.print("Tamaño de lista de evaluadores = " + perfiles.size());
 									AreaPericia areapericia = new AreaPericia();
 									AreasPorEvaluadorDAO apedao = new AreasPorEvaluadorDAO();
 									
 									%>
 									<label>Lista de evaluadores</label>
 									<select multiple id="evlist" class="form-control">
-										<% for(int i = 0; i<usuarios.size(); i++) {
-											List<AreaPericia> areas = apedao.RetornarAreasPorEvaluador(usuarios.get(i).getUsername());
+										<% for(int i = 0; i<perfiles.size(); i++) {
+											List<AreaPericia> areas = apedao.RetornarAreasPorEvaluador(perfiles.get(i).getusername());
 											System.out.print("Tamaño de lista de areas = " + areas.size());
-											System.out.print("Username = " + usuarios.get(i).getUsername());
+											System.out.print("Username = " + perfiles.get(i).getusername());
 											%>
-										<option value="<%=usuarios.get(i).getUsername()%>"><%=usuarios.get(i).getUsername() %> (<%
+										<option value="<%=perfiles.get(i).getusername()%>"><%=perfiles.get(i).getNombres() + " " + perfiles.get(i).getApellidos() %> (<%
 												for(int j=0; j<areas.size(); j++) { if(i > 0) {System.out.print("Entro al if > 0"); System.out.println("areas de pericia = " + areas.get(j).getDescripcion());%><%=", "%><% }%> <%=areas.get(j).getDescripcion() %>
 												<% }%>)</option>
 										<%} %>
