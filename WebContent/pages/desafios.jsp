@@ -514,7 +514,7 @@
 						<div class="row"></div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="submit" onclick="llevar()" formmethod="post" class="btn btn-primary">Save changes</button>
+							<button type="button" onclick="llevar()" formmethod="post" class="btn btn-primary">Save changes</button>
 						</div>
 					</form>
 					
