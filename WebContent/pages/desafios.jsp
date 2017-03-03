@@ -485,8 +485,8 @@
 											for(int i=0; i<perfiles.size(); i++) {
 											%>
 										<option value="<%=perfiles.get(i).getusername()%>"><%=perfiles.get(i).getNombres() + " " + perfiles.get(i).getApellidos() %> (<%
-												for(int j=0; j<areasporevaluador.get(perfiles.get(i).getusername()).size(); j++) { if(j > 0) {%><%=", "%><% }%><%=areasporevaluador.get(perfiles.get(i).getusername()).get(j).getDescripcion() %>
-												<% }%>)</option>
+												for(int j=0; j<areasporevaluador.get(perfiles.get(i).getusername()).size(); j++) {
+													if(j > 0) {%><%=", "%><% }%><%=areasporevaluador.get(perfiles.get(i).getusername()).get(j).getDescripcion()%><% }%>)</option>
 										<%} %>
 										<!--  <option value="2">María Suárez - Tecnologías de información</option>
 										<option value="3">Pedro González - Leyes</option>-->
