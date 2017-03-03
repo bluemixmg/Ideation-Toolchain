@@ -116,7 +116,7 @@
 	   
 	   </div>
 	      <div class="col-sm-6" style="float: right">
-            <form action="/RegistrarServlet" method="POST" role="form">   <!-- FORM HACIA EL SERVLET -->
+            <form action="/RegistrarEmpleadoServlet" method="POST" role="form">   <!-- FORM HACIA EL SERVLET -->
                 <div class="col-md-6">
                 
                 	<div class="form-group has-success">
