@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Perfil;
 import model.ConexionBD;
@@ -162,6 +164,46 @@ public class PerfilDAO {
 		return us;
 	}
 
-	
+	public List<Perfil> Retornar_Perfil_Rol(int rol){
+		List<Perfil> list = new ArrayList<Perfil>();
+		ResultSet usuario = null;
+
+		
+		try{
+			try {
+				ConexionBD bd = new ConexionBD();
+				Connection c = bd.getConexion();
+				if(c!= null){
+					Statement st;
+					st = c.createStatement();
+					String sql = "SELECT * FROM perfil p INNER JOIN usuario u ON (u.username = p.username) WHERE u.estatus != 'E' and "
+							+ "u.rol =" + rol;
+					System.out.println(sql);
+
+					usuario = st.executeQuery(sql);
+					while(usuario.next()){
+						 Perfil us = new  Perfil();
+						 us.setusername(usuario.getString("username"));
+						 us.setNombres(usuario.getString("nombre"));
+						 us.setApellidos(usuario.getString("apellido"));
+						 us.setTelefono(usuario.getString("telefono"));
+						 us.setEstatus(usuario.getString("estatus"));
+						 us.setDireccion(usuario.getString("direccion"));
+						 us.setGenero(usuario.getInt("genero"));	
+						 list.add(us);
+					}
+					st.close();
+					
+				}
+			bd.closeConexion();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 }
