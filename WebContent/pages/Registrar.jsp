@@ -120,11 +120,11 @@
                 <div class="col-md-6">
                 
                 	<div class="form-group has-success">
-                          <input class="form-control"  name="riforg" id="riforg" value=<%=request.getParameter("org") %>maxlength="25">
+                          <input class="form-control"  name="riforg" id="riforg" value=<%=request.getParameter("org")%>  disabled="true">
                     </div>
                     
                     <div class="form-group has-success">
-                          <input class="form-control"  required name="tipo" id="tipo" value=<%=request.getParameter("tipo")%> maxlength="25">
+                          <input class="form-control"  required name="tipo" id="tipo" value=<%=request.getParameter("tipo")%> disabled="true">
                     </div>
                                     
                 </div>

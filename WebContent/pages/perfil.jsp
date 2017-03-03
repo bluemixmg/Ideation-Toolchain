@@ -21,7 +21,7 @@
 		case 2:
 			emp= (Empleado) session.getAttribute("empleado");
 			org = new OrganizacionDAO().BuscarOrganizacion(emp.getRifOrganizacion());
-			
+			System.out.println(org.getRif() + " "+ org.getNombre());
 			break;
 	};
 	
@@ -284,7 +284,9 @@
 		          </div>
 		        </form>
 		     </div>
-		      <% if (user.getrol()==2){ %>
+		      <% if (user.getrol()==2){ 
+					System.out.println("Entor al if" + user.getrol());      
+			      	%>
                 <!-- .div informacion de la organizacion -->     
 				
 				<div class="alert alert-info alert-dismissable">
