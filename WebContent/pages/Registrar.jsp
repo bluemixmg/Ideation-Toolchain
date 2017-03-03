@@ -124,7 +124,7 @@
                     </div>
                     <div class="form-group has-success">
                     		
-                          <input class="form-control"  required name="rol" id="rol" value="<%=request.getParameter("rol")%>" maxlength="25">
+                          <input class="form-control"  required name="tipo" id="tipo" value="<%=request.getParameter("tipo")%>" maxlength="25">
                     </div>
                 
                 </div>
