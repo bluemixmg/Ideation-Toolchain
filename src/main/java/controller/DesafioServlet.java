@@ -172,9 +172,11 @@ public class DesafioServlet extends HttpServlet {
 		System.out.println("Categoría traída por request: " + categoria);
 		//categoria = "1";
 		
-		List<String> evaselec = getListPartString(request.getPart("evasig"));
-		for(int i=0; i < evaselec.size(); i++) {
-			System.out.println("Evaluador " + (i+1) + " = " + evaselec.get(i));
+		//List<String> evaselec = getListPartString(request.getPart("evasig"));
+		String[] evaselec = request.getParameterValues("evasig");
+		System.out.println("evaselec.length = " + evaselec.length);
+		for(int i=0; i < evaselec.length; i++) {
+			System.out.println("Evaluador " + (i+1) + " = " + evaselec[i]);
 		}
 		
 		System.out.println("Tipo traído por request: " + request.getPart("tipo").toString());
