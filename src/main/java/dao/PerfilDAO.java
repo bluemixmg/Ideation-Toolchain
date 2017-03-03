@@ -184,12 +184,19 @@ public class PerfilDAO {
 					while(usuario.next()){
 						 Perfil us = new  Perfil();
 						 us.setusername(usuario.getString("username"));
+						 System.out.println("username = " + us.getusername());
 						 us.setNombres(usuario.getString("nombre"));
+						 System.out.println("nombres = " + us.getNombres());
 						 us.setApellidos(usuario.getString("apellido"));
+						 System.out.println("apellidos = " + us.getApellidos());
 						 us.setTelefono(usuario.getString("telefono"));
+						 System.out.println("telefono = " + us.getTelefono());
 						 us.setEstatus(usuario.getString("estatus"));
+						 System.out.println("estatus = " + us.getEstatus());
 						 us.setDireccion(usuario.getString("direccion"));
-						 us.setGenero(usuario.getInt("genero"));	
+						 System.out.println("direccion = " + us.getDireccion());
+						 us.setGenero(usuario.getInt("genero"));
+						 System.out.println("genero = " + us.getGenero());
 						 list.add(us);
 					}
 					st.close();
