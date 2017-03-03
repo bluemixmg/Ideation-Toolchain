@@ -116,17 +116,17 @@
 	   
 	   </div>
 	      <div class="col-sm-6" style="float: right">
-            <form action="/RegistrarEmpleadoServlet" method="POST" role="form">   <!-- FORM HACIA EL SERVLET -->
+            <form action="/RegistrarServlet" method="POST" role="form">   <!-- FORM HACIA EL SERVLET -->
                 <div class="col-md-6">
                 
                 	<div class="form-group has-success">
-                          <input class="form-control"  name="riforg" id="riforg" value=<%=request.getParameter("org")%>  disabled="true">
+                          <input class="form-control"  required name="riforg" id="riforg" value ="<%=request.getParameter("org")%>" maxlength="25">
                     </div>
-                    
                     <div class="form-group has-success">
-                          <input class="form-control"  required name="tipo" id="tipo" value=<%=request.getParameter("tipo")%> disabled="true">
+                    		
+                          <input class="form-control"  required name="rol" id="rol" value="<%=request.getParameter("rol")%>" maxlength="25">
                     </div>
-                                    
+                
                 </div>
                 <div class="col-md-6 col-md-offset-6">                                       
                	   	<div class="form-group has-success">

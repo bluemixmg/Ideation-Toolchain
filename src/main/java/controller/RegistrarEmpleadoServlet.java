@@ -60,7 +60,7 @@ public class RegistrarEmpleadoServlet extends HttpServlet {
     	 PerfilDAO daoEs = new PerfilDAO();
     	 EmpleadoDAO empdao= new EmpleadoDAO();
     	 
-    	 String email, password, username, riforg, tipo;
+    	 String email, password, username, riforg, tipo=null;
     	 email= request.getParameter("email");
     	 password= request.getParameter("inputPassword");
     	 username = request.getParameter("user");
@@ -114,7 +114,7 @@ public class RegistrarEmpleadoServlet extends HttpServlet {
 		 Empleado emp = new Empleado();
 		 emp.setRifOrganizacion(riforg);
 		 emp.setUsername(username);
-		 
+		 System.out.println(tipo+ riforg);
 		 switch(tipo){
 		 	case "Ideador":
 		 		emp.setTipo(2);
