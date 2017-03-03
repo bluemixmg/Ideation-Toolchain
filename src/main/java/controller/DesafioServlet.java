@@ -129,6 +129,18 @@ public class DesafioServlet extends HttpServlet {
 		return str;
 	}
 	
+	private ArrayList<String> getListPartString(Part part) throws IOException {
+		ArrayList<String> str = new ArrayList<String>();
+		if (part != null) {
+			BufferedReader r = new BufferedReader(new InputStreamReader(part.getInputStream()));
+			do {
+				str.add(r.readLine());
+				System.out.println("String de lista: " + str.get(str.size()-1));
+			}while(str.get(str.size()-1) != null);
+		}
+		return str;
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Entró a doPost");
 		response.setContentType("text/html;charset=UTF-8");
@@ -159,6 +171,12 @@ public class DesafioServlet extends HttpServlet {
 		String categoria = getPartString(request.getPart("categoria"));
 		System.out.println("Categoría traída por request: " + categoria);
 		//categoria = "1";
+		
+		List<String> evaselec = getListPartString(request.getPart("evasig"));
+		for(int i=0; i < evaselec.size(); i++) {
+			System.out.println("Evaluador " + (i+1) + " = " + evaselec.get(i));
+		}
+		
 		System.out.println("Tipo traído por request: " + request.getPart("tipo").toString());
 		boolean tipo = (getPartString(request.getPart("tipo")) != null) ? true : false;
 		String fecha = getPartString(request.getPart("fecha"));

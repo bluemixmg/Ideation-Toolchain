@@ -479,12 +479,12 @@
 							<div class="row">
 								<div class="form-group col-xs-9">
 									<label>Lista de evaluadores</label>
-									<select multiple id="evlist" class="form-control">
+									<select multiple id="evlist" name="evlist" class="form-control">
 										<% List<Perfil> perfiles = (List<Perfil>) session.getAttribute("perfiles");
 											Map<String, List<AreaPericia> > areasporevaluador = (Map<String, List<AreaPericia> >) session.getAttribute("areasporevaluador");
 											for(int i=0; i<perfiles.size(); i++) {
 											%>
-										<option value="<%=perfiles.get(i).getusername()%>"><%=perfiles.get(i).getNombres() + " " + perfiles.get(i).getApellidos() %> (<%
+										<option id="<%=i+1 %>" name="<%=i+1 %>" value="<%=perfiles.get(i).getusername()%>"><%=perfiles.get(i).getNombres() + " " + perfiles.get(i).getApellidos() %> (<%
 												for(int j=0; j<areasporevaluador.get(perfiles.get(i).getusername()).size(); j++) {
 													if(j > 0) {%><%=", "%><% }%><%=areasporevaluador.get(perfiles.get(i).getusername()).get(j).getDescripcion()%><% }%>)</option>
 										<%} %>
@@ -504,7 +504,7 @@
 								
 								<div class="form-group col-xs-9">
 									<label>Evaluadores asignados al desafío</label>
-									<select multiple id="evasig" class="form-control" required>
+									<select multiple id="evasig" name="evasig" class="form-control" required>
 										
 									</select>
 								</div>
