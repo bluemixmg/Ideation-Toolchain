@@ -11,8 +11,8 @@
 	user =(User) session.getAttribute("user");
 	Perfil perfil = new Perfil();
 	perfil= (Perfil) session.getAttribute("perfil");
-	Organizacion  org;
-	Empleado emp;
+	Organizacion  org= null;
+	Empleado emp= null;
 	
 	System.out.println("Este es el tipo de usuario:" + user.getrol());
 	
@@ -284,7 +284,8 @@
 		          </div>
 		        </form>
 		     </div>
-		      <% if (user.getrol()==2){ 
+		</div>
+				      <% if (user.getrol()==2){ 
 					System.out.println("Entor al if" + user.getrol());      
 			      	%>
                 <!-- .div informacion de la organizacion -->     
@@ -304,8 +305,6 @@
 				
  			  <!-- /.div informacion de la organizacion -->   
              <%} %>
-
-		</div>
 
 		                    </div>
                     <!-- /.col-lg-12 -->

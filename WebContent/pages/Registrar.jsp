@@ -120,11 +120,11 @@
                 <div class="col-md-6">
                 
                 	<div class="form-group has-success">
-                          <input class="form-control"  required name="riforg" id="riforg" value ="<%=request.getParameter("org")%>" maxlength="25">
+                          <input class="form-control" type="hidden" required name="riforg" id="riforg" value ="<%=request.getParameter("org")%>" maxlength="25">
                     </div>
                     <div class="form-group has-success">
                     		
-                          <input class="form-control"  required name="tipo" id="tipo" value="<%=request.getParameter("tipo")%>" maxlength="25">
+                          <input class="form-control" type="hidden" required name="tipo" id="tipo" value="<%=request.getParameter("tipo")%>" maxlength="25">
                     </div>
                 
                 </div>
