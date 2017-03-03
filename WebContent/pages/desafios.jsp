@@ -514,7 +514,7 @@
 						<div class="row"></div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="submit" formmethod="post" class="btn btn-primary">Save changes</button>
+							<button type="submit" onclick="llevar()" formmethod="post" class="btn btn-primary">Save changes</button>
 						</div>
 					</form>
 					
@@ -1073,6 +1073,18 @@
 				}
 			}
 		}
+		
+		function llevar() {
+			for(i=0; i < asig.length; i++) {
+				var opt = document.createElement("input");
+				opt.setAttribute("type", "hidden");
+				opt.setAttribute("id", "asignados");
+				opt.setAttribute("value", asig.options[i]);
+				var form = document.getElementById("upform");
+				form.appendChild(opt);
+			}
+		}
+		
 	</script>
 
 	<script type="text/javascript">

@@ -173,13 +173,13 @@ public class DesafioServlet extends HttpServlet {
 		//categoria = "1";
 		
 		//List<String> evaselec = getListPartString(request.getPart("evasig"));
-		String[] evaselec = request.getParameterValues("evasig");
+		String[] evaselec = request.getParameterValues("asignados");
 		System.out.println("evaselec.length = " + evaselec.length);
 		for(int i=0; i < evaselec.length; i++) {
 			System.out.println("Evaluador " + (i+1) + " = " + evaselec[i]);
 		}
 		
-		System.out.println("Tipo traído por request: " + request.getPart("tipo").toString());
+		//System.out.println("Tipo traído por request: " + request.getPart("tipo").toString());
 		boolean tipo = (getPartString(request.getPart("tipo")) != null) ? true : false;
 		String fecha = getPartString(request.getPart("fecha"));
 		System.out.println("Fecha retornada por input date: " + fecha);
