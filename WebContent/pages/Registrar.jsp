@@ -156,7 +156,7 @@
                       </div>
                       
                      <div class="form-group" >
-                        <label style="color: #999999; font-weight: 900;">Género: </label>
+                        
                         <label class="radio-inline" style="color: #999999; font-weight: 900;">
                             <input type="radio" name="genero" id="genero" value="Femenino" checked >Femenino
                         </label>

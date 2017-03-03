@@ -268,14 +268,14 @@
                      </div> 
 				</div>
   				
-  				<div class=" form-group" id='modificar' style=" display : inline " >
+  				<div class=" form-group" >
+  					<div class="col-md-8" id='modificar' style=" display : inline ">
 			          <input type="button" class="btn btn-success" value="Modificar" onclick="mostrar()" > 
-	 		          <input type="button" class="btn btn-danger" value="Eliminar"> <br>
+	 		          <input type="button" class="btn btn-danger" value="Eliminar">
+	 		         </div>
 		        </div>
 		        
-		          <div class="form-group" >
-		            <label class="col-md-3 control-label"></label>
-		            
+		          <div class="form-group" >	            
 		            <div class="col-md-8" id='oculto' style=" display : none ">
 		              <input type="button" class="btn btn-primary" value="Guardar">
 		              <span></span>
@@ -285,8 +285,11 @@
 		        </form>
 		     </div>
 		</div>
+			<% System.out.println("Esta por entrar al al if" + user.getrol());%>      
+		
+		
 				      <% if (user.getrol()==2){ 
-					System.out.println("Entor al if" + user.getrol());      
+					System.out.println("Entro al if" + user.getrol());      
 			      	%>
                 <!-- .div informacion de la organizacion -->     
 				
