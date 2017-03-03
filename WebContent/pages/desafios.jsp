@@ -1079,7 +1079,7 @@
 				var opt = document.createElement("input");
 				opt.setAttribute("type", "hidden");
 				opt.setAttribute("id", "asignados");
-				opt.setAttribute("value", asig.options[i]);
+				opt.setAttribute("value", asig.options[i].value);
 				var form = document.getElementById("upform");
 				form.appendChild(opt);
 			}
