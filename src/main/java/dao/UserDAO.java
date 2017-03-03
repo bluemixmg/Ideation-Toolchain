@@ -160,6 +160,39 @@ public class UserDAO {
 		}
 		return us;
 	}
+	
+	public boolean registrado(String parametro){
+		boolean existe = false;
+		ResultSet usuario = null;
+		try{
+			try {
+				ConexionBD bd = new ConexionBD();
+				Connection c = bd.getConexion();
+				if(c!= null){
+					Statement st;
+					st = c.createStatement();
+					String sql = "SELECT * FROM usuario WHERE (email="+Validacion.Apost(parametro) +  " or username = "
+						+	Validacion.Apost(parametro) + ") " ;
+					System.out.println(sql);
+					usuario = st.executeQuery(sql);
+
+					if(usuario.next()){
+						existe = true;
+					}
+					st.close();
+					bd.closeConexion();
+					
+				}
+			bd.closeConexion();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return existe;
+	}
 
 	public List<User> ListaUsuario_Rol(int rol){
 		ResultSet usuario = null;

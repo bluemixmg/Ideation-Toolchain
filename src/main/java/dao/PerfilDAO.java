@@ -22,7 +22,7 @@ public class PerfilDAO {
 					Statement st;
 					st = c.createStatement();
 
-					String sql = "INSERT INTO ideador (username, nombre, apellido, telefono,"
+					String sql = "INSERT INTO perfil (username, nombre, apellido, telefono,"
 							+ " estatus, direccion, genero) VALUES (";
 					sql+= Validacion.Apost(us.getusername()) + ",";
 					sql+= Validacion.Apost(us.getNombres()) + ",";
@@ -33,7 +33,7 @@ public class PerfilDAO {
 					sql+= us.getGenero() + ")";
 					//System.out.println("fecha de nacimiento = " + us.getFechaNacimiento());
 					//sql+= Validacion.Apost(new SimpleDateFormat("yyyy-MM-dd").format(us.getFechaNacimiento())) + ")";
-					
+					System.out.println("Entro al registrar perfil");
 					System.out.println(sql);
 					
 					st.executeUpdate(sql);
@@ -64,7 +64,7 @@ public class PerfilDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE ideador SET";
+					String sql = "UPDATE perfil SET";
 					sql+= "username=" + Validacion.Apost(us.getusername()) + ",";
 					sql+= "nombre=" + Validacion.Apost(us.getNombres()) + ",";
 					sql+= "apellido=" + Validacion.Apost(us.getApellidos()) + ",";
@@ -100,7 +100,7 @@ public class PerfilDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "UPDATE ideador SET estatus= " + Validacion.Apost("E") +"WHERE username =" + us.getusername();
+					String sql = "UPDATE perfil SET estatus= " + Validacion.Apost("E") +"WHERE username =" + us.getusername();
 					st.executeUpdate(sql);
 					st.close();
 					modificar=true;
@@ -132,20 +132,20 @@ public class PerfilDAO {
 				if(c!= null){
 					Statement st;
 					st = c.createStatement();
-					String sql = "SELECT * FROM ideador WHERE estatus != 'E' and "
+					String sql = "SELECT * FROM perfil WHERE estatus != 'E' and "
 							+ "username ="+ Validacion.Apost(username);
 					System.out.println(sql);
 
 					usuario = st.executeQuery(sql);
 					if(usuario.next()){
-						 us.setusername(usuario.getString("usuario"));
+						 us.setusername(usuario.getString("username"));
 						 us.setNombres(usuario.getString("nombre"));
 						 us.setApellidos(usuario.getString("apellido"));
 						 us.setTelefono(usuario.getString("telefono"));
 						 us.setEstatus(usuario.getString("estatus"));
 						 us.setDireccion(usuario.getString("direccion"));
 						 us.setGenero(usuario.getInt("genero"));	
-						
+
 					}
 					st.close();
 					
@@ -158,6 +158,7 @@ public class PerfilDAO {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+		System.out.println("Retorno el perfil:" + us.getApellidos() +us.getusername() +us.getNombres());
 		return us;
 	}
 

@@ -39,23 +39,24 @@ public class PerfilServlet extends HttpServlet {
     	User user = (User) session.getAttribute("user");
     	RequestDispatcher rq;
     	
+		PerfilDAO  pdao = new PerfilDAO();
+		Perfil perfil = new Perfil() ;
+		perfil = pdao.RetornarPerfil(user.getUsername());
+		session.setAttribute("perfil", perfil);
+
+    	
     	switch(user.getrol()){
-			case 1: 
-				PerfilDAO  idao = new PerfilDAO();
-				Perfil perfil = new Perfil() ;
-				perfil = idao.RetornarPerfil(user.getEmail());
-				session.setAttribute("perfil", perfil);
-				 rq = request.getRequestDispatcher("/pages/perfil.jsp");
-				rq.forward(request, response);
-			break;
 			case 2:
 				EmpleadoDAO edao = new EmpleadoDAO();
 				Empleado emp = new Empleado();
-				emp = edao.RetornarEmpleado(user.getEmail());
-				rq = request.getRequestDispatcher("/pages/perfil.jsp");
-				rq.forward(request, response);
-			
+				emp = edao.RetornarEmpleado(user.getUsername());
+				session.setAttribute("empleado", emp);
+			break;			
     	}
+    	System.out.println("Entro al perfilservlet y esta por enviar los valores");
+    	
+		rq = request.getRequestDispatcher("/pages/perfil.jsp");
+		rq.forward(request, response);
 
     			
 	}

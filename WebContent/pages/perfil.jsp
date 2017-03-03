@@ -1,7 +1,7 @@
 <%@page  contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
-<%@page import="model.Perfil, model.User" %>
-<%@page import="dao.PerfilDAO" %>
+<%@page import="model.Perfil, model.User, model.Empleado, model.Organizacion" %>
+<%@page import="dao.PerfilDAO, dao.OrganizacionDAO" %>
 
 <%System.out.println("Entro al form-------------------------!!!");
 	
@@ -10,14 +10,19 @@
 	User user = new User();
 	user =(User) session.getAttribute("user");
 	Perfil perfil = new Perfil();
-
+	perfil= (Perfil) session.getAttribute("perfil");
+	Organizacion  org;
+	Empleado emp;
+	
 	System.out.println("Este es el tipo de usuario:" + user.getrol());
 	
 
 	switch(user.getrol()){
-		case 1:
-			perfil= (Perfil) session.getAttribute("estandar");
-		break;
+		case 2:
+			emp= (Empleado) session.getAttribute("empleado");
+			org = new OrganizacionDAO().BuscarOrganizacion(emp.getRifOrganizacion());
+			
+			break;
 	};
 	
 
@@ -198,47 +203,44 @@
             <!-- /.navbar-static-side -->
         </nav>
 	
-			<div id="page-wrapper">
+		<div id="page-wrapper">
 			
-			
-				
-			
-		            <div class="container-fluid">
-		                <div class="row">
-		                    <div class="col-lg-12">
-		                        <h2 class="page-header"><b><i> <%= perfil.getNombres() +" "+ perfil.getApellidos() %></i></b></h2> 
+           <div class="container-fluid">
+               <div class="row">
+                   <div class="col-lg-12">
+                       <h2 class="page-header"><b><i> <%= perfil.getNombres() +" "+ perfil.getApellidos() %></i></b></h2> 
 		
 		    <div class="row">
 		      <!-- left column -->
-		      <div class="col-md-3">
+		      <div class="col-xs-6 col-md-4">
 		        <div class="text-center">
 		          <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" class="avatar img-circle" alt="avatar">
-		          <h6>Cargar nueva imagen...</h6>
-		          
-		          <input type="file" class="form-control">
+		         
+		          <div id = "imagen" style="display  :none">
+		          		<input type="file" class="form-control" disabled>
+		          </div>
 		        </div>
 		      </div>
-		      <div class="container">
                 
 		      <!-- edit form column -->
-		      <div class="col-md-8 personal-info">
-		        <div class="alert alert-info alert-dismissable">
-		          <a class="panel-close close">ORGANIZACIÓN</a> 
-		        </div>
+		      <div class="col-xs-12 col-md-8 personal-info">
+
 		        <h3>Información personal</h3>
 		        
 		        <form role="form" class="form-horizontal" >
-		          <div class="col-md-4">                                       
+		          <div class="col-xs-9 col-md-5">                                       
                	   	<div class="form-group ">
-                          <input class="form-control" placeholder="Elige un nombre de usuario" required name="user" id="user" maxlength="25" value="<% %>" disabled >
+                          <input class="form-control" placeholder="Elige un nombre de usuario" required name="user" id="user" maxlength="25" value="<%= user.getUsername() %>" disabled >
                     </div>
                    	<div class="form-group input-group ">
                         <span class="input-group-addon">@</span>
-                        <input class="form-control" placeholder="Correo electronico" required name="email" id="email" maxlength="30" data-error="Bruh, that email address is invalid" required " disabled>
+                        <input class="form-control" placeholder="Correo electronico" required name="email" id="email" maxlength="30" data-error="Bruh, that email address is invalid" required " value="<%= user.getEmail() %>" disabled>
                      </div>
                        <div class="form-group ">
 	                     <input type="password" data-minlength="6" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" value="12345678' required maxlength="30" disabled>
-	     				 <div class="help-block">Minino de 6 caracteres</div>
+                       </div>
+                        <div class="form-group " style="display:none"">
+	                     <input type="password" data-minlength="6" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" value="12345678' required maxlength="30" disabled>
                        </div>
                        <div class="form-group">
                        
@@ -247,7 +249,7 @@
                     </div>
            		 </div>
 				<!-- .col-md-4 -->
-				<div class="col-md-4">
+				<div class="col-xs-9 col-md-5 col-xs-offset-1">
 					  <div class="form-group">
                          <input class="form-control"  type="text" placeholder="Tu Nombre" required name="nombre" id="nombre" maxlength="30" value="<%= perfil.getNombres()%>" disabled>   
                        
@@ -262,31 +264,73 @@
                          <input class="form-control"  type="text" placeholder="Tu dirección" required name="direccion" id="direccion" maxlength="90" value="<%=perfil.getDireccion()%>" disabled>   
                        </div>
 					<div class="form-group">
-                        <input  type="date" name="fechanacimiento">
+                        <input  type="date" id="fechanacimiento" name="fechanacimiento" disabled>
                      </div> 
 				</div>
-		          <div class="form-group">
+  				
+  				<div class=" form-group" id='modificar' style=" display : inline " >
+			          <input type="button" class="btn btn-success" value="Modificar" onclick="mostrar()" > 
+	 		          <input type="button" class="btn btn-danger" value="Eliminar"> <br>
+		        </div>
+		        
+		          <div class="form-group" >
 		            <label class="col-md-3 control-label"></label>
-		            <div class="col-md-8">
+		            
+		            <div class="col-md-8" id='oculto' style=" display : none ">
 		              <input type="button" class="btn btn-primary" value="Guardar">
 		              <span></span>
-		              <input type="reset" class="btn btn-default" value="Cancelar">
+		              <input type="reset" class="btn btn-default" value="Cancelar" onclick="ocultar()">
 		            </div>
 		          </div>
 		        </form>
 		     </div>
-		  </div>
+
 		</div>
 
 		                    </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
+            
             </div>
             <!-- /.container-fluid -->
         </div>
 	
 	</div>
+	
+	   <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <!-- Date Picker JavaScript -->
+    <script src="../dist/js/bootstrap-datepicker.js"></script>
+	
+    
+    <script type="text/javascript">
+		function mostrar() {
+
+			document.getElementById('oculto').style.display = 'inline';
+			document.getElementById('modificar').style.display = 'none';
+			 $('direccion').removeAttr('disabled');
+			 $('telefono').removeAttr('disabled');
+			 
+				
+}
+		
+		function ocultar(){
+			document.getElementById('modificar').style.display ='inline';
+			document.getElementById('oculto').style.display = 'none';
+			
+		}
+	</script>
 
 </body>
 </html>

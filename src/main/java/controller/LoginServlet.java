@@ -89,8 +89,9 @@ public class LoginServlet extends HttpServlet {
 			rq.forward(request, response);
 		}else{
 			 rq = request.getRequestDispatcher("/pages/" + "login.jsp");
-			 rq.forward(request, response);
 			 request.setAttribute("error", false);
+			 rq.forward(request, response);
+
 			 }
 		
 	}

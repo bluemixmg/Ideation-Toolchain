@@ -64,6 +64,17 @@ public class RegistrarServlet extends HttpServlet {
     	 password= request.getParameter("inputPassword");
     	 username = request.getParameter("user");
     	 
+    //---------------Validar si esta registrado --------------------------------------
+    	 if(userdao.registrado(email)){
+    		 request.setAttribute("error", "correo");
+    		 System.out.println("entro a que el correo esta registrado");
+    		 RequestDispatcher rq = request.getRequestDispatcher("/pages/desa.jsp");
+    		 rq.forward(request, response);
+    	 }else if(userdao.registrado(username)){
+	    		 request.setAttribute("error", "username");
+	    		 RequestDispatcher rq = request.getRequestDispatcher("/pages/desa.jsp");
+	    		 rq.forward(request, response);
+    		 }
     	 
     //--------------- Asignacion de parametros a la clase User------------------------------
     	 User user = new User();
@@ -95,12 +106,12 @@ public class RegistrarServlet extends HttpServlet {
 		 
 	//---------- INSERTAR EL USER Y EL ESTANDAR EN LA BASE DE DATOS-------------
 		
+		 
     	 if(userdao.insertarUsuario(user))   	 
     	 {
     		 if(daoEs.insertarPerfil(perf)){
 	    		 HttpSession misession= request.getSession(true);
 	    		 //#######################################
-	    		 response.getWriter().print("Estoy en el processRequest de Registrar");
 	    		 System.out.println("Inserto ");
 	    		 //#######################################
 	

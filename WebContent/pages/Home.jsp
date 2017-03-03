@@ -121,7 +121,7 @@
 			<div class="row"><br></div>
 		 	<div class="row">
 			 	<div Class="col-md-3"  align="center">
-			 	  <a class="navbar-brand" href="#">Marna CIN</a>	
+			 	  <a class="navbar-brand" href="#">Innovation</a>	
 			 	</div>
 			 	<div class="col-md-3">
 			 	</div>
@@ -173,9 +173,7 @@
 
                           
                        </div>
-           		 </div>
-				<!-- .col-md-4 -->
-				<div class="col-md-6">
+                       
 					  <div class="form-group">
                          <input class="form-control"  type="text" placeholder="Tu Nombre" required name="nombre" id="nombre" maxlength="30">   
                        
@@ -201,7 +199,18 @@
              </form>
 
        </div>
-	   
+	              <%String error= (String) request.getAttribute("error");
+           		if(error == "correo") {%>  
+		         	<div class="alert alert-danger alert-dismissable col-md-6">
+		            	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		           		<strong>Correo</strong> ya registrado
+		          	</div>
+          	 <%}else if(error=="username"){%>
+          	 		<div class="alert alert-danger alert-dismissable col-md-6">
+		            	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		           		<strong>Username</strong>  ya registrado
+		          	</div>
+		          	<%} %>
       </div>         		             
             
    </div>
@@ -239,7 +248,7 @@
 	 
 		$('#inputPasswordConfirm').keyup(function(){
 			var _this1 = $('#pass_1');
-			var _this2 = $('#pass_2')
+			var _this2 = $('#pass_2');
 			
 			var pass_1 = $('#inputPassword').val();
 			var pass_2 = $('#inputPasswordConfirm').val();
