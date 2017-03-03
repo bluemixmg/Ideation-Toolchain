@@ -82,6 +82,7 @@ public class RegistrarServlet extends HttpServlet {
 		 user.setPassword(password);
 		 user.setUsername(username.trim());
 		 user.setrol(1);
+		 user.setAvatar("../images/avatar-user.gif");
 		
     //--------------- Asignacion de parametros a la clase Estandamndar------------------------------
 

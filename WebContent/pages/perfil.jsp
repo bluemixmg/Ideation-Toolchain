@@ -284,6 +284,24 @@
 		          </div>
 		        </form>
 		     </div>
+		      <% if (user.getrol()==2){ %>
+                <!-- .div informacion de la organizacion -->     
+				
+				<div class="alert alert-info alert-dismissable">
+					<h3><%=org.getNombre()%>	</h3>
+					<p>
+					<strong>Tipo de empleado:</strong> <% if (emp.getTipo()==2){%> Ideador 
+														<% }else {%>
+															Desafiante <%} %><br>
+					<strong>Cargo: </strong> <%=emp.getCargo() %> <br>
+
+					
+					</p>	
+				</div>
+				
+				
+ 			  <!-- /.div informacion de la organizacion -->   
+             <%} %>
 
 		</div>
 

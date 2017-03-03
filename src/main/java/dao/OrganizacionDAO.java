@@ -136,6 +136,7 @@ public class OrganizacionDAO {
 	
 	public Organizacion BuscarOrganizacion(String rif){
 		Organizacion org = new Organizacion();
+		org= null;
 		ResultSet rs = null;
 		
 		ConexionBD bd;

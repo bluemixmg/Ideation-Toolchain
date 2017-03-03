@@ -52,72 +52,55 @@ public class RegistrarEmpleadoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-   	 response.setContentType("text/html;charset=UTF-8");
-
-		 HttpSession session= request.getSession(true);
-		 RequestDispatcher rq;
-		 
-		 User us= new User();
-		 UserDAO userdao = new UserDAO();
-		 
-		 Organizacion org = new Organizacion();
-		 OrganizacionDAO orgdao = new OrganizacionDAO();
-
-		 EmpleadoDAO daoAs = new EmpleadoDAO();
-    	 Empleado emp = new Empleado();
-    	     	 
-		 us = (User)session.getAttribute("user");
-		 
-    //---------------Busqueda de la organizacion --------------
-		 
-		 emp = daoAs.RetornarEmpleado(us.getUsername());
-		 
-		 
-		 System.out.println("USUARIOORGANIZACION: " + us.getEmail()+us.getPassword()+us.getrol()+us.getUsername());
-		 System.out.println("Retorno el EmpRganizacion : "+ emp.getUsername() + " y el rif es : " + emp.getRifOrganizacion());
-
-		 org=orgdao.BuscarOrganizacion(emp.getRifOrganizacion());
-		 		 
-		 
-	 //-------------------	VARIABLES GENERALES---------------------
-		 String email, password, username, rifOrg;
-		 email= request.getParameter("email");
-		 password= request.getParameter("inputPassword");
-		 username = request.getParameter("user");
-		 rifOrg = org.getRif();
-		 
-
-    	 
-  
-    //--------------- Asignacion de parametros a la clase User------------------------------
-    	 User user = new User();
-		 user.setEmail(email);
-		 user.setPassword(password);
-		 user.setUsername(username);
-		 user.setrol(2);
 		
-	//--------------- Asignacion de parametros a la clase Empleado------------------------------
+		System.out.println("Entro al doPost del Registrar");
+   	 	response.setContentType("text/html;charset=UTF-8");
 
-		 emp.setUsername(username);
-		 emp.setRifOrganizacion(rifOrg);
-		 emp.setTipo(2);
-		 
- 
-	//----------------Asignacion a Perfil------------------------------------------------------	 
-    	 Perfil perf = new Perfil();
-    	 PerfilDAO daop = new PerfilDAO();
+    	 UserDAO userdao = new UserDAO();
+    	 PerfilDAO daoEs = new PerfilDAO();
+    	 EmpleadoDAO empdao= new EmpleadoDAO();
     	 
+    	 String email, password, username, riforg, tipo;
+    	 email= request.getParameter("email");
+    	 password= request.getParameter("inputPassword");
+    	 username = request.getParameter("user");
+    	 
+    	 riforg = request.getParameter("riforg");
+    	 tipo = request.getParameter("tipo");
+    	 
+    //---------------Validar si esta registrado --------------------------------------
+    	 if(userdao.registrado(email)){
+    		 request.setAttribute("error", "correo");
+    		 System.out.println("entro a que el correo esta registrado");
+    		 RequestDispatcher rq = request.getRequestDispatcher("/pages/desa.jsp");
+    		 rq.forward(request, response);
+    	 }else if(userdao.registrado(username)){
+	    		 request.setAttribute("error", "username");
+	    		 RequestDispatcher rq = request.getRequestDispatcher("/pages/desa.jsp");
+	    		 rq.forward(request, response);
+    		 }
+    	 
+    //--------------- Asignacion de parametros a la clase User-------------------------
+    	 User user = new User();
+		 user.setEmail(email.trim().toLowerCase());
+		 user.setPassword(password);
+		 user.setUsername(username.trim());
+		 user.setrol(2);
+		 user.setAvatar("../images/avatar-user.gif");
+		
+    //--------------- Asignacion de parametros a la clase Estandamndar-----------------
+
+		 
+    	 Perfil perf = new Perfil(); 
+    	 perf.setusername(username);
     	 perf.setNombres(request.getParameter("nombre"));
     	 perf.setApellidos(request.getParameter("apellido"));
-    	 perf.setTelefono(request.getParameter("telefono"));
-    	 perf.setDireccion(request.getParameter("direccion"));
-		
-    	 String fech= request.getParameter("fechanacimiento");
+    	 //es.setTelefono(request.getParameter("telefono"));
+		// es.setDireccion(request.getParameter("direccion"));
+		 //System.out.println("Fecha traída por request: " + request.getParameter("fechanacimiento"));
+		 //Date fecha = CnvStringFecha(request.getParameter("fechanacimiento"));
+		 //es.setFechaNacimiento(fecha); 
 		 
-		 System.out.println("Fechausuario: " + fech);
-		 Date fechaD = CnvStringFecha(fech);
-		 perf.setFechaNacimiento(fechaD); 
-
 		 String genero = request.getParameter("genero");
 		 response.getWriter().print(genero);
 
@@ -126,27 +109,48 @@ public class RegistrarEmpleadoServlet extends HttpServlet {
 		 }else 
 			 perf.setGenero(0);
 		 
-			
-    	 if(userdao.insertarUsuario(user) && daoAs.insertarEmpleado(emp))   	 
+	//---------- Asignacion de parametros a la clase Empleado ------------------------
+		 
+		 Empleado emp = new Empleado();
+		 emp.setRifOrganizacion(riforg);
+		 emp.setUsername(username);
+		 
+		 switch(tipo){
+		 	case "Ideador":
+		 		emp.setTipo(2);
+		 		break;
+		 	case "Desafiante":
+		 		emp.setTipo(3);
+	        default:
+       		 response.getWriter().print("Error En la url utilizada");
+		 }
+			 
+		 
+		 
+	//---------- INSERTAR EL USER Y EL ESTANDAR EN LA BASE DE DATOS-------------------
+		
+		 
+    	 if(userdao.insertarUsuario(user))   	 
     	 {
-    		 //#######################################
-    		 response.getWriter().print("Estoy en el processRequest de Registrar");
-    		 System.out.println("Inserto");
-    		 //#######################################
-    		 response.getWriter().print("inserto al empleado ");
-
-    		 session.setAttribute("inserto", user);
-    		 rq = request.getRequestDispatcher("/pages/desa.jsp");
-    		 rq.forward(request, response);
-    		 
+    		 if(daoEs.insertarPerfil(perf) && empdao.insertarEmpleado(emp)){
+	    		 HttpSession misession= request.getSession(true);
+	    		 //#######################################
+	    		 System.out.println("Inserto ");
+	    		 //#######################################
+	
+	    		 misession.setAttribute("user", user);
+	    		 RequestDispatcher rq = request.getRequestDispatcher("/pages/desa.jsp");
+	    		 rq.forward(request, response);
+    		 }else {
+    			 userdao.eliminarUser(user);
+        		 response.getWriter().print("Error al intentar Registrarse, comuniquese con el administrador de la pagina");
+        		 System.out.println("No inserto");
+    		 }
     	 }else{
     		 
+    		 response.getWriter().print("Error al intentar Registrarse, comuniquese con el administrador de la pagina");
     		 System.out.println("No inserto");
-    		 rq = request.getRequestDispatcher("/pages/" + "error.jsp");
-    		 rq.forward(request, response);
     	 }
-        	 
-    	    	 
 	}
 	
 	//----- funcion para convertir String a fecha con formato yyyy-MM-dd
