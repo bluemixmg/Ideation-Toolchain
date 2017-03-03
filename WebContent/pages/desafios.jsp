@@ -478,21 +478,14 @@
 							</div>
 							<div class="row">
 								<div class="form-group col-xs-9">
-								<%List<Perfil> perfiles = new PerfilDAO().Retornar_Perfil_Rol(3);
-									System.out.print("Tamaño de lista de evaluadores = " + perfiles.size());
-									AreaPericia areapericia = new AreaPericia();
-									AreasPorEvaluadorDAO apedao = new AreasPorEvaluadorDAO();
-									
-									%>
 									<label>Lista de evaluadores</label>
 									<select multiple id="evlist" class="form-control">
-										<% for(int i = 0; i<perfiles.size(); i++) {
-											List<AreaPericia> areas = apedao.RetornarAreasPorEvaluador(perfiles.get(i).getusername());
-											System.out.print("Tamaño de lista de areas = " + areas.size());
-											System.out.print("Username = " + perfiles.get(i).getusername());
+										<% List<Perfil> perfiles = (List<Perfil>) session.getAttribute("perfiles");
+											Map<String, List<AreaPericia> > areasporevaluador = (Map<String, List<AreaPericia> >) session.getAttribute("areasporevaluador");
+											for(int i=0; i<perfiles.size(); i++) {
 											%>
 										<option value="<%=perfiles.get(i).getusername()%>"><%=perfiles.get(i).getNombres() + " " + perfiles.get(i).getApellidos() %> (<%
-												for(int j=0; j<areas.size(); j++) { if(i > 0) {System.out.print("Entro al if > 0"); System.out.println("areas de pericia = " + areas.get(j).getDescripcion());%><%=", "%><% }%> <%=areas.get(j).getDescripcion() %>
+												for(int j=0; j<areasporevaluador.get(perfiles.get(i).getusername()).size(); j++) { if(j > 0) {%><%=", "%><% }%> <%=areasporevaluador.get(perfiles.get(i).getusername()).get(j).getDescripcion() %>
 												<% }%>)</option>
 										<%} %>
 										<!--  <option value="2">María Suárez - Tecnologías de información</option>

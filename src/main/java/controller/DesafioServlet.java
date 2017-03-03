@@ -2,10 +2,14 @@ package controller;
 
 
 import dao.EmpleadoDAO;
+import dao.AreasPorEvaluadorDAO;
 import dao.CategoriaDAO;
 import dao.DesafioDAO;
 import dao.IdeaDAO;
+import dao.PerfilDAO;
 import model.Empleado;
+import model.Perfil;
+import model.AreaPericia;
 import model.Categoria;
 import model.Desafio;
 import model.User;
@@ -77,6 +81,20 @@ public class DesafioServlet extends HttpServlet {
 			//Lista que guarda todas las categorías disponibles para los desafíos
 			List<Categoria> lis_cat = new CategoriaDAO().RetornarCategorias();
 			session.setAttribute("categorias", lis_cat);
+			
+			List<Perfil> perfiles = new PerfilDAO().Retornar_Perfil_Rol(3);
+			System.out.print("Tamaño de lista de evaluadores = " + perfiles.size());
+			session.setAttribute("perfiles", perfiles);
+			
+			AreasPorEvaluadorDAO apedao = new AreasPorEvaluadorDAO();
+			Map<String, List<AreaPericia> > mapareas = new HashMap<String, List<AreaPericia> >();
+			for(int i = 0; i<perfiles.size(); i++) {
+				List<AreaPericia> areas = apedao.RetornarAreasPorEvaluador(perfiles.get(i).getusername());
+				System.out.print("Tamaño de lista de areas = " + areas.size());
+				System.out.print("Username = " + perfiles.get(i).getusername());
+				mapareas.put(perfiles.get(i).getusername(), areas);
+			}
+			session.setAttribute("areasporevaluador", mapareas);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/pages/" + DESAFIOS_JSP);
 			rd.forward(request, response);			
